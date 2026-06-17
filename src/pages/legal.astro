@@ -1,0 +1,85 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import { site } from "../content/site";
+---
+
+<Layout title="Legal" description="Privacy, terms, and contact details for Roman Marinsky products.">
+  <Header />
+  <main>
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Last updated: 17 June 2026</span>
+          <h1>Legal</h1>
+          <p class="lead">
+            Short version: this site is static, product behavior is documented per repository or release,
+            and credentials should stay in your local tools.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container legal-layout">
+        <nav class="legal-nav" aria-label="Legal sections">
+          <a href="#privacy">Privacy</a>
+          <a href="#terms">Terms</a>
+          <a href="#imprint">Imprint</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="legal-content">
+          <section class="legal-section" id="privacy">
+            <span class="kicker">Privacy</span>
+            <h2>Static site privacy</h2>
+            <p class="body-copy">
+              rmarinsky.com.ua does not require an account and does not include a custom tracking layer.
+              Hosting providers may process standard access logs for security, abuse prevention, and delivery.
+            </p>
+            <ul>
+              <li>Product pages link to GitHub, npm, and distribution platforms that have their own policies.</li>
+              <li>Mac apps, browser extensions, and MCP servers may process data differently; check the relevant repository and release notes.</li>
+              <li>Do not publish API keys, payment credentials, hosting tokens, or customer data in issues, chats, or screenshots.</li>
+            </ul>
+          </section>
+
+          <section class="legal-section" id="terms">
+            <span class="kicker">Terms</span>
+            <h2>Software usage</h2>
+            <p class="body-copy">
+              Products are provided according to the license and documentation in each repository or distribution channel.
+              Open-source repositories remain governed by their repository license. Commercial or platform-specific terms,
+              if introduced later, should be documented beside the product before they apply.
+            </p>
+            <ul>
+              <li>Use operational tools with review and backups, especially for DNS, payments, and account changes.</li>
+              <li>No product on this site is a promise of fully autonomous AI behavior.</li>
+              <li>Availability, pricing, and supported platforms can change by release.</li>
+            </ul>
+          </section>
+
+          <section class="legal-section" id="imprint">
+            <span class="kicker">Imprint</span>
+            <h2>Publisher</h2>
+            <p class="body-copy">
+              Roman Marinsky, Lviv, Ukraine. This site represents personal software projects,
+              community work, and product documentation.
+            </p>
+          </section>
+
+          <section class="legal-section" id="contact">
+            <span class="kicker">Contact</span>
+            <h2>Support and privacy requests</h2>
+            <p class="body-copy">
+              For product issues, use the linked GitHub repository when possible. For private requests,
+              contact <a class="tone-text tone-sidebarny" href={site.email}>{site.email.replace("mailto:", "")}</a>.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

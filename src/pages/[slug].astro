@@ -1,0 +1,142 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ProductMockup from "../components/ProductMockup.astro";
+import { products, type Product } from "../content/products";
+
+interface Props {
+  product: Product;
+}
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const relatedProducts = products
+  .filter((item) => item.kind === product.kind && item.slug !== product.slug)
+  .concat(products.filter((item) => item.kind !== product.kind))
+  .slice(0, 3);
+
+const softBackground: Record<Product["accent"], string> = {
+  diduny: "color-mix(in srgb, var(--diduny), var(--bg-primary) 88%)",
+  browsercat: "color-mix(in srgb, var(--browsercat), var(--bg-primary) 88%)",
+  papuga: "color-mix(in srgb, var(--papuga), var(--bg-primary) 88%)",
+  sidebarny: "color-mix(in srgb, var(--sidebarny), var(--bg-primary) 88%)",
+  wayforpay: "color-mix(in srgb, var(--wayforpay), var(--bg-primary) 88%)",
+  ukraine: "color-mix(in srgb, var(--ukraine), var(--bg-primary) 88%)",
+};
+---
+
+<Layout title={product.name} description={product.summary}>
+  <Header />
+  <main>
+    <section class={`product-hero tone-${product.accent}`} style={`--product-soft: ${softBackground[product.accent]};`}>
+      <div class="container product-hero-inner">
+        <div class="product-copy">
+          <div class="breadcrumbs"><a href="/">Products</a> / {product.name}</div>
+          <span class="product-icon">{product.letter}</span>
+          <h1>{product.title}</h1>
+          <p class="lead">{product.summary}</p>
+          <div class="pill-row">
+            {product.badges.map((badge) => <span class="pill">{badge}</span>)}
+          </div>
+          <div class="button-row">
+            <a class="button primary" href={product.primaryUrl}>{product.primaryCta}</a>
+            {product.secondaryUrl && product.secondaryCta && <a class="button" href={product.secondaryUrl}>{product.secondaryCta}</a>}
+          </div>
+        </div>
+        <ProductMockup product={product} />
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class={`trust-panel tone-${product.accent}`}>
+          <span class="kicker">Product stance</span>
+          <h2>{product.privacyTitle}</h2>
+          <p class="body-copy">{product.privacyBody}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">What it does</span>
+          <h2>Focused behavior, no theatre</h2>
+        </div>
+        <div class="feature-grid">
+          {product.features.map((feature) => (
+            <article class={`card feature-card tone-${product.accent}`}>
+              {feature.tone && <span class="status-badge">{feature.tone}</span>}
+              <h3>{feature.title}</h3>
+              <p class="body-copy">{feature.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {product.installCommand && (
+      <section class="band" id="install">
+        <div class="container">
+          <div class="install-panel">
+            <span class="kicker">Install</span>
+            <h2>One command, then review the app docs</h2>
+            <pre class="code-block"><code>{product.installCommand}</code></pre>
+            <p class="body-copy">
+              For MCP servers, keep credentials in your local client config. For Mac apps,
+              use the latest release notes as the source of truth for requirements.
+            </p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">FAQ</span>
+          <h2>Practical details</h2>
+        </div>
+        <div class="faq-list">
+          {product.faq.map((item) => (
+            <article class="faq-item">
+              <h3>{item.question}</h3>
+              <p class="body-copy">{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">More products</span>
+          <h2>Other tools from the same shelf</h2>
+        </div>
+        <div class="grid three">
+          {relatedProducts.map((item) => <ProductCard product={item} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="band final-cta">
+      <div class="container final-cta-inner">
+        <h2>{product.finalCta}</h2>
+        <div class="button-row">
+          <a class="button primary" href={product.primaryUrl}>{product.primaryCta}</a>
+          <a class="button" href="/">Back to all products</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

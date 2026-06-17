@@ -1,0 +1,76 @@
+---
+import type { Product } from "../content/products";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const isBrowser = product.kind === "extension";
+const isMcp = product.kind === "mcp";
+---
+
+<div class={`window-mockup tone-${product.accent} ${isBrowser ? "browser-mockup" : ""}`}>
+  <div class="window-bar">
+    <span class="traffic-light red"></span>
+    <span class="traffic-light yellow"></span>
+    <span class="traffic-light green"></span>
+    <span class="caption">{product.latinName}</span>
+  </div>
+
+  {isMcp ? (
+    <div class="mockup-main">
+      <div class="chat-bubble">What can this tool do?</div>
+      <div class="receipt">
+        <div class="receipt-row"><strong>called</strong><span class="caption">read operation</span></div>
+        <div class="receipt-row"><span>Available actions</span><strong>{product.features.length}</strong></div>
+        <div class="receipt-row"><span>Gated mutations</span><strong>{product.features.filter((item) => item.tone === "gated").length}</strong></div>
+      </div>
+      <div class="mockup-metric-grid">
+        <div class="mockup-metric"></div>
+        <div class="mockup-metric"></div>
+        <div class="mockup-metric"></div>
+      </div>
+    </div>
+  ) : isBrowser ? (
+    <div class="mockup-body">
+      <div class="browser-page">
+        <div class="mockup-line" style="width: 72%"></div>
+        <div class="mockup-line" style="width: 86%"></div>
+        <div class="mockup-line" style="width: 64%"></div>
+        <div class="mockup-line" style="width: 78%"></div>
+        <div class="mockup-line" style="width: 52%"></div>
+      </div>
+      <div class="browser-panel">
+        <h3>Claude</h3>
+        <div class="chat-bubble">Summarize this</div>
+        <div class="mockup-panel"></div>
+        <div class="mockup-line" style="width: 70%"></div>
+      </div>
+    </div>
+  ) : (
+    <div class="mockup-body">
+      <div class="mockup-sidebar">
+        <span class="product-icon">{product.letter}</span>
+        <div class="mockup-line" style="width: 78%"></div>
+        <div class="mockup-line" style="width: 62%"></div>
+        <div class="mockup-line" style="width: 68%"></div>
+      </div>
+      <div class="mockup-main">
+        <div class="mockup-metric-grid">
+          <div class="mockup-metric"></div>
+          <div class="mockup-metric"></div>
+          <div class="mockup-metric"></div>
+        </div>
+        <div class="mockup-chart">
+          <span class="mockup-bar" style="height: 42%"></span>
+          <span class="mockup-bar" style="height: 66%"></span>
+          <span class="mockup-bar" style="height: 52%"></span>
+          <span class="mockup-bar" style="height: 78%"></span>
+          <span class="mockup-bar" style="height: 46%"></span>
+        </div>
+        <div class="mockup-panel"></div>
+      </div>
+    </div>
+  )}
+</div>

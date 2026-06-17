@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+import { site } from "../content/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const title = Astro.props.title ? `${Astro.props.title} - ${site.name}` : site.name;
+const description = Astro.props.description ?? site.description;
+const canonical = new URL(Astro.url.pathname, site.domain.startsWith("http") ? site.domain : `https://${site.domain}`);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.toString()} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <slot />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import { site } from "../content/site";
+---
+
+<Layout title="About" description="Roman Marinsky builds QA, macOS, browser, and practical AI tools from Lviv, Ukraine.">
+  <Header />
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-inner">
+          <span class="avatar-dot" aria-hidden="true"></span>
+          <span class="eyebrow">Roman Marinsky · Lviv, Ukraine</span>
+          <h1>QA/Test Automation expert who ships small products</h1>
+          <p class="lead">
+            11+ years in QA, 1400+ technical interviews, Key Expert at Intellias QA CoE,
+            and a habit of building Mac and AI workflow tools when the existing ones waste time.
+          </p>
+          <div class="link-pills">
+            <a class="pill" href={site.github}>GitHub</a>
+            <a class="pill" href={site.linkedin}>LinkedIn</a>
+            <a class="pill" href={site.npm}>npm</a>
+            <a class="pill" href={site.email}>Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="grid two">
+          <article class="card">
+            <span class="kicker">Work</span>
+            <h2>Testing background, product instincts</h2>
+            <p class="body-copy">
+              My default lens is quality engineering: clear boundaries, observable behavior,
+              realistic failure modes, and no blind faith in hype. That affects how I build
+              macOS apps, browser extensions, and MCP servers.
+            </p>
+          </article>
+          <article class="card">
+            <span class="kicker">AI stance</span>
+            <h2>Assistant, not autopilot</h2>
+            <p class="body-copy">
+              AI integrations should make a narrow job faster and safer. Reads can be broad,
+              writes need explicit gates, and every product should be useful even when the model is wrong.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Community and education</span>
+          <h2>Projects around the tools</h2>
+        </div>
+        <div class="grid four">
+          <article class="card">
+            <h3>Мануфактура автоматизації</h3>
+            <p class="body-copy">Practical automation courses without bullshit, including AI-track work.</p>
+          </article>
+          <article class="card">
+            <h3>Party Hard</h3>
+            <p class="body-copy">A charity tech conference built around real conversations, not stage polish.</p>
+          </article>
+          <article class="card">
+            <h3>QA Club Lviv</h3>
+            <p class="body-copy">Regular meetups for QA people who want useful technical depth.</p>
+          </article>
+          <article class="card">
+            <h3>Кулуари РМ</h3>
+            <p class="body-copy">Media and commentary about the parts people usually do not say out loud.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Open source</span>
+          <h2>Tools I keep inspectable</h2>
+        </div>
+        <div class="grid three">
+          <article class="card tone-browsercat">
+            <span class="product-icon">B</span>
+            <h3>BrowserCat</h3>
+            <p class="body-copy">A macOS browser picker utility for routing links across contexts.</p>
+          </article>
+          <article class="card tone-diduny">
+            <span class="product-icon">D</span>
+            <h3>Дідуня</h3>
+            <p class="body-copy">A macOS dictation/transcription app with Dynamic Notch behavior.</p>
+          </article>
+          <article class="card tone-ukraine">
+            <span class="product-icon">U</span>
+            <h3>ukraine.com.ua MCP</h3>
+            <p class="body-copy">A backup-first MCP server for domain and DNS operations.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,39 @@
+---
+import { products } from "../content/products";
+import { site } from "../content/site";
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <strong>Products</strong>
+        {products.map((product) => <a href={`/${product.slug}/`}>{product.name}</a>)}
+      </div>
+      <div class="footer-col">
+        <strong>Studio</strong>
+        <a href="/about/">About</a>
+        <a href="https://github.com/rmarinsky">GitHub</a>
+        <a href={site.email}>Contact</a>
+        <a href="/legal/">Legal</a>
+      </div>
+      <div class="footer-col">
+        <strong>Support</strong>
+        <a href="/papuga/#install">How to install</a>
+        <a href={site.github}>GitHub</a>
+        <a href={site.npm}>npm</a>
+        <a href={site.email}>Help</a>
+      </div>
+      <div class="footer-col">
+        <strong>Legal</strong>
+        <a href="/legal/#privacy">Privacy</a>
+        <a href="/legal/#terms">Terms</a>
+        <a href="/legal/#imprint">Imprint</a>
+      </div>
+    </div>
+    <div class="footer-bottom caption">
+      <span>© 2026 {site.name} · {site.domain}</span>
+      <span>Made in Ukraine · UA / EN</span>
+    </div>
+  </div>
+</footer>

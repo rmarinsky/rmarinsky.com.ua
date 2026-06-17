@@ -1,0 +1,31 @@
+---
+import { site } from "../content/site";
+---
+
+<header class="page-header">
+  <div class="container">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="/">{site.name}</a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="/#mac-apps">Mac Apps</a>
+          <a href="/#extension">Extension</a>
+          <a href="/#mcp">MCP</a>
+          <a href="/about/">About</a>
+        </div>
+        <span class="language-toggle" aria-label="Language selector"><strong>UA</strong><span>/</span><span>EN</span></span>
+        <details class="mobile-menu">
+          <summary aria-label="Open navigation">
+            <span class="mobile-menu-mark" aria-hidden="true"><span></span></span>
+          </summary>
+          <div class="mobile-menu-panel">
+            <a href="/#mac-apps">Mac Apps</a>
+            <a href="/#extension">Extension</a>
+            <a href="/#mcp">MCP</a>
+            <a href="/about/">About</a>
+          </div>
+        </details>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,112 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products } from "../content/products";
+
+const macProducts = products.filter((product) => product.kind === "mac");
+const extensionProduct = products.find((product) => product.slug === "sidebarny");
+const mcpProducts = products.filter((product) => product.kind === "mcp");
+---
+
+<Layout>
+  <Header />
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Independent software studio from Lviv, Ukraine</span>
+          <h1>Small, sharp tools for your Mac, your browser, and your AI</h1>
+          <p class="lead">
+            I build practical products for people who work across many tools every day:
+            native macOS utilities, browser workflow helpers, and MCP servers for real operations.
+          </p>
+          <div class="button-row">
+            <a class="button primary" href="#mac-apps">Browse products</a>
+            <a class="button" href="/about/">About Roman</a>
+          </div>
+          <p class="hero-meta">macOS apps · Chrome extension · Model Context Protocol servers · open source where it matters</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary" id="mac-apps">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Mac Apps</span>
+          <h2>Native utilities for everyday work</h2>
+          <p class="body-copy">
+            Focused tools with a small surface area: dictate text, route links to the right browser,
+            and fix layout mistakes without breaking your flow.
+          </p>
+        </div>
+        <div class="grid three">
+          {macProducts.map((product) => <ProductCard product={product} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="extension">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Browser Extension</span>
+          <h2>AI beside the page you are already reading</h2>
+        </div>
+        <div class="grid two">
+          {extensionProduct && <ProductCard product={extensionProduct} />}
+          <article class="card tone-sidebarny">
+            <span class="product-icon">8</span>
+            <h3>Provider-aware side panel</h3>
+            <p class="body-copy">
+              SideBarny is built for real research and support work: capture selected elements,
+              send text or HTML to the LLM you choose, and keep page context close.
+            </p>
+            <div class="pill-row">
+              <span class="pill">ChatGPT</span>
+              <span class="pill">Claude</span>
+              <span class="pill">Gemini</span>
+              <span class="pill">Rovo</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary" id="mcp">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">MCP Servers</span>
+          <h2>Operational APIs your AI can use without pretending to be autonomous</h2>
+          <p class="body-copy">
+            MCP is useful when it exposes narrow, reviewable actions. Reads should be cheap,
+            mutations should be gated, and credentials should stay local.
+          </p>
+        </div>
+        <div class="grid two">
+          {mcpProducts.map((product) => <ProductCard product={product} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="about-strip">
+          <div class="about-strip-text">
+            <span class="avatar-dot" aria-hidden="true"></span>
+            <div>
+              <span class="kicker">Built by Roman Marinsky</span>
+              <h2>QA engineer, macOS developer, and community builder</h2>
+              <p class="body-copy">
+                I work at the intersection of test automation, Mac productivity, and practical AI integrations.
+                The bar is simple: the tool should remove friction, not create another dashboard to babysit.
+              </p>
+            </div>
+          </div>
+          <a class="button" href="/about/">More context</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
