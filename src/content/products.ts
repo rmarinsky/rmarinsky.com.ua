@@ -15,6 +15,11 @@ export interface Product {
   secondaryCta?: string;
   secondaryUrl?: string;
   installCommand?: string;
+  image: {
+    src: string;
+    alt: string;
+    variant: "app" | "panel" | "docs";
+  };
   badges: string[];
   privacyTitle: string;
   privacyBody: string;
@@ -39,6 +44,11 @@ export const products: Product[] = [
     primaryUrl: "https://github.com/rmarinsky/Diduny/releases/latest",
     secondaryCta: "View source",
     secondaryUrl: "https://github.com/rmarinsky/Diduny",
+    image: {
+      src: "/images/products/diduny-overview.png",
+      alt: "Diduny macOS app overview screen with dictation statistics and recent recordings",
+      variant: "app",
+    },
     badges: ["macOS app", "notarized", "auto-updates", "open source"],
     privacyTitle: "Audio stays under your control",
     privacyBody:
@@ -71,6 +81,11 @@ export const products: Product[] = [
     primaryUrl: "https://github.com/rmarinsky/BrowserCat/releases/latest",
     secondaryCta: "View source",
     secondaryUrl: "https://github.com/rmarinsky/BrowserCat",
+    image: {
+      src: "/images/products/browsercat-overview.png",
+      alt: "BrowserCat macOS app overview screen with link routing statistics and suggested rules",
+      variant: "app",
+    },
     badges: ["macOS app", "menu bar", "rules", "open source"],
     privacyTitle: "Rules are local",
     privacyBody:
@@ -104,6 +119,11 @@ export const products: Product[] = [
     secondaryCta: "View source",
     secondaryUrl: "https://github.com/rmarinsky/papuga",
     installCommand: "brew install --cask papuga",
+    image: {
+      src: "/images/products/papuga-overview.png",
+      alt: "Papuga macOS app overview screen with keyboard layout rescue statistics and recent fixes",
+      variant: "app",
+    },
     badges: ["macOS 14+", "Apple-notarized", "Sparkle updates", "free", "open source"],
     privacyTitle: "Private by design",
     privacyBody:
@@ -137,6 +157,11 @@ export const products: Product[] = [
     primaryUrl: "https://github.com/rmarinsky/sidebarny-extension",
     secondaryCta: "View source",
     secondaryUrl: "https://github.com/rmarinsky/sidebarny-extension",
+    image: {
+      src: "/images/products/sidebarny-sidepanel.png",
+      alt: "SideBarny Chrome side panel UI with provider selector and capture controls",
+      variant: "panel",
+    },
     badges: ["Chrome extension", "8 AI providers", "free", "minimal permissions"],
     privacyTitle: "Your data stays private",
     privacyBody:
@@ -173,6 +198,11 @@ export const products: Product[] = [
     secondaryUrl: "https://github.com/rmarinsky/wayforpay-mcp#readme",
     installCommand:
       'npx @rmarinsky/wayforpay-mcp',
+    image: {
+      src: "/images/products/wayforpay-mcp-readme.png",
+      alt: "WayForPay MCP README tool table showing read and gated write operations",
+      variant: "docs",
+    },
     badges: ["npm", "MIT license", "Claude", "Cursor", "5 tools", "open source"],
     privacyTitle: "Your keys never touch our servers",
     privacyBody:
@@ -208,6 +238,11 @@ export const products: Product[] = [
     secondaryCta: "Read the docs",
     secondaryUrl: "https://github.com/rmarinsky/ukraine-com-ua-mcp#readme",
     installCommand: "npx @rmarinsky/ukraine-com-ua-mcp",
+    image: {
+      src: "/images/products/ukraine-mcp-readme.png",
+      alt: "ukraine.com.ua MCP README tool table showing domain, DNS, backup, and restore operations",
+      variant: "docs",
+    },
     badges: ["npm", "adm.tools", "DNS backup", "open source"],
     privacyTitle: "Backup-first DNS changes",
     privacyBody:

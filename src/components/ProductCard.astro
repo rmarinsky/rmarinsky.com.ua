@@ -9,6 +9,9 @@ const { product } = Astro.props;
 ---
 
 <a class={`card product-card tone-${product.accent}`} href={`/${product.slug}/`}>
+  <span class={`product-card-media visual-${product.image.variant}`}>
+    <img src={product.image.src} alt={product.image.alt} loading="eager" decoding="async" />
+  </span>
   <span class="product-icon">{product.letter}</span>
   <h3>{product.name} · {product.latinName}</h3>
   <p class="body-copy">{product.homepageSummary}</p>
