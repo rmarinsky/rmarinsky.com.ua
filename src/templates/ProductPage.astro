@@ -1,0 +1,180 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import ProductMockup from "../components/ProductMockup.astro";
+import UpdateCard from "../components/UpdateCard.astro";
+import { absoluteLocalizedUrl, localizedPath, ui, type Locale } from "../content/i18n";
+import { localizedProducts, localizeProduct, type Product } from "../content/products";
+import { site } from "../content/site";
+import { getProductUpdates, isUpdateProductSlug } from "../content/updates";
+
+interface Props {
+  product: Product;
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const product = localizeProduct(Astro.props.product, locale);
+const t = ui[locale].product;
+const allProducts = localizedProducts(locale);
+const productUpdates = isUpdateProductSlug(product.slug) ? getProductUpdates(product.slug) : [];
+const relatedProducts = allProducts
+  .filter((item) => item.kind === product.kind && item.slug !== product.slug)
+  .concat(allProducts.filter((item) => item.kind !== product.kind))
+  .slice(0, 3);
+
+const softBackground: Record<Product["accent"], string> = {
+  diduny: "color-mix(in srgb, var(--diduny), var(--bg-primary) 88%)",
+  browsercat: "color-mix(in srgb, var(--browsercat), var(--bg-primary) 88%)",
+  papuga: "color-mix(in srgb, var(--papuga), var(--bg-primary) 88%)",
+  sidebarny: "color-mix(in srgb, var(--sidebarny), var(--bg-primary) 88%)",
+  wayforpay: "color-mix(in srgb, var(--wayforpay), var(--bg-primary) 88%)",
+  ukraine: "color-mix(in srgb, var(--ukraine), var(--bg-primary) 88%)",
+};
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": `${site.url}/${product.slug}/#software`,
+  name: product.latinName,
+  alternateName: product.name,
+  description: product.summary,
+  url: absoluteLocalizedUrl(`/${product.slug}/`, locale),
+  image: new URL(product.image.src, site.url).toString(),
+  applicationCategory:
+    product.kind === "mac" ? "UtilitiesApplication" : product.kind === "extension" ? "BrowserApplication" : "DeveloperApplication",
+  operatingSystem: product.kind === "mac" ? "macOS" : product.kind === "extension" ? "Chrome" : "Cross-platform",
+  author: { "@id": `${site.url}/#person` },
+  sameAs: product.secondaryUrl ? [product.primaryUrl, product.secondaryUrl] : [product.primaryUrl],
+};
+---
+
+<Layout
+  locale={locale}
+  title={product.name}
+  description={product.summary}
+  image={product.image.src}
+  jsonLd={[productJsonLd]}
+>
+  <Header locale={locale} />
+  <main>
+    <section class={`product-hero tone-${product.accent}`} style={`--product-soft: ${softBackground[product.accent]};`}>
+      <div class="container product-hero-inner">
+        <div class="product-copy">
+          <div class="breadcrumbs"><a href={localizedPath("/", locale)}>{t.breadcrumbs}</a> / {product.name}</div>
+          <span class="product-icon">{product.letter}</span>
+          <h1>{product.title}</h1>
+          <p class="lead">{product.summary}</p>
+          <div class="pill-row">
+            {product.badges.map((badge) => <span class="pill">{badge}</span>)}
+          </div>
+          <div class="button-row">
+            <a class="button primary" href={product.primaryUrl}>{product.primaryCta}</a>
+            {product.secondaryUrl && product.secondaryCta && <a class="button" href={product.secondaryUrl}>{product.secondaryCta}</a>}
+          </div>
+        </div>
+        <ProductMockup product={product} />
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class={`trust-panel tone-${product.accent}`}>
+          <span class="kicker">{t.stanceKicker}</span>
+          <h2>{product.privacyTitle}</h2>
+          <p class="body-copy">{product.privacyBody}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.featuresKicker}</span>
+          <h2>{t.featuresTitle}</h2>
+        </div>
+        <div class="feature-grid">
+          {product.features.map((feature) => (
+            <article class={`card feature-card tone-${product.accent}`}>
+              {feature.tone && <span class="status-badge">{feature.tone}</span>}
+              <h3>{feature.title}</h3>
+              <p class="body-copy">{feature.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {product.installCommand && (
+      <section class="band" id="install">
+        <div class="container">
+          <div class="install-panel">
+            <span class="kicker">{t.installKicker}</span>
+            <h2>{t.installTitle}</h2>
+            <pre class="code-block"><code>{product.installCommand}</code></pre>
+            <p class="body-copy">{t.installBody}</p>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.faqKicker}</span>
+          <h2>{t.faqTitle}</h2>
+        </div>
+        <div class="faq-list">
+          {product.faq.map((item) => (
+            <article class="faq-item">
+              <h3>{item.question}</h3>
+              <p class="body-copy">{item.answer}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {productUpdates.length > 0 && (
+      <section class="band secondary">
+        <div class="container">
+          <div class="section-header split-header">
+            <div>
+              <span class="kicker">{t.updatesKicker}</span>
+              <h2>{t.updatesTitle} {product.name}</h2>
+            </div>
+            <a class="button compact" href={localizedPath("/updates/", locale)}>{t.allUpdates}</a>
+          </div>
+          <div class="updates-grid">
+            {productUpdates.map((update) => <UpdateCard update={update} locale={locale} />)}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.moreKicker}</span>
+          <h2>{t.moreTitle}</h2>
+        </div>
+        <div class="grid three">
+          {relatedProducts.map((item) => <ProductCard product={item} locale={locale} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="band final-cta">
+      <div class="container final-cta-inner">
+        <h2>{product.finalCta}</h2>
+        <div class="button-row">
+          <a class="button primary" href={product.primaryUrl}>{product.primaryCta}</a>
+          <a class="button" href={localizedPath("/", locale)}>{t.back}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

@@ -1,0 +1,75 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import { localizedPath, ui, type Locale } from "../content/i18n";
+import { site } from "../content/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].legal;
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <Header locale={locale} />
+  <main>
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">{t.updated}</span>
+          <h1>{t.heading}</h1>
+          <p class="lead">{t.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container legal-layout">
+        <nav class="legal-nav" aria-label={t.navLabel}>
+          <a href={localizedPath("/legal/#privacy", locale)}>{t.privacy}</a>
+          <a href={localizedPath("/legal/#terms", locale)}>{t.terms}</a>
+          <a href={localizedPath("/legal/#imprint", locale)}>{t.imprint}</a>
+          <a href={localizedPath("/legal/#contact", locale)}>{t.contact}</a>
+        </nav>
+
+        <div class="legal-content">
+          <section class="legal-section" id="privacy">
+            <span class="kicker">{t.privacy}</span>
+            <h2>{t.privacyTitle}</h2>
+            <p class="body-copy">{t.privacyBody}</p>
+            <ul>
+              {t.privacyBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="legal-section" id="terms">
+            <span class="kicker">{t.terms}</span>
+            <h2>{t.termsTitle}</h2>
+            <p class="body-copy">{t.termsBody}</p>
+            <ul>
+              {t.termsBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="legal-section" id="imprint">
+            <span class="kicker">{t.imprint}</span>
+            <h2>{t.publisherTitle}</h2>
+            <p class="body-copy">{t.publisherBody}</p>
+          </section>
+
+          <section class="legal-section" id="contact">
+            <span class="kicker">{t.contact}</span>
+            <h2>{t.contactTitle}</h2>
+            <p class="body-copy">
+              {t.contactBody} <a class="tone-text tone-sidebarny" href={site.email}>{site.email.replace("mailto:", "")}</a>.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

@@ -1,39 +1,49 @@
 ---
-import { products } from "../content/products";
+import { localizedPath, ui, type Locale } from "../content/i18n";
+import { localizedProducts } from "../content/products";
 import { site } from "../content/site";
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? "uk";
+const t = ui[locale].footer;
+const products = localizedProducts(locale);
 ---
 
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
-        <strong>Products</strong>
-        {products.map((product) => <a href={`/${product.slug}/`}>{product.name}</a>)}
+        <strong>{t.products}</strong>
+        {products.map((product) => <a href={localizedPath(`/${product.slug}/`, locale)}>{product.name}</a>)}
       </div>
       <div class="footer-col">
-        <strong>Studio</strong>
-        <a href="/about/">About</a>
+        <strong>{t.studio}</strong>
+        <a href={localizedPath("/updates/", locale)}>{t.updates}</a>
+        <a href={localizedPath("/about/", locale)}>{t.about}</a>
         <a href="https://github.com/rmarinsky">GitHub</a>
-        <a href={site.email}>Contact</a>
-        <a href="/legal/">Legal</a>
+        <a href={site.email}>{t.contact}</a>
+        <a href={localizedPath("/legal/", locale)}>{t.legal}</a>
       </div>
       <div class="footer-col">
-        <strong>Support</strong>
-        <a href="/papuga/#install">How to install</a>
+        <strong>{t.support}</strong>
+        <a href={localizedPath("/papuga/#install", locale)}>{t.howToInstall}</a>
         <a href={site.github}>GitHub</a>
         <a href={site.npm}>npm</a>
-        <a href={site.email}>Help</a>
+        <a href={site.email}>{t.help}</a>
       </div>
       <div class="footer-col">
-        <strong>Legal</strong>
-        <a href="/legal/#privacy">Privacy</a>
-        <a href="/legal/#terms">Terms</a>
-        <a href="/legal/#imprint">Imprint</a>
+        <strong>{t.legal}</strong>
+        <a href={localizedPath("/legal/#privacy", locale)}>{t.privacy}</a>
+        <a href={localizedPath("/legal/#terms", locale)}>{t.terms}</a>
+        <a href={localizedPath("/legal/#imprint", locale)}>{t.imprint}</a>
       </div>
     </div>
     <div class="footer-bottom caption">
       <span>© 2026 {site.name} · {site.domain}</span>
-      <span>Made in Ukraine · UA / EN</span>
+      <span>{t.madeIn} · UA / EN</span>
     </div>
   </div>
 </footer>

@@ -1,0 +1,107 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import { ui, type Locale } from "../content/i18n";
+import { site } from "../content/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].about;
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <Header locale={locale} />
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <div class="about-hero-inner">
+          <span class="avatar-dot" aria-hidden="true"></span>
+          <span class="eyebrow">{t.eyebrow}</span>
+          <h1>{t.heading}</h1>
+          <p class="lead">{t.lead}</p>
+          <div class="link-pills">
+            <a class="pill" href={site.github}>GitHub</a>
+            <a class="pill" href={site.linkedin}>LinkedIn</a>
+            <a class="pill" href={site.npm}>npm</a>
+            <a class="pill" href={site.email}>Email</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="grid two">
+          <article class="card">
+            <span class="kicker">{t.workKicker}</span>
+            <h2>{t.workTitle}</h2>
+            <p class="body-copy">{t.workBody}</p>
+          </article>
+          <article class="card">
+            <span class="kicker">{t.aiKicker}</span>
+            <h2>{t.aiTitle}</h2>
+            <p class="body-copy">{t.aiBody}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.communityKicker}</span>
+          <h2>{t.communityTitle}</h2>
+        </div>
+        <div class="grid four">
+          <article class="card">
+            <h3>Мануфактура автоматизації</h3>
+            <p class="body-copy">{t.manufaktura}</p>
+          </article>
+          <article class="card">
+            <h3>Party Hard</h3>
+            <p class="body-copy">{t.partyHard}</p>
+          </article>
+          <article class="card">
+            <h3>QA Club Lviv</h3>
+            <p class="body-copy">{t.qaClub}</p>
+          </article>
+          <article class="card">
+            <h3>Кулуари РМ</h3>
+            <p class="body-copy">{t.kuluary}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.ossKicker}</span>
+          <h2>{t.ossTitle}</h2>
+        </div>
+        <div class="grid three">
+          <article class="card tone-browsercat">
+            <span class="product-icon">B</span>
+            <h3>BrowserCat</h3>
+            <p class="body-copy">{t.ossBrowserCat}</p>
+          </article>
+          <article class="card tone-diduny">
+            <span class="product-icon">D</span>
+            <h3>Дідуня</h3>
+            <p class="body-copy">{t.ossDiduny}</p>
+          </article>
+          <article class="card tone-ukraine">
+            <span class="product-icon">U</span>
+            <h3>ukraine.com.ua MCP</h3>
+            <p class="body-copy">{t.ossUkraineMcp}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

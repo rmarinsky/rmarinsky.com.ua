@@ -1,0 +1,39 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import UpdateCard from "../components/UpdateCard.astro";
+import { ui, type Locale } from "../content/i18n";
+import { sortedUpdates } from "../content/updates";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].updates;
+---
+
+<Layout locale={locale} title={t.title} description={t.description}>
+  <Header locale={locale} />
+  <main>
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">{t.eyebrow}</span>
+          <h1>{t.heading}</h1>
+          <p class="lead">{t.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="updates-grid">
+          {sortedUpdates.map((update) => <UpdateCard update={update} locale={locale} />)}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

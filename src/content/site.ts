@@ -1,6 +1,7 @@
 export const site = {
   name: "Roman Marinsky",
   domain: "rmarinsky.com.ua",
+  url: "https://rmarinsky.com.ua",
   description:
     "Small, sharp tools for your Mac, your browser, and your AI. Built by Roman Marinsky in Ukraine.",
   author: "Roman Marinsky",

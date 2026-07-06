@@ -1,31 +1,52 @@
 ---
 import "../styles/global.css";
+import { absoluteLocalizedUrl, alternateLinks, getSiteJsonLd, localeMeta, siteDescriptions, type Locale } from "../content/i18n";
 import { site } from "../content/site";
 
 interface Props {
   title?: string;
   description?: string;
+  locale?: Locale;
+  image?: string;
+  type?: "website" | "article";
+  jsonLd?: unknown[];
 }
 
+const locale = Astro.props.locale ?? "uk";
 const title = Astro.props.title ? `${Astro.props.title} - ${site.name}` : site.name;
-const description = Astro.props.description ?? site.description;
-const canonical = new URL(Astro.url.pathname, site.domain.startsWith("http") ? site.domain : `https://${site.domain}`);
+const description = Astro.props.description ?? siteDescriptions[locale];
+const canonical = absoluteLocalizedUrl(Astro.url.pathname, locale);
+const image = Astro.props.image ? new URL(Astro.props.image, site.url).toString() : `${site.url}/images/products/diduny-overview.png`;
+const pageType = Astro.props.type ?? "website";
+const pageAlternates = alternateLinks(Astro.url.pathname);
+const jsonLd = [getSiteJsonLd(locale), ...(Astro.props.jsonLd ?? [])];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={localeMeta[locale].lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical.toString()} />
-    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    {pageAlternates.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />)}
+    <link rel="alternate" hreflang="x-default" href={absoluteLocalizedUrl(Astro.url.pathname, "uk")} />
+    <link rel="alternate" type="application/rss+xml" title={`${site.name} updates`} href={absoluteLocalizedUrl("/updates/feed.xml", locale)} />
+    <meta property="og:type" content={pageType} />
+    <meta property="og:locale" content={localeMeta[locale].ogLocale} />
+    {pageAlternates.filter((alternate) => alternate.locale !== locale).map((alternate) => <meta property="og:locale:alternate" content={localeMeta[alternate.locale].ogLocale} />)}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical.toString()} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    {jsonLd.map((item) => <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />)}
   </head>
   <body>
     <div class="site-shell">

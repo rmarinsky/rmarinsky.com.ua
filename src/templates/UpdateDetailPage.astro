@@ -1,0 +1,94 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { absoluteLocalizedUrl, localeMeta, localizedPath, ui, type Locale } from "../content/i18n";
+import { localizedProducts } from "../content/products";
+import { formatUpdateDate, isUpdateProductSlug, type ProductUpdate } from "../content/updates";
+import { site } from "../content/site";
+
+interface Props {
+  update: ProductUpdate;
+  locale: Locale;
+}
+
+const { update, locale } = Astro.props;
+const t = ui[locale].updates;
+const copy = update.copy[locale];
+const toneClass = update.accent === "site" ? "tone-site" : `tone-${update.accent}`;
+const relatedProducts = localizedProducts(locale).filter(
+  (product) => isUpdateProductSlug(product.slug) && update.products.includes(product.slug),
+);
+const publishedDate = `${update.date}T00:00:00+03:00`;
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${site.url}/updates/${update.slug}/#article`,
+  headline: copy.title,
+  description: copy.summary,
+  datePublished: publishedDate,
+  dateModified: publishedDate,
+  inLanguage: locale === "uk" ? "uk-UA" : "en",
+  author: { "@id": `${site.url}/#person` },
+  mainEntityOfPage: absoluteLocalizedUrl(`/updates/${update.slug}/`, locale),
+};
+---
+
+<Layout locale={locale} title={copy.title} description={copy.summary} type="article" jsonLd={[articleJsonLd]}>
+  <Header locale={locale} />
+  <main>
+    <section class={`update-hero ${toneClass}`}>
+      <div class="container update-hero-inner">
+        <div class="section-header">
+          <span class="eyebrow">{formatUpdateDate(update.date, locale === "uk" ? "uk-UA" : "en-US")} · {copy.eyebrow}</span>
+          <h1>{copy.title}</h1>
+          <p class="lead">{copy.summary}</p>
+          <div class="button-row">
+            {update.links.map((link) => <a class="button" href={link.href}>{link.label[locale]}</a>)}
+            <a class="button" href={localizedPath("/updates/", locale)}>{t.all}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <article class="update-language-panel">
+          <span class="locale-label">{localeMeta[locale].label}</span>
+          <h2>{copy.title}</h2>
+          <section class="update-section">
+            <span class="kicker">{t.problem}</span>
+            <p class="body-copy">{copy.problem}</p>
+          </section>
+          <section class="update-section">
+            <span class="kicker">{t.fix}</span>
+            <p class="body-copy">{copy.fix}</p>
+          </section>
+          <section class="update-section">
+            <span class="kicker">{t.outcome}</span>
+            <p class="body-copy">{copy.outcome}</p>
+          </section>
+          <ul class="update-list">
+            {copy.bullets.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    {relatedProducts.length > 0 && (
+      <section class="band secondary">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">{t.relatedKicker}</span>
+            <h2>{t.relatedTitle}</h2>
+          </div>
+          <div class="grid three">
+            {relatedProducts.map((product) => <ProductCard product={product} locale={locale} />)}
+          </div>
+        </div>
+      </section>
+    )}
+  </main>
+  <Footer locale={locale} />
+</Layout>

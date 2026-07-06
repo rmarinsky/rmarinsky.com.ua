@@ -1,0 +1,19 @@
+---
+import UpdateDetailPage from "../../../templates/UpdateDetailPage.astro";
+import { sortedUpdates, type ProductUpdate } from "../../../content/updates";
+
+interface Props {
+  update: ProductUpdate;
+}
+
+export function getStaticPaths() {
+  return sortedUpdates.map((update) => ({
+    params: { slug: update.slug },
+    props: { update },
+  }));
+}
+
+const { update } = Astro.props;
+---
+
+<UpdateDetailPage update={update} locale="en" />

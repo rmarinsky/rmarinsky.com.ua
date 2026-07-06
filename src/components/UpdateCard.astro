@@ -1,0 +1,32 @@
+---
+import { localeMeta, localizedPath, ui, type Locale } from "../content/i18n";
+import { formatUpdateDate, type ProductUpdate } from "../content/updates";
+
+interface Props {
+  update: ProductUpdate;
+  locale?: Locale;
+}
+
+const { update } = Astro.props;
+const locale = Astro.props.locale ?? "uk";
+const copy = update.copy[locale];
+const t = ui[locale].updates;
+const toneClass = update.accent === "site" ? "tone-site" : `tone-${update.accent}`;
+---
+
+<article class={`card update-card ${toneClass}`}>
+  <div class="update-meta">
+    <span class="kicker">{formatUpdateDate(update.date, locale === "uk" ? "uk-UA" : "en-US")}</span>
+    <div class="pill-row">
+      {update.tags.slice(0, 3).map((tag) => <span class="pill">{tag}</span>)}
+    </div>
+  </div>
+
+  <div class="locale-block">
+    <span class="locale-label">{localeMeta[locale].label}</span>
+    <h3>{copy.title}</h3>
+    <p class="body-copy">{copy.summary}</p>
+  </div>
+
+  <a class="tone-text update-link" href={localizedPath(`/updates/${update.slug}/`, locale)}>{t.read}</a>
+</article>

@@ -1,6 +1,6 @@
 ---
-import ProductPage from "../templates/ProductPage.astro";
-import { products, type Product } from "../content/products";
+import ProductPage from "../../templates/ProductPage.astro";
+import { products, type Product } from "../../content/products";
 
 interface Props {
   product: Product;
@@ -16,4 +16,4 @@ export function getStaticPaths() {
 const { product } = Astro.props;
 ---
 
-<ProductPage product={product} locale="uk" />
+<ProductPage product={product} locale="en" />

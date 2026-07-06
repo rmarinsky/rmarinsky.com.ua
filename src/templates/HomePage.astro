@@ -1,0 +1,122 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import UpdateCard from "../components/UpdateCard.astro";
+import { localizedPath, ui, type Locale } from "../content/i18n";
+import { localizedProducts } from "../content/products";
+import { latestUpdate } from "../content/updates";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].home;
+const products = localizedProducts(locale);
+const macProducts = products.filter((product) => product.kind === "mac");
+const extensionProduct = products.find((product) => product.slug === "sidebarny");
+const mcpProducts = products.filter((product) => product.kind === "mcp");
+---
+
+<Layout locale={locale}>
+  <Header locale={locale} />
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">{t.eyebrow}</span>
+          <h1>{t.title}</h1>
+          <p class="lead">{t.lead}</p>
+          <div class="button-row">
+            <a class="button primary" href={localizedPath("/#mac-apps", locale)}>{t.browseProducts}</a>
+            <a class="button" href={localizedPath("/about/", locale)}>{t.aboutRoman}</a>
+          </div>
+          <p class="hero-meta">{t.heroMeta}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary" id="mac-apps">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.macKicker}</span>
+          <h2>{t.macTitle}</h2>
+          <p class="body-copy">{t.macBody}</p>
+        </div>
+        <div class="grid three">
+          {macProducts.map((product) => <ProductCard product={product} locale={locale} />)}
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="extension">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.extensionKicker}</span>
+          <h2>{t.extensionTitle}</h2>
+        </div>
+        <div class="grid two">
+          {extensionProduct && <ProductCard product={extensionProduct} locale={locale} />}
+          <article class="card tone-sidebarny">
+            <span class="product-icon">8</span>
+            <h3>{t.extensionCardTitle}</h3>
+            <p class="body-copy">{t.extensionCardBody}</p>
+            <div class="pill-row">
+              <span class="pill">ChatGPT</span>
+              <span class="pill">Claude</span>
+              <span class="pill">Gemini</span>
+              <span class="pill">Rovo</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary" id="mcp">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.mcpKicker}</span>
+          <h2>{t.mcpTitle}</h2>
+          <p class="body-copy">{t.mcpBody}</p>
+        </div>
+        <div class="grid two">
+          {mcpProducts.map((product) => <ProductCard product={product} locale={locale} />)}
+        </div>
+      </div>
+    </section>
+
+    {latestUpdate && (
+      <section class="band" id="updates">
+        <div class="container">
+          <div class="section-header split-header">
+            <div>
+              <span class="kicker">{t.latestKicker}</span>
+              <h2>{t.latestTitle}</h2>
+            </div>
+            <a class="button compact" href={localizedPath("/updates/", locale)}>{t.allUpdates}</a>
+          </div>
+          <UpdateCard update={latestUpdate} locale={locale} />
+        </div>
+      </section>
+    )}
+
+    <section class="band">
+      <div class="container">
+        <div class="about-strip">
+          <div class="about-strip-text">
+            <span class="avatar-dot" aria-hidden="true"></span>
+            <div>
+              <span class="kicker">{t.aboutKicker}</span>
+              <h2>{t.aboutTitle}</h2>
+              <p class="body-copy">{t.aboutBody}</p>
+            </div>
+          </div>
+          <a class="button" href={localizedPath("/about/", locale)}>{t.moreContext}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

@@ -1,19 +1,22 @@
 ---
+import { localizedPath, type Locale } from "../content/i18n";
 import type { Product } from "../content/products";
 
 interface Props {
   product: Product;
+  locale?: Locale;
 }
 
 const { product } = Astro.props;
+const locale = Astro.props.locale ?? "uk";
 ---
 
-<a class={`card product-card tone-${product.accent}`} href={`/${product.slug}/`}>
+<a class={`card product-card tone-${product.accent}`} href={localizedPath(`/${product.slug}/`, locale)}>
   <span class={`product-card-media visual-${product.image.variant}`}>
     <img src={product.image.src} alt={product.image.alt} loading="eager" decoding="async" />
   </span>
   <span class="product-icon">{product.letter}</span>
   <h3>{product.name} · {product.latinName}</h3>
   <p class="body-copy">{product.homepageSummary}</p>
-  <span class="tone-text" aria-label={`Open ${product.name}`}>{product.primaryCta} -></span>
+  <span class="tone-text" aria-label={product.primaryCta}>{product.primaryCta} -></span>
 </a>
