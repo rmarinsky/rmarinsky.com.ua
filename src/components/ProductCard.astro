@@ -9,6 +9,7 @@ interface Props {
 
 const { product } = Astro.props;
 const locale = Astro.props.locale ?? "uk";
+const displayName = product.name === product.latinName ? product.name : `${product.name} · ${product.latinName}`;
 ---
 
 <a class={`card product-card tone-${product.accent}`} href={localizedPath(`/${product.slug}/`, locale)}>
@@ -16,7 +17,7 @@ const locale = Astro.props.locale ?? "uk";
     <img src={product.image.src} alt={product.image.alt} loading="eager" decoding="async" />
   </span>
   <span class="product-icon">{product.letter}</span>
-  <h3>{product.name} · {product.latinName}</h3>
+  <h3>{displayName}</h3>
   <p class="body-copy">{product.homepageSummary}</p>
   <span class="tone-text" aria-label={product.primaryCta}>{product.primaryCta} -></span>
 </a>

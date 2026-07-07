@@ -85,16 +85,18 @@ export const ui = {
     },
     home: {
       eyebrow: "Незалежна software-майстерня зі Львова",
-      title: "Малі гострі інструменти для Mac, браузера і практичного AI",
+      title: "Інструменти з характером, не табличка з лінками",
       lead:
-        "Я роблю продукти для людей, які щодня живуть між різними контекстами: macOS утиліти, браузерні помічники і MCP-сервери для реальних операцій.",
+        "Я роблю невеликі практичні продукти для людей, які щодня живуть між Mac, браузером, тестовими середовищами і AI-інструментами.",
       browseProducts: "Дивитись продукти",
       aboutRoman: "Про Романа",
-      heroMeta: "macOS застосунки · Chrome extension · Model Context Protocol servers · open source там, де це має сенс",
+      heroMeta: "6 продуктів · UA / EN · RSS + llms.txt · живе на GitHub Pages",
+      heroBoardTitle: "Що бісило. Що зробив. Де перевірити.",
+      heroBoardBody: "Релізи мають пояснювати людську проблему, а не переповідати git log.",
       macKicker: "Mac застосунки",
       macTitle: "Нативні утиліти для щоденної роботи",
       macBody:
-        "Інструменти з маленькою поверхнею: надиктувати текст, відкрити лінк у правильному браузері, виправити розкладку без ручної акробатики.",
+        "Інструменти з малою поверхнею: надиктувати текст, відкрити лінк у правильному браузері, виправити розкладку без ручної акробатики.",
       extensionKicker: "Browser Extension",
       extensionTitle: "AI поруч зі сторінкою, яку ти вже читаєш",
       extensionCardTitle: "Side panel, який памʼятає про провайдера",
@@ -103,7 +105,7 @@ export const ui = {
       mcpKicker: "MCP сервери",
       mcpTitle: "Операційні API для AI без театру автономності",
       mcpBody:
-        "MCP має сенс, коли відкриває вузькі, перевірні дії. Reads мають бути дешевими, mutations - з guardrails, credentials - локально.",
+        "MCP має сенс, коли відкриває вузькі, перевірні дії. Операції читання мають бути дешевими, зміни - з guardrails, а ключі - локально.",
       latestKicker: "Останній апдейт",
       latestTitle: "Що стало менше бісити",
       allUpdates: "Всі апдейти",
@@ -121,7 +123,7 @@ export const ui = {
       installKicker: "Встановлення",
       installTitle: "Одна команда, потім перевір README",
       installBody:
-        "Для MCP серверів тримай credentials у локальній конфігурації клієнта. Для Mac застосунків останні release notes є джерелом правди по вимогах.",
+        "Для MCP-серверів тримай ключі у локальній конфігурації клієнта. Для Mac-застосунків останні нотатки релізу є джерелом правди по вимогах.",
       faqKicker: "FAQ",
       faqTitle: "Практичні деталі",
       updatesKicker: "Апдейти",
@@ -133,7 +135,7 @@ export const ui = {
     },
     updates: {
       title: "Апдейти",
-      description: "Двомовні release notes і продуктові апдейти інструментів Романа Маринського.",
+      description: "Двомовні нотатки релізів і продуктові апдейти інструментів Романа Маринського.",
       eyebrow: "Release notes · UA / EN",
       heading: "Що стало менше бісити цього тижня",
       lead:
@@ -152,11 +154,11 @@ export const ui = {
       eyebrow: "Роман Маринський · Львів, Україна",
       heading: "QA/Test Automation expert, який ще й шипить маленькі продукти",
       lead:
-        "11+ років у QA, 1400+ технічних інтервʼю, Key Expert в Intellias QA CoE і звичка робити Mac та AI workflow tools, коли існуючі інструменти марнують час.",
+        "11+ років у QA, 1400+ технічних інтервʼю, Key Expert в Intellias QA CoE і звичка робити Mac та AI workflow tools, коли наявні інструменти марнують час.",
       workKicker: "Робота",
       workTitle: "Тестувальницький бекграунд, продуктові інстинкти",
       workBody:
-        "Мій дефолтний погляд - quality engineering: чіткі межі, observable behavior, реалістичні failure modes і нуль сліпої віри в hype. Це видно в macOS apps, browser extensions і MCP servers.",
+        "Мій дефолтний погляд - quality engineering: чіткі межі, observable behavior, реалістичні failure modes і нуль сліпої віри в hype. Це видно в macOS-застосунках, browser extensions і MCP-серверах.",
       aiKicker: "AI позиція",
       aiTitle: "Асистент, не автопілот",
       aiBody:
@@ -169,7 +171,7 @@ export const ui = {
       kuluary: "Медіа й коментарі про речі, які зазвичай не кажуть вголос.",
       ossKicker: "Open source",
       ossTitle: "Інструменти, які можна інспектити",
-      ossBrowserCat: "macOS browser picker utility для routing links між різними контекстами.",
+      ossBrowserCat: "macOS-утиліта для вибору браузера і маршрутизації лінків між різними контекстами.",
       ossDiduny: "macOS застосунок для диктування і транскрипції з Dynamic Notch behavior.",
       ossUkraineMcp: "Backup-first MCP server для domain і DNS operations.",
     },
@@ -179,7 +181,7 @@ export const ui = {
       updated: "Оновлено: 17 червня 2026",
       heading: "Правова інформація",
       lead:
-        "Коротко: сайт статичний, поведінка продуктів описується в репозиторіях або release notes, а credentials мають залишатися у твоїх локальних інструментах.",
+        "Коротко: сайт статичний, поведінка продуктів описується в репозиторіях або нотатках релізів, а ключі мають залишатися у твоїх локальних інструментах.",
       navLabel: "Правові розділи",
       privacy: "Privacy",
       terms: "Terms",
@@ -190,7 +192,7 @@ export const ui = {
         "rmarinsky.com.ua не вимагає акаунт і не має власного tracking layer. Hosting providers можуть обробляти стандартні access logs для безпеки, abuse prevention і доставки сайту.",
       privacyBullets: [
         "Сторінки продуктів лінкують на GitHub, npm і distribution platforms з власними політиками.",
-        "Mac apps, browser extensions і MCP servers можуть обробляти дані по-різному; перевіряй відповідний репозиторій і release notes.",
+        "Mac-застосунки, browser extensions і MCP-сервери можуть обробляти дані по-різному; перевіряй відповідний репозиторій і нотатки релізів.",
         "Не публікуй API keys, payment credentials, hosting tokens або customer data в issues, chats чи screenshots.",
       ],
       termsTitle: "Використання софту",
@@ -241,12 +243,14 @@ export const ui = {
     },
     home: {
       eyebrow: "Independent software studio from Lviv, Ukraine",
-      title: "Small, sharp tools for your Mac, your browser, and your AI",
+      title: "Tools with character, not a table of links",
       lead:
-        "I build practical products for people who work across many tools every day: native macOS utilities, browser workflow helpers, and MCP servers for real operations.",
+        "I build small practical products for people who move between their Mac, browser, test environments, and AI tools every day.",
       browseProducts: "Browse products",
       aboutRoman: "About Roman",
-      heroMeta: "macOS apps · Chrome extension · Model Context Protocol servers · open source where it matters",
+      heroMeta: "6 products · UA / EN · RSS + llms.txt · live on GitHub Pages",
+      heroBoardTitle: "What was annoying. What changed. Where to verify.",
+      heroBoardBody: "Release notes should explain the human problem, not narrate a git log.",
       macKicker: "Mac Apps",
       macTitle: "Native utilities for everyday work",
       macBody:
