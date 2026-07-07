@@ -18,13 +18,16 @@ const products = localizedProducts(locale);
 const macProducts = products.filter((product) => product.kind === "mac");
 const extensionProduct = products.find((product) => product.slug === "sidebarny");
 const mcpProducts = products.filter((product) => product.kind === "mcp");
+const heroProducts = ["papuga", "diduny", "browsercat"]
+  .map((slug) => products.find((product) => product.slug === slug))
+  .filter(Boolean);
 ---
 
 <Layout locale={locale}>
   <Header locale={locale} />
   <main>
     <section class="hero">
-      <div class="container">
+      <div class="container hero-layout">
         <div class="hero-content">
           <span class="eyebrow">{t.eyebrow}</span>
           <h1>{t.title}</h1>
@@ -34,6 +37,23 @@ const mcpProducts = products.filter((product) => product.kind === "mcp");
             <a class="button" href={localizedPath("/about/", locale)}>{t.aboutRoman}</a>
           </div>
           <p class="hero-meta">{t.heroMeta}</p>
+        </div>
+        <div class="hero-board" aria-label={t.heroBoardTitle}>
+          {heroProducts.map((product, index) => (
+            product && (
+              <a class={`hero-shot shot-${index + 1} tone-${product.accent}`} href={localizedPath(`/${product.slug}/`, locale)}>
+                <img src={product.image.src} alt={product.image.alt} loading="eager" decoding="async" />
+                <span>{product.name}</span>
+              </a>
+            )
+          ))}
+          {latestUpdate && (
+            <a class="hero-note tone-site" href={localizedPath(`/updates/${latestUpdate.slug}/`, locale)}>
+              <span class="kicker">{t.heroBoardTitle}</span>
+              <strong>{t.heroBoardBody}</strong>
+              <span>{latestUpdate.copy[locale].title}</span>
+            </a>
+          )}
         </div>
       </div>
     </section>

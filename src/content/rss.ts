@@ -14,7 +14,7 @@ export function updatesFeed(locale: Locale) {
   const title = locale === "uk" ? "Roman Marinsky - апдейти" : "Roman Marinsky - updates";
   const description =
     locale === "uk"
-      ? "Release notes і продуктові апдейти для інструментів Романа Маринського."
+      ? "Нотатки релізів і продуктові апдейти для інструментів Романа Маринського."
       : "Release notes and product updates for Roman Marinsky tools.";
 
   const items = sortedUpdates

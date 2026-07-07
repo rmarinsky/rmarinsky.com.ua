@@ -47,7 +47,7 @@ export const updates: ProductUpdate[] = [
     links: [
       { label: { uk: "Живий сайт", en: "Live site" }, href: "https://rmarinsky.com.ua" },
       {
-        label: { uk: "Успішний deploy", en: "Successful deploy" },
+        label: { uk: "Успішний деплой", en: "Successful deploy" },
         href: "https://github.com/rmarinsky/rmarinsky.com.ua/actions/runs/28797495048",
       },
     ],
@@ -56,19 +56,19 @@ export const updates: ProductUpdate[] = [
         eyebrow: "Інфраструктура сайту",
         title: "rmarinsky.com.ua нарешті перестав прикидатися старим хостингом",
         summary:
-          "Сайт для Дідуні, Браузер Киці, Папуги та інших інструментів тепер живе на GitHub Pages з валідним HTTPS і нормальним release channel.",
+          "Сайт для Дідуні, Браузер Киці, Папуги та інших інструментів тепер живе на GitHub Pages з валідним HTTPS і нормальним каналом релізів.",
         problem:
-          "Бісило просте: лінк на сайт ніби є, але HTTPS свариться, GitHub Pages віддає чужий сертифікат, а випадкові subdomains тягнуться на старий hosting. Для продуктового сайту це виглядає як недороблена табличка на дверях.",
+          "Бісило просте: лінк на сайт ніби є, але HTTPS свариться, GitHub Pages віддає чужий сертифікат, а випадкові піддомени тягнуться на старий хостинг. Для продуктового сайту це виглядає як недороблена табличка на дверях.",
         fix:
-          "Почистив DNS, додав GitHub Pages A та AAAA records, прибрав wildcard, додав GitHub verification TXT, дочекався сертифіката і перезапустив Pages deploy.",
+          "Почистив DNS, додав записи A та AAAA для GitHub Pages, прибрав wildcard, додав GitHub verification TXT, дочекався сертифіката і перезапустив Pages deploy.",
         outcome:
-          "Тепер HTTP редіректить на HTTPS, сертифікат виданий саме для rmarinsky.com.ua та www, а сайт можна використовувати як нормальну вітрину і стрічку апдейтів для Mac apps.",
+          "Тепер HTTP редіректить на HTTPS, сертифікат виданий саме для rmarinsky.com.ua та www, а сайт можна використовувати як нормальну вітрину і стрічку апдейтів для Mac-застосунків.",
         bullets: [
-          "Apex domain дивиться на GitHub Pages.",
+          "Apex-домен дивиться на GitHub Pages.",
           "www веде на rmarinsky.github.io.",
-          "Wildcard на старий hosting прибраний.",
-          "GitHub Pages domain verification пройшла.",
-          "HTTPS enforcement увімкнений після повторного deploy.",
+          "Wildcard на старий хостинг прибраний.",
+          "Перевірка домену в GitHub Pages пройшла.",
+          "HTTPS enforcement увімкнений після повторного деплою.",
         ],
         cta: "Відкрити сайт без SSL-драми",
       },
