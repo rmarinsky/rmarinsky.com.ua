@@ -937,6 +937,81 @@ h3 {
   gap: 10px;
 }
 
+.discovery-hero {
+  padding-bottom: 56px;
+}
+
+.discovery-list {
+  display: grid;
+  gap: 28px;
+}
+
+.discovery-product {
+  display: grid;
+  scroll-margin-top: 24px;
+  gap: 28px;
+  border: 1px solid var(--border);
+  border-top: 5px solid var(--tone);
+  border-radius: var(--radius-xl);
+  background: var(--bg-elevated);
+  padding: clamp(24px, 4vw, 44px);
+  box-shadow: var(--shadow-card);
+}
+
+.discovery-product-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.discovery-product-header > div,
+.discovery-capabilities {
+  display: grid;
+  gap: 12px;
+}
+
+.compact-lead {
+  max-width: 72ch;
+  font-size: clamp(18px, 2vw, 24px);
+}
+
+.discovery-context-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.discovery-context-grid > section {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: color-mix(in srgb, var(--tone) 7%, var(--bg-primary));
+}
+
+.discovery-query-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.discovery-query-list li {
+  padding: 12px 14px;
+  border-left: 3px solid var(--tone);
+  background: color-mix(in srgb, var(--tone) 6%, transparent);
+  color: var(--text-secondary);
+}
+
+.discovery-source-note {
+  max-width: 80ch;
+}
+
 .status-badge,
 .locale-label {
   width: fit-content;
@@ -1232,6 +1307,7 @@ h3 {
   .split-header,
   .update-languages,
   .update-body-grid,
+  .discovery-context-grid,
   .legal-layout {
     grid-template-columns: 1fr;
   }
@@ -1240,6 +1316,10 @@ h3 {
   .workflow-row,
   .product-facts,
   .proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .discovery-query-list {
     grid-template-columns: 1fr;
   }
 

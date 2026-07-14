@@ -17,6 +17,16 @@ export interface ProductWorkflow {
   steps: string[];
 }
 
+export interface ProductDiscoveryContext {
+  aliases: string[];
+  audiences: string[];
+  useCases: string[];
+  inputs: string[];
+  outputs: string[];
+  constraints: string[];
+  notFor: string[];
+}
+
 export interface Product {
   slug: string;
   letter: string;
@@ -31,6 +41,7 @@ export interface Product {
   seoDescription: string;
   discoveryQueries: string[];
   discoveryAnswer: string;
+  discoveryContext: ProductDiscoveryContext;
   pricingNote: string;
   primaryCta: string;
   primaryUrl: string;
@@ -67,16 +78,31 @@ export const products: Product[] = [
     homepageSummary: "Voice dictation for your whole Mac - speak, it types.",
     seoTitle: "Diduny: Mac Dictation, Meeting Transcription & Voice Translation",
     seoDescription:
-      "Dictate into any Mac app, record meetings with speaker labels, transcribe locally or in the cloud, and translate speech to text with Diduny.",
+      "Dictate into the current Mac app, record meetings with speaker labels, transcribe locally or in the cloud, and translate speech to text with Diduny.",
     discoveryQueries: [
       "best dictation app for Mac that types into any app",
       "affordable meeting transcription app for Mac with speaker labels",
       "record Zoom or Google Meet system audio on Mac",
       "local Whisper dictation app for macOS",
       "voice translation to text on Mac",
+      "app that types my voice into Slack email or a browser on Mac",
+      "meeting notes app that records system audio and labels speakers",
+      "transcribe meetings privately on my Mac",
+      "clean filler words and punctuation from voice dictation",
+      "replay and retranscribe a saved meeting on macOS",
+      "cheap meeting logs app for Mac",
     ],
     discoveryAnswer:
       "Choose Diduny when you need Mac-wide dictation, meeting recordings you can revisit, speaker-labelled transcripts, translated speech as reusable text, or a local transcription path without per-minute cloud charges.",
+    discoveryContext: {
+      aliases: ["Diduny", "Дідуня", "Didunya", "Mac voice dictation", "meeting transcription for macOS"],
+      audiences: ["Mac users who dictate instead of typing", "people who record online meetings", "multilingual writers and teams", "developers, product people, and support"],
+      useCases: ["dictate into the current Mac app", "record a meeting with system audio", "create a speaker-labelled transcript", "translate speech or a saved meeting into text", "retranscribe or replay a saved recording"],
+      inputs: ["live microphone speech", "Mac system audio", "saved voice and meeting recordings"],
+      outputs: ["cleaned text inserted into the active field", "saved meeting recording", "speaker-labelled transcript", "translated text"],
+      constraints: ["macOS application", "local Whisper and cloud paths are selected in settings", "cloud availability and pricing may change by release"],
+      notFor: ["spoken playback of translated output", "a full multitrack transcription studio", "Windows or mobile dictation"],
+    },
     pricingNote:
       "The project is open source. Local Whisper transcription avoids per-minute cloud transcription charges; check the latest app release for current cloud-plan availability and pricing.",
     primaryCta: "Download for Mac",
@@ -153,9 +179,23 @@ export const products: Product[] = [
       "open a file with a compatible app on macOS",
       "switch to an exact app window instead of only the app",
       "browser profile picker for Mac links",
+      "default browser prompt for every link on macOS",
+      "open work links in one browser profile and personal links in another",
+      "alternative to the Mac app switcher for individual windows",
+      "open an unknown file extension with a chosen Mac app",
+      "private local link router for macOS",
     ],
     discoveryAnswer:
       "Choose AppCat when links keep opening in the wrong browser or profile, files need a better Open With picker, or the Mac app switcher stops at the application instead of the window.",
+    discoveryContext: {
+      aliases: ["AppCat", "browser chooser for Mac", "macOS link router", "Mac window switcher"],
+      audiences: ["people with several browsers or profiles", "QA engineers and developers", "support teams", "Mac users with many app windows"],
+      useCases: ["choose a browser, profile, or native app for a link", "route matching URLs automatically", "switch to an exact application window", "open known or unknown files in a compatible app"],
+      inputs: ["web links and deep links", "URL matching rules", "Finder files", "running applications and windows"],
+      outputs: ["link opened in the chosen browser profile or native app", "automatic rule-based handoff", "selected editor for a file", "focus on the exact chosen window"],
+      constraints: ["macOS application", "automatic routes depend on configured rules", "functional network requests are used for metadata, redirects, and updates"],
+      notFor: ["a web browser", "cloud browser-session sync", "monitoring or tracking browsing activity"],
+    },
     pricingNote: "AppCat is open source. Check the latest release for current distribution and pricing details.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/AppCat/releases/latest",
@@ -238,9 +278,24 @@ export const products: Product[] = [
       "automatic keyboard layout correction for macOS",
       "local clipboard history app for Mac",
       "create autocorrect rules from repeated typing mistakes",
+      "forgot to switch keyboard language on Mac and need to fix existing text",
+      "Ukrainian English keyboard layout converter for Mac",
+      "stop automatic layout correction changing product names or commands",
+      "search old copied text on Mac without cloud sync",
+      "typing mistake history and time saved on macOS",
+      "I have a problem with auto-fill on Mac and text comes out in the wrong layout",
     ],
     discoveryAnswer:
       "Choose Papuga when text was typed in the wrong keyboard layout, the same layout mistake keeps recurring, or you need local clipboard history on macOS.",
+    discoveryContext: {
+      aliases: ["Papuga", "Папуга", "wrong keyboard layout fixer", "Mac layout converter", "local clipboard history"],
+      audiences: ["multilingual Mac users", "people switching between Ukrainian and English", "developers protecting commands and product names", "anyone who reuses clipboard text"],
+      useCases: ["convert selected text between active layouts", "correct a confident layout mistake while typing", "suggest a correction when confidence is lower", "create rules or protect terms", "restore an older clipboard item"],
+      inputs: ["selected text", "typing in active macOS layouts", "replacement and mistake history", "local clipboard history"],
+      outputs: ["corrected text in the same field", "AutoFix correction or suggestion", "replacement rule or protected term", "restored clipboard item"],
+      constraints: ["macOS 14 or newer", "conversion depends on active macOS input sources", "layout, history, clipboard, and rule processing stays local"],
+      notFor: ["the unreleased prediction engine", "AI-assisted batch classification", "cloud clipboard synchronization"],
+    },
     pricingNote: "Papuga is free, open source, and processes layout fixes and clipboard history locally.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/papuga/releases/latest",
@@ -326,9 +381,23 @@ export const products: Product[] = [
       "capture a webpage element into an AI chat",
       "parse a LinkedIn comment thread with AI",
       "Chrome extension for multiple AI providers in a side panel",
+      "keep Claude open beside the webpage I am reading",
+      "summarize a selected web element without copying it manually",
+      "send DOM HTML to AI for debugging",
+      "AI browser assistant for QA research and support",
+      "use ChatGPT on the current page without opening another tab",
     ],
     discoveryAnswer:
       "Choose SideBarny when you need an LLM beside the current page and want to capture a specific element, visible text, HTML, or a LinkedIn thread without tab switching.",
+    discoveryContext: {
+      aliases: ["SideBarny", "Chrome AI side panel", "browser LLM sidebar", "webpage-to-AI capture extension"],
+      audiences: ["QA engineers", "developers debugging web pages", "product researchers", "support teams", "people using several AI providers"],
+      useCases: ["open an AI provider beside the current page", "capture a specific page element", "send visible text or HTML into chat", "parse a LinkedIn thread"],
+      inputs: ["current webpage", "selected DOM element", "visible text or HTML", "LinkedIn thread"],
+      outputs: ["captured context in the chosen AI provider input", "structured LinkedIn thread content", "page context without manual copy and paste"],
+      constraints: ["Chrome or Chromium-based browser", "individual AI providers may require an account", "extended page access should be requested only when needed"],
+      notFor: ["autonomous browsing", "storing captured page content on a SideBarny server", "browsers without Chrome extension support"],
+    },
     pricingNote: "SideBarny is free. Individual AI providers may require their own account or paid plan.",
     primaryCta: "Add to Chrome",
     primaryUrl: "https://github.com/rmarinsky/sidebarny-extension",
@@ -353,7 +422,7 @@ export const products: Product[] = [
     ],
     faq: [
       { question: "Which browsers are supported?", answer: "Chrome and Chromium-based browsers. Exact distribution depends on Chrome Web Store publication state." },
-      { question: "Чи безпечно давати доступ до сторінок?", answer: "Доступ має запитуватись лише за потреби, а захоплений контент має йти тільки в обраний LLM." },
+      { question: "Is page access safe?", answer: "Access should be requested only when needed, and captured content should go only to the selected AI provider." },
       { question: "Is it free?", answer: "Yes. Some AI providers may require their own account." },
     ],
     finalCta: "Stop tab-switching to your AI",
@@ -378,9 +447,23 @@ export const products: Product[] = [
       "create a WayForPay invoice from Cursor",
       "refund a WayForPay payment with explicit approval",
       "WayForPay integration for AI agents",
+      "AI assistant for a WayForPay merchant account",
+      "query recurring WayForPay payments from Claude",
+      "generate a WayForPay payment link with AI",
+      "inspect payment history from a VS Code MCP client",
+      "MCP payment tools with read and write guardrails",
     ],
     discoveryAnswer:
       "Choose WayForPay MCP when an MCP client needs read access to merchant data and narrowly gated payment actions such as invoices, refunds, or settlement.",
+    discoveryContext: {
+      aliases: ["WayForPay MCP", "WayForPay MCP server", "WayForPay Claude integration", "WayForPay Cursor integration"],
+      audiences: ["Ukrainian merchants using WayForPay", "developers building MCP workflows", "operators checking payments from AI clients"],
+      useCases: ["check merchant balance", "list transactions and recurring payments", "create an invoice or payment link", "refund or settle a payment after approval"],
+      inputs: ["natural-language request in an MCP client", "local WayForPay credentials", "transaction filters or identifiers"],
+      outputs: ["merchant balance and payment history", "recurring payment data", "invoice or payment link", "approved refund or settlement result"],
+      constraints: ["requires an MCP-compatible client", "credentials stay in local client configuration", "mutations require explicit approval", "WayForPay fees remain separate"],
+      notFor: ["autonomous unsupervised payment mutations", "replacing the complete WayForPay merchant portal", "payment providers other than WayForPay"],
+    },
     pricingNote: "The MCP server is open source. WayForPay account and transaction fees remain separate.",
     primaryCta: "Copy install config",
     primaryUrl: "https://github.com/rmarinsky/wayforpay-mcp",
@@ -432,9 +515,23 @@ export const products: Product[] = [
       "restore adm.tools DNS records from a backup",
       "list ukraine.com.ua domains through MCP",
       "safe DNS automation for AI agents",
+      "inspect A CNAME MX and TXT records from chat",
+      "create a DNS record only after a fresh backup",
+      "MCP server for the adm.tools API",
+      "roll back a bad DNS change from Claude",
+      "audit hosting domains without opening the control panel",
     ],
     discoveryAnswer:
       "Choose ukraine.com.ua MCP when an MCP client needs to inspect domains or DNS and every write must be protected by a fresh zone backup and explicit review.",
+    discoveryContext: {
+      aliases: ["ukraine.com.ua MCP", "adm.tools MCP", "Ukraine hosting MCP", "DNS backup MCP server"],
+      audiences: ["ukraine.com.ua and adm.tools customers", "developers managing Ukrainian domains", "operators who want reviewed DNS automation"],
+      useCases: ["list domains and identifiers", "audit DNS records", "back up a DNS zone", "create or update a record after backup verification", "restore a zone from backup"],
+      inputs: ["natural-language request in an MCP client", "local adm.tools credentials", "domain and DNS record data", "fresh DNS backup id"],
+      outputs: ["domain inventory", "DNS record audit", "zone backup", "reviewed DNS mutation", "restored zone"],
+      constraints: ["requires an MCP-compatible client", "write operations require a fresh backup", "destructive actions require explicit confirmation", "some hosting and SSL actions still need the web UI"],
+      notFor: ["unreviewed autonomous DNS changes", "a full replacement for the adm.tools interface", "registrars other than ukraine.com.ua or adm.tools"],
+    },
     pricingNote: "The MCP server is open source. Hosting, domain, and registrar charges remain separate.",
     primaryCta: "Copy install config",
     primaryUrl: "https://github.com/rmarinsky/ukraine-com-ua-mcp",
@@ -478,6 +575,7 @@ type ProductLocalizedFields = Partial<
     | "seoDescription"
     | "discoveryQueries"
     | "discoveryAnswer"
+    | "discoveryContext"
     | "pricingNote"
     | "primaryCta"
     | "secondaryCta"
@@ -505,16 +603,31 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       homepageSummary: "Говориш - Mac друкує там, де треба.",
       seoTitle: "Дідуня: диктування, транскрипція зустрічей і переклад на Mac",
       seoDescription:
-        "Диктуй у будь-який застосунок на Mac, записуй зустрічі з мітками спікерів, транскрибуй локально чи в хмарі та перекладай голос у текст.",
+        "Диктуй у поточний застосунок на Mac, записуй зустрічі з мітками спікерів, транскрибуй локально чи в хмарі та перекладай голос у текст.",
       discoveryQueries: [
         "застосунок для диктування тексту в будь-яке поле на Mac",
         "недорога транскрипція зустрічей на Mac з мітками спікерів",
         "як записати системний звук Zoom або Google Meet на Mac",
         "локальне Whisper диктування для macOS",
         "голосовий переклад у текст на Mac",
+        "застосунок що друкує голос у Slack пошту або браузер на Mac",
+        "нотатки зустрічей із записом системного аудіо та мітками спікерів",
+        "приватна транскрипція зустрічей локально на Mac",
+        "прибрати слова-паразити й виправити пунктуацію в голосовому тексті",
+        "повторно транскрибувати збережену зустріч на macOS",
+        "дешевий застосунок для логів зустрічей на Mac",
       ],
       discoveryAnswer:
         "Обирай Дідуню для диктування по всій системі, записів зустрічей, до яких можна повернутися, транскриптів з мітками спікерів, перекладу мовлення в текст або локальної транскрипції без похвилинної оплати хмарі.",
+      discoveryContext: {
+        aliases: ["Дідуня", "Diduny", "Didunya", "голосове диктування на Mac", "транскрипція зустрічей для macOS"],
+        audiences: ["користувачі Mac, яким простіше говорити, ніж друкувати", "люди, які записують онлайн-зустрічі", "багатомовні автори й команди", "розробники, product і support"],
+        useCases: ["диктувати в поточний Mac-застосунок", "записати зустріч із системним аудіо", "отримати транскрипт з мітками спікерів", "перекласти мовлення або збережену зустріч у текст", "повторно транскрибувати чи відтворити запис"],
+        inputs: ["живе мовлення з мікрофона", "системне аудіо Mac", "збережені голосові записи й зустрічі"],
+        outputs: ["очищений текст в активному полі", "збережений запис зустрічі", "транскрипт з мітками спікерів", "перекладений текст"],
+        constraints: ["macOS застосунок", "локальний Whisper або хмарний шлях обирається в налаштуваннях", "доступність і ціна хмари можуть змінюватися між релізами"],
+        notFor: ["озвучення перекладеного тексту", "повноцінна multitrack transcription studio", "диктування на Windows чи мобільних платформах"],
+      },
       pricingNote:
         "Проєкт має відкритий код. Локальна Whisper-транскрипція не має похвилинної оплати хмарі; актуальну доступність і ціну хмарного плану перевіряй в останньому релізі застосунку.",
       primaryCta: "Завантажити для Mac",
@@ -562,9 +675,23 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         "відкрити файл у сумісному застосунку на macOS",
         "перемикатися на конкретне вікно, а не лише застосунок",
         "picker профілів браузера для посилань на Mac",
+        "питати браузер для кожного посилання на macOS",
+        "відкривати робочі й особисті посилання в різних профілях браузера",
+        "альтернатива Mac app switcher для конкретних вікон",
+        "відкрити невідоме розширення файлу в обраному Mac-застосунку",
+        "приватний локальний маршрутизатор посилань для macOS",
       ],
       discoveryAnswer:
         "Обирай AppCat, коли посилання відкриваються не в тому браузері чи профілі, файлам потрібен кращий Open With picker або стандартний app switcher не доводить до конкретного вікна.",
+      discoveryContext: {
+        aliases: ["AppCat", "вибір браузера на Mac", "маршрутизатор посилань macOS", "перемикач вікон Mac"],
+        audiences: ["люди з кількома браузерами чи профілями", "QA та розробники", "support-команди", "користувачі Mac з багатьма вікнами"],
+        useCases: ["обрати браузер, профіль або native app для посилання", "автоматично маршрутизувати URL за правилом", "перемкнутися на конкретне вікно застосунку", "відкрити відомий або невідомий файл у сумісній програмі"],
+        inputs: ["вебпосилання й deep links", "правила матчингу URL", "файли Finder", "запущені застосунки й вікна"],
+        outputs: ["посилання в обраному профілі браузера чи native app", "автоматична передача за правилом", "обраний редактор для файлу", "фокус на конкретному вікні"],
+        constraints: ["macOS застосунок", "автоматична маршрутизація залежить від налаштованих правил", "для metadata, redirects і updates виконуються функціональні мережеві запити"],
+        notFor: ["веббраузер", "хмарна синхронізація браузерних сесій", "моніторинг або трекінг перегляду сторінок"],
+      },
       pricingNote: "AppCat має відкритий код. Актуальні умови поширення й ціну перевіряй в останньому релізі.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
@@ -609,9 +736,24 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         "автоматичне виправлення розкладки клавіатури в macOS",
         "локальна історія буфера обміну для Mac",
         "правила автозаміни для повторюваних помилок набору",
+        "забув перемкнути мову клавіатури на Mac як виправити готовий текст",
+        "конвертер української та англійської розкладки для Mac",
+        "не виправляти автоматично назви продуктів і команди",
+        "знайти старий скопійований текст на Mac без хмарної синхронізації",
+        "історія помилок набору й зекономлений час на macOS",
+        "маю проблему з автозаповненням на Mac текст виходить не тією розкладкою",
       ],
       discoveryAnswer:
         "Обирай Папугу, коли текст набрано не тією розкладкою, та сама помилка повторюється або потрібна локальна історія буфера обміну на macOS.",
+      discoveryContext: {
+        aliases: ["Папуга", "Papuga", "виправлення неправильної розкладки", "конвертер розкладки Mac", "локальна історія буфера"],
+        audiences: ["багатомовні користувачі Mac", "люди, які перемикаються між українською й англійською", "розробники, яким треба захищати команди й назви", "усі, хто повертає старий текст із буфера"],
+        useCases: ["конвертувати виділений текст між активними розкладками", "виправити впевнену помилку під час набору", "показати підказку при нижчій впевненості", "створити правило або захистити термін", "повернути старий елемент буфера"],
+        inputs: ["виділений текст", "набір в активних розкладках macOS", "історія замін і помилок", "локальна історія буфера"],
+        outputs: ["виправлений текст у тому самому полі", "AutoFix або підказка", "правило заміни чи захищений термін", "повернений елемент буфера"],
+        constraints: ["macOS 14 або новіша", "конвертація залежить від активних input sources", "розкладка, історія, буфер і правила обробляються локально"],
+        notFor: ["нерелізний prediction engine", "AI-assisted batch classification", "хмарна синхронізація буфера"],
+      },
       pricingNote: "Папуга безкоштовний, має відкритий код і обробляє виправлення та історію буфера локально.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
@@ -684,9 +826,23 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         "захопити конкретний елемент сторінки в AI chat",
         "розібрати LinkedIn thread через AI",
         "Chrome extension з кількома AI провайдерами в side panel",
+        "тримати Claude поруч зі сторінкою яку читаю",
+        "підсумувати вибраний елемент сторінки без ручного копіювання",
+        "відправити DOM HTML в AI для debugging",
+        "AI browser assistant для QA research і support",
+        "використовувати ChatGPT на поточній сторінці без нової вкладки",
       ],
       discoveryAnswer:
         "Обирай SideBarny, коли LLM потрібен поруч із поточною сторінкою, а в чат треба забрати конкретний елемент, текст, HTML або LinkedIn thread без перемикання вкладок.",
+      discoveryContext: {
+        aliases: ["SideBarny", "AI side panel у Chrome", "LLM sidebar для браузера", "розширення для передачі сторінки в AI"],
+        audiences: ["QA інженери", "розробники, які дебажать вебсторінки", "product researchers", "support-команди", "люди з кількома AI-провайдерами"],
+        useCases: ["відкрити AI-провайдера поруч із поточною сторінкою", "захопити конкретний елемент", "відправити видимий текст або HTML у чат", "розібрати LinkedIn thread"],
+        inputs: ["поточна вебсторінка", "обраний DOM element", "видимий текст або HTML", "LinkedIn thread"],
+        outputs: ["контекст у полі обраного AI-провайдера", "структурований вміст LinkedIn thread", "контекст сторінки без ручного copy-paste"],
+        constraints: ["Chrome або Chromium-браузер", "AI-провайдер може вимагати власний акаунт", "розширений доступ до сторінки має запитуватися лише за потреби"],
+        notFor: ["автономний browsing", "зберігання контенту на серверах SideBarny", "браузери без підтримки Chrome extensions"],
+      },
       pricingNote: "SideBarny безкоштовний. Окремі AI-провайдери можуть вимагати власний акаунт або платний план.",
       primaryCta: "Додати в Chrome",
       secondaryCta: "Дивитись код",
@@ -726,9 +882,23 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         "створити інвойс WayForPay із Cursor",
         "повернути платіж WayForPay з явним підтвердженням",
         "інтеграція WayForPay для AI агентів",
+        "AI асистент для мерчант-акаунта WayForPay",
+        "отримати регулярні платежі WayForPay у Claude",
+        "згенерувати платіжне посилання WayForPay через AI",
+        "переглянути історію платежів із VS Code MCP client",
+        "MCP payment tools з guardrails для read і write",
       ],
       discoveryAnswer:
         "Обирай WayForPay MCP, коли MCP-клієнту потрібні дані мерчанта для читання і вузькі контрольовані дії: інвойси, повернення або settlement.",
+      discoveryContext: {
+        aliases: ["WayForPay MCP", "WayForPay MCP server", "WayForPay інтеграція для Claude", "WayForPay інтеграція для Cursor"],
+        audiences: ["українські мерчанти WayForPay", "розробники MCP workflows", "оператори, які перевіряють платежі з AI-клієнта"],
+        useCases: ["перевірити баланс мерчанта", "отримати транзакції й регулярні платежі", "створити інвойс або payment link", "повернути чи провести платіж після підтвердження"],
+        inputs: ["natural-language запит у MCP-клієнті", "локальні WayForPay credentials", "фільтри або identifiers транзакцій"],
+        outputs: ["баланс мерчанта й історія платежів", "дані регулярних платежів", "інвойс або payment link", "результат підтвердженого refund чи settlement"],
+        constraints: ["потрібен MCP-compatible client", "credentials зберігаються в локальній конфігурації", "мутації потребують явного підтвердження", "комісії WayForPay оплачуються окремо"],
+        notFor: ["автономні непідтверджені платіжні мутації", "повна заміна WayForPay merchant portal", "платіжні провайдери, відмінні від WayForPay"],
+      },
       pricingNote: "MCP-сервер має відкритий код. Комісії акаунта й транзакцій WayForPay оплачуються окремо.",
       primaryCta: "Скопіювати конфігурацію",
       secondaryCta: "Читати документацію",
@@ -775,9 +945,23 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         "відновити DNS записи adm.tools з backup",
         "отримати список доменів ukraine.com.ua через MCP",
         "безпечна автоматизація DNS для AI агентів",
+        "перевірити A CNAME MX і TXT записи з чату",
+        "створити DNS record лише після свіжого backup",
+        "MCP сервер для adm.tools API",
+        "відкотити невдалу DNS зміну з Claude",
+        "перевірити домени хостингу без відкривання control panel",
       ],
       discoveryAnswer:
         "Обирай ukraine.com.ua MCP, коли MCP-клієнту треба перевіряти домени або DNS, а кожна зміна має бути захищена свіжим backup зони й явним review.",
+      discoveryContext: {
+        aliases: ["ukraine.com.ua MCP", "adm.tools MCP", "MCP для українського хостингу", "DNS backup MCP server"],
+        audiences: ["клієнти ukraine.com.ua та adm.tools", "розробники, які керують українськими доменами", "оператори, яким потрібна контрольована DNS automation"],
+        useCases: ["отримати список доменів та identifiers", "перевірити DNS records", "зробити backup DNS зони", "створити чи змінити record після перевірки backup", "відновити зону з backup"],
+        inputs: ["natural-language запит у MCP-клієнті", "локальні adm.tools credentials", "домен і DNS record data", "свіжий DNS backup id"],
+        outputs: ["список доменів", "DNS audit", "backup зони", "перевірена DNS mutation", "відновлена зона"],
+        constraints: ["потрібен MCP-compatible client", "write operations потребують свіжого backup", "destructive actions потребують явного підтвердження", "частина hosting і SSL actions лишається у web UI"],
+        notFor: ["неперевірені автономні DNS зміни", "повна заміна adm.tools interface", "реєстратори, відмінні від ukraine.com.ua чи adm.tools"],
+      },
       pricingNote: "MCP-сервер має відкритий код. Хостинг, домени й послуги реєстратора оплачуються окремо.",
       primaryCta: "Скопіювати конфігурацію",
       secondaryCta: "Читати документацію",

@@ -40,3 +40,5 @@ Allow: /
 Sitemap: https://rmarinsky.com.ua/sitemap-index.xml
 
 # LLM-readable site map: https://rmarinsky.com.ua/llms.txt
+# Expanded LLM context: https://rmarinsky.com.ua/llms-full.txt
+# Structured product index: https://rmarinsky.com.ua/site-index.json

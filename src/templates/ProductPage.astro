@@ -2,6 +2,7 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Layout from "../components/Layout.astro";
+import DiscoveryContextGrid from "../components/DiscoveryContextGrid.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ProductMockup from "../components/ProductMockup.astro";
 import WorkflowMedia from "../components/WorkflowMedia.astro";
@@ -40,16 +41,21 @@ const productJsonLd = {
   "@type": "SoftwareApplication",
   "@id": `${site.url}/${product.slug}/#software`,
   name: product.latinName,
-  alternateName: product.name,
+  alternateName: [...new Set([product.name, product.latinName])],
   description: product.seoDescription,
+  abstract: product.discoveryAnswer,
   url: absoluteLocalizedUrl(`/${product.slug}/`, locale),
+  inLanguage: locale === "uk" ? "uk-UA" : "en",
   image: new URL(product.image.src, site.url).toString(),
+  installUrl: product.kind === "mac" ? product.primaryUrl : undefined,
   applicationCategory:
     product.kind === "mac" ? "UtilitiesApplication" : product.kind === "extension" ? "BrowserApplication" : "DeveloperApplication",
   operatingSystem: product.kind === "mac" ? "macOS" : product.kind === "extension" ? "Chrome" : "Cross-platform",
   featureList: productCapabilities(product),
-  keywords: product.discoveryQueries,
+  keywords: [...product.discoveryQueries, ...product.discoveryContext.aliases, ...product.discoveryContext.useCases],
+  audience: product.discoveryContext.audiences.map((audienceType) => ({ "@type": "Audience", audienceType })),
   author: { "@id": `${site.url}/#person` },
+  isPartOf: { "@id": `${site.url}/#website` },
   sameAs: product.secondaryUrl ? [product.primaryUrl, product.secondaryUrl] : [product.primaryUrl],
 };
 
@@ -173,14 +179,32 @@ const faqJsonLd = {
           <h2>{t.discoveryTitle}</h2>
           <p class="body-copy">{product.discoveryAnswer}</p>
         </div>
-        <div class="feature-grid">
-          {product.discoveryQueries.map((query) => (
-            <article class={`card feature-card tone-${product.accent}`}>
-              <h3>“{query}”</h3>
-            </article>
-          ))}
-        </div>
+        <ul class="discovery-query-list">
+          {product.discoveryQueries.slice(0, 6).map((query) => <li>“{query}”</li>)}
+        </ul>
         <p class="body-copy"><strong>{t.pricingLabel}</strong> {product.pricingNote}</p>
+        <a class="button compact" href={localizedPath(`/discover/#${product.slug}`, locale)}>{t.allDiscovery}</a>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.contextKicker}</span>
+          <h2>{t.contextTitle}</h2>
+          <p class="body-copy">{product.discoveryAnswer}</p>
+        </div>
+        <DiscoveryContextGrid
+          context={product.discoveryContext}
+          labels={{
+            audience: t.audienceTitle,
+            useCases: t.useCasesTitle,
+            inputs: t.inputTitle,
+            outputs: t.outputTitle,
+            constraints: t.constraintsTitle,
+            notFor: t.notForTitle,
+          }}
+        />
       </div>
     </section>
 
