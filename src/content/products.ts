@@ -2,6 +2,21 @@ import type { Locale } from "./i18n";
 
 export type ProductKind = "mac" | "extension" | "mcp";
 
+export interface ProductWorkflow {
+  id: string;
+  title: string;
+  problem: string;
+  outcome: string;
+  media: {
+    src: string;
+    poster?: string;
+    mp4Src?: string;
+    type: "image" | "video";
+    alt: string;
+  };
+  steps: string[];
+}
+
 export interface Product {
   slug: string;
   letter: string;
@@ -9,7 +24,7 @@ export interface Product {
   latinName: string;
   title: string;
   kind: ProductKind;
-  accent: "diduny" | "browsercat" | "papuga" | "sidebarny" | "wayforpay" | "ukraine";
+  accent: "diduny" | "appcat" | "papuga" | "sidebarny" | "wayforpay" | "ukraine";
   summary: string;
   homepageSummary: string;
   primaryCta: string;
@@ -25,6 +40,9 @@ export interface Product {
   badges: string[];
   privacyTitle: string;
   privacyBody: string;
+  workflows?: ProductWorkflow[];
+  proof?: string[];
+  limitations?: string[];
   features: Array<{ title: string; body: string; tone?: "read" | "gated" }>;
   faq: Array<{ question: string; answer: string }>;
   finalCta: string;
@@ -54,7 +72,35 @@ export const products: Product[] = [
     badges: ["macOS app", "notarized", "auto-updates", "open source"],
     privacyTitle: "Audio stays under your control",
     privacyBody:
-      "Diduny is built as a local Mac utility first. Any transcription routing should be explicit, documented, and controlled from the app settings.",
+      "Choose local or cloud transcription in settings. Recordings and previous results remain available in Diduny’s library; cloud processing is configured separately.",
+    workflows: [
+      {
+        id: "dictation",
+        title: "Speak and get clean text where you are already working",
+        problem: "Typing a quick thought interrupts the task already open on your Mac.",
+        outcome: "Cleaned text is inserted into the active field after you release the shortcut.",
+        media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Diduny overview with recent dictation recordings" },
+        steps: ["Hold the global shortcut", "Speak while live transcription appears", "Release to clean and insert the text"],
+      },
+      {
+        id: "meeting",
+        title: "Keep a meeting you can return to",
+        problem: "Notes disappear when the call ends and recordings are hard to search.",
+        outcome: "A recording, speaker-labelled transcript, and playback controls stay in the library.",
+        media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Diduny recordings library and transcription overview" },
+        steps: ["Record the meeting with system audio", "Follow live transcription with speaker labels", "Replay, seek, retranscribe, or translate later"],
+      },
+      {
+        id: "translation",
+        title: "Turn spoken input into translated text",
+        problem: "Voice translation should end in text you can use, not a separate playback flow.",
+        outcome: "Diduny produces translated text and keeps the result with the recording.",
+        media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Diduny transcription and translation controls" },
+        steps: ["Choose the language pair", "Speak or process a recording", "Use the translated text in the current task"],
+      },
+    ],
+    proof: ["Released in v1.17.0", "Global shortcut and push-to-talk", "Local and cloud transcription paths"],
+    limitations: ["Diduny produces translated text. It does not promise spoken playback of translated output."],
     features: [
       { title: "Menu-bar workflow", body: "Trigger dictation without switching away from the app where you need the text." },
       { title: "Dynamic Notch", body: "Uses native Mac UI patterns so recording state is visible without stealing focus." },
@@ -69,29 +115,64 @@ export const products: Product[] = [
     finalCta: "Stop retyping short thoughts",
   },
   {
-    slug: "browsercat",
-    letter: "B",
-    name: "Браузер Киця",
-    latinName: "BrowserCat",
-    title: "Open every link in the right browser",
+    slug: "appcat",
+    letter: "A",
+    name: "AppCat",
+    latinName: "AppCat",
+    title: "Links, files, and windows go straight to the right place",
     kind: "mac",
-    accent: "browsercat",
+    accent: "appcat",
     summary:
-      "Pick which browser, profile, or app should open each link. BrowserCat is a small Mac utility for people who live across work, personal, and test contexts.",
-    homepageSummary: "Open every link in the right browser.",
+      "AppCat routes links, files, apps, and individual windows to the right place without making you clean up the context afterward.",
+    homepageSummary: "Route links, files, and windows to the right place.",
     primaryCta: "Download for Mac",
-    primaryUrl: "https://github.com/rmarinsky/BrowserCat/releases/latest",
+    primaryUrl: "https://github.com/rmarinsky/AppCat/releases/latest",
     secondaryCta: "View source",
-    secondaryUrl: "https://github.com/rmarinsky/BrowserCat",
+    secondaryUrl: "https://github.com/rmarinsky/AppCat",
     image: {
-      src: "/images/products/browsercat-overview.png",
-      alt: "BrowserCat macOS app overview screen with link routing statistics and suggested rules",
+      src: "/images/products/appcat-overview.png",
+      alt: "AppCat macOS overview with routing history and suggested rules",
       variant: "app",
     },
-    badges: ["macOS app", "menu bar", "rules", "open source"],
-    privacyTitle: "Rules are local",
+    badges: ["macOS app", "link and file routing", "window switcher", "open source"],
+    privacyTitle: "The routing context stays on your Mac",
     privacyBody:
-      "BrowserCat does not need an account to decide where a link should open. Rules are designed as a local productivity tool.",
+      "Rules, history, and statistics stay on the Mac. AppCat has no accounts, telemetry, or tracking. It only makes functional requests for favicons, page titles, redirects, and updates.",
+    workflows: [
+      {
+        id: "link-picker",
+        title: "Choose the right destination for a link",
+        problem: "A work link, personal link, or deep link should not all open in the same browser session.",
+        outcome: "Choose a browser, profile, or compatible native app from one picker.",
+        media: { src: "/images/products/appcat-overview.png", type: "image", alt: "AppCat routing overview used as a temporary workflow poster" },
+        steps: ["Open a link", "Pick a browser, profile, or native app", "Continue in the intended context"],
+      },
+      {
+        id: "rules",
+        title: "Let a matching rule route the next link",
+        problem: "Repeated host and URL patterns create the same routing decision every day.",
+        outcome: "AppCat matches host, substring, full URL, or regex rules and hands the link off automatically.",
+        media: { src: "/images/products/appcat-overview.png", type: "image", alt: "AppCat rules and history overview" },
+        steps: ["Create a matching rule", "Open the next matching link", "Confirm the automatic handoff"],
+      },
+      {
+        id: "windows",
+        title: "Switch to the exact app window",
+        problem: "Application switching still leaves you looking for the right window.",
+        outcome: "Use Option-Tab to select a specific window, not only an application.",
+        media: { src: "/images/products/appcat-overview.png", type: "image", alt: "AppCat overview used as a temporary window switcher poster" },
+        steps: ["Press Option-Tab", "Find the exact app window", "Switch directly to it"],
+      },
+      {
+        id: "files",
+        title: "Open a file with a compatible app",
+        problem: "Finder does not always surface the editor you actually want for a known or unknown file type.",
+        outcome: "Choose from a compatible-app picker and continue in the selected editor.",
+        media: { src: "/images/products/appcat-overview.png", type: "image", alt: "AppCat overview used as a temporary file picker poster" },
+        steps: ["Select a file in Finder", "Open the compatible-app picker", "Choose the editor"],
+      },
+    ],
+    proof: ["Released in v2.1.0", "macOS link, file, app, and window switcher", "No account, telemetry, analytics, or tracking"],
     features: [
       { title: "Per-domain rules", body: "Route work, personal, staging, and test links to the browser that belongs to that context." },
       { title: "Profile-aware", body: "Use browser profiles deliberately instead of cleaning up sessions by hand." },
@@ -103,7 +184,7 @@ export const products: Product[] = [
       { question: "Does it track browsing?", answer: "It is designed as a local routing utility. Review the source and release notes for exact behavior." },
       { question: "Can I contribute rules?", answer: "Open a GitHub issue or pull request with a concrete use case." },
     ],
-    finalCta: "Make every link open where it belongs",
+    finalCta: "Put the next link, file, or window where it belongs",
   },
   {
     slug: "papuga",
@@ -130,6 +211,42 @@ export const products: Product[] = [
     privacyTitle: "Private by design",
     privacyBody:
       "Keystrokes and clipboard text are processed locally. History is kept on-device and there is no account or tracking layer.",
+    workflows: [
+      {
+        id: "selected-text",
+        title: "Fix selected text without typing it again",
+        problem: "A wrong keyboard layout turns an otherwise finished message into gibberish.",
+        outcome: "ghbdsn becomes привіт in the field where you selected it.",
+        media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Papuga overview with recent layout corrections" },
+        steps: ["Select ghbdsn", "Trigger Papuga", "Continue with привіт in place"],
+      },
+      {
+        id: "autofix",
+        title: "Let AutoFix catch a repeat mistake",
+        problem: "The same layout mistake should not require the same manual rescue every time.",
+        outcome: "Papuga fixes confidently matched text or suggests a correction when confidence is uncertain.",
+        media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Papuga overview used as a temporary AutoFix workflow poster" },
+        steps: ["Keep AutoFix enabled", "Type with the wrong layout", "Accept a suggestion or undo a correction"],
+      },
+      {
+        id: "rules",
+        title: "Turn recurring mistakes into a rule",
+        problem: "Repeated corrections should teach the utility without touching product names or commands.",
+        outcome: "Create an auto-replacement rule or protect a term from a history or mistake row.",
+        media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Papuga history and rules overview" },
+        steps: ["Review recent mistakes", "Create a rule or protect a term", "Keep the next correction intentional"],
+      },
+      {
+        id: "clipboard",
+        title: "Bring back an older clipboard item",
+        problem: "Useful copied text disappears as the next thing replaces it.",
+        outcome: "Search clipboard history and restore the item you need.",
+        media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Papuga overview used as a temporary clipboard history poster" },
+        steps: ["Open clipboard history", "Search a previous item", "Restore it into the current task"],
+      },
+    ],
+    proof: ["Released in v1.6.1", "Local layout conversion, history, clipboard data, and rules", "macOS 14+"],
+    limitations: ["The released app does not include the unreleased prediction engine or AI-assisted batch classification workflow."],
     features: [
       { title: "Select the text", body: "Highlight gibberish in any app - chat, form, browser, or document." },
       { title: "Hit your shortcut", body: "Use the default shortcut or your own hotkey." },
@@ -278,6 +395,9 @@ type ProductLocalizedFields = Partial<
     | "badges"
     | "privacyTitle"
     | "privacyBody"
+    | "workflows"
+    | "proof"
+    | "limitations"
     | "features"
     | "faq"
     | "finalCta"
@@ -300,7 +420,14 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       imageAlt: "Огляд macOS застосунку Дідуня зі статистикою диктування і останніми записами",
       privacyTitle: "Аудіо лишається під твоїм контролем",
       privacyBody:
-        "Дідуня задуманий як локальна Mac-утиліта. Будь-який маршрут транскрипції має бути явним, задокументованим і керованим у налаштуваннях.",
+        "У налаштуваннях можна обрати локальну або хмарну транскрипцію. Записи і попередні результати залишаються доступними в бібліотеці Дідуні, а хмарна обробка налаштовується окремо.",
+      workflows: [
+        { id: "dictation", title: "Надиктуй і отримай чистий текст там, де вже працюєш", problem: "Набір короткої думки перериває задачу, яка вже відкрита на Mac.", outcome: "Після відпускання shortcut очищений текст вставляється в активне поле.", media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Огляд Дідуні з останніми записами диктування" }, steps: ["Затисни глобальний shortcut", "Говори, поки з'являється live transcript", "Відпусти, щоб очистити і вставити текст"] },
+        { id: "meeting", title: "Збережи зустріч, до якої можна повернутися", problem: "Нотатки зникають після дзвінка, а записи важко знайти.", outcome: "Запис, транскрипт з мітками спікерів і playback controls лишаються в бібліотеці.", media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Бібліотека записів і транскрипцій Дідуні" }, steps: ["Запиши зустріч із системним аудіо", "Стеж за live transcript з мітками спікерів", "Відтвори, перемотай, перетранскрибуй або переклади пізніше"] },
+        { id: "translation", title: "Перетвори голос на перекладений текст", problem: "Голосовий переклад має закінчуватися текстом, який можна використати.", outcome: "Дідуня створює перекладений текст і зберігає результат біля запису.", media: { src: "/images/products/diduny-overview.png", type: "image", alt: "Керування транскрипцією і перекладом у Дідуні" }, steps: ["Обери мовну пару", "Говори або оброби запис", "Використай перекладений текст у поточній задачі"] },
+      ],
+      proof: ["Реліз v1.17.0", "Глобальний shortcut і push-to-talk", "Локальна та хмарна транскрипція"],
+      limitations: ["Дідуня створює перекладений текст. Вона не обіцяє озвучення перекладу."],
       features: [
         { title: "Робота з меню", body: "Запускай диктування без перемикання з того застосунку, де потрібен текст." },
         { title: "Dynamic Notch", body: "Стан запису видно нативно для Mac, без крадіжки фокуса." },
@@ -315,34 +442,40 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       finalCta: "Досить передруковувати короткі думки",
     },
   },
-  browsercat: {
-    en: {
-      name: "BrowserCat",
-    },
+  appcat: {
+    en: {},
     uk: {
-      title: "Відкривай кожен лінк у правильному браузері",
+      name: "AppCat",
+      title: "Посилання, файли й вікна - одразу в правильне місце",
       summary:
-        "Обирай, який браузер, профіль або застосунок має відкривати конкретний лінк. Браузер Киця для людей, які живуть між робочим, особистим і тестовим контекстами.",
-      homepageSummary: "Кожен лінк відкривається там, де має.",
+        "AppCat перехоплює посилання, пропонує браузер, профіль або native app, відкриває файли у сумісних програмах і перемикає на конкретне вікно через ⌥Tab.",
+      homepageSummary: "Відправляє посилання, файли й вікна туди, де їм місце.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
-      badges: ["macOS застосунок", "менюбар", "правила", "відкритий код"],
-      imageAlt: "Огляд macOS застосунку Браузер Киця зі статистикою правил маршрутизації і пропозиціями",
-      privacyTitle: "Правила живуть локально",
+      badges: ["macOS застосунок", "посилання і файли", "перемикач вікон", "відкритий код"],
+      imageAlt: "Огляд AppCat зі статистикою маршрутизації і пропозиціями правил",
+      privacyTitle: "Контекст маршрутизації лишається на Mac",
       privacyBody:
-        "Браузер Киця не потребує акаунта, щоб вирішити, де відкривати лінк. Правила спроєктовані як локальна утиліта продуктивності.",
+        "Правила, історія і статистика лишаються на Mac. AppCat не має акаунтів, телеметрії чи трекінгу. Він виконує лише функціональні запити для favicon, назв сторінок, редіректів і оновлень.",
       features: [
-        { title: "Правила для доменів", body: "Спрямовуй робочі, особисті, staging і тестові посилання у браузер, який належить цьому контексту." },
-        { title: "Профілі браузера", body: "Використовуй профілі браузера свідомо, а не прибирай сесії вручну." },
-        { title: "Швидкий вибір", body: "Обирай ціль руками, коли автоматичне правило буде недоречним." },
-        { title: "Нативна Mac-утиліта", body: "Маленька поверхня, присутність у менюбарі і передбачувана поведінка." },
+        { title: "Правила URL", body: "Матчинг за host, частиною host, частиною повного URL або regex." },
+        { title: "Профілі і native apps", body: "Обирай браузерний профіль або сумісний застосунок для deep link." },
+        { title: "Конкретне вікно", body: "⌥Tab перемикає не тільки застосунок, а й потрібне вікно." },
+        { title: "Вибір для файлів", body: "Відкривай відомі й невідомі типи файлів у сумісних програмах." },
       ],
+      workflows: [
+        { id: "link-picker", title: "Відкрий посилання там, де йому місце", problem: "Робоче, особисте і deep link не мають змішуватися в одній браузерній сесії.", outcome: "Обери браузер, профіль або native app в одному picker.", media: { src: "/images/products/appcat-overview.png", type: "image", alt: "Огляд AppCat як тимчасовий постер для picker посилань" }, steps: ["Відкрий посилання", "Обери браузер, профіль або native app", "Продовжуй у правильному контексті"] },
+        { id: "rules", title: "Дай правилу маршрутизувати наступне посилання", problem: "Повторювані host і URL патерни щодня вимагають того самого рішення.", outcome: "AppCat матче правила за host, підрядком URL або regex і передає посилання автоматично.", media: { src: "/images/products/appcat-overview.png", type: "image", alt: "Огляд правил та історії AppCat" }, steps: ["Створи правило", "Відкрий відповідне посилання", "Підтвердь автоматичну передачу"] },
+        { id: "windows", title: "Перемкнись на конкретне вікно", problem: "Перемикач застосунків все одно лишає пошук потрібного вікна.", outcome: "Через ⌥Tab обирай вікно, а не тільки застосунок.", media: { src: "/images/products/appcat-overview.png", type: "image", alt: "Огляд AppCat як тимчасовий постер для перемикача вікон" }, steps: ["Натисни ⌥Tab", "Знайди конкретне вікно", "Перемкнись одразу на нього"] },
+        { id: "files", title: "Відкрий файл у сумісному застосунку", problem: "Finder не завжди показує редактор, який потрібен саме для цього файлу.", outcome: "Обери редактор у picker сумісних застосунків.", media: { src: "/images/products/appcat-overview.png", type: "image", alt: "Огляд AppCat як тимчасовий постер для picker файлів" }, steps: ["Виділи файл у Finder", "Відкрий picker сумісних застосунків", "Обери редактор"] },
+      ],
+      proof: ["Реліз v2.1.0", "Перемикач посилань, файлів, застосунків і вікон", "Без акаунтів, телеметрії, аналітики чи трекінгу"],
       faq: [
         { question: "Для кого це?", answer: "Для QA, розробників, support-команд і всіх, хто перемикається між кількома браузерами або профілями." },
         { question: "Він відстежує перегляд сторінок?", answer: "Це локальна утиліта маршрутизації. Точну поведінку перевіряй у коді та нотатках релізів." },
         { question: "Можна запропонувати правило?", answer: "Так, відкрий GitHub issue або pull request з конкретним сценарієм." },
       ],
-      finalCta: "Нехай кожен лінк відкривається де треба",
+      finalCta: "Нехай наступне посилання, файл чи вікно одразу будуть на місці",
     },
   },
   papuga: {
@@ -358,6 +491,14 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       privacyTitle: "Приватність у базовій конструкції",
       privacyBody:
         "Натискання клавіш і текст з буфера обміну обробляються локально. Історія зберігається на пристрої, без акаунта і без шару трекінгу.",
+      workflows: [
+        { id: "selected-text", title: "Виправ текст без повторного набору", problem: "Неправильна розкладка перетворює готове повідомлення на нісенітницю.", outcome: "ghbdsn стає «привіт» у полі, де виділено текст.", media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Огляд Папуги з останніми виправленнями розкладки" }, steps: ["Виділи ghbdsn", "Виклич Папугу", "Продовжуй з «привіт» на місці"] },
+        { id: "autofix", title: "Дай AutoFix зловити повторювану помилку", problem: "Одна й та сама помилка розкладки не має вимагати ручного порятунку щоразу.", outcome: "Папуга виправляє впевнені матчі або пропонує правку, коли впевненість нижча.", media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Огляд Папуги як тимчасовий постер для AutoFix" }, steps: ["Увімкни AutoFix", "Набери текст у неправильній розкладці", "Прийми підказку або скасуй виправлення"] },
+        { id: "rules", title: "Перетвори повторювану помилку на правило", problem: "Повторювані правки мають навчати утиліту, не чіпаючи назви продуктів чи команди.", outcome: "Створи правило заміни або захисти термін прямо з історії помилок.", media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Історія і правила Папуги" }, steps: ["Переглянь останні помилки", "Створи правило або захисти термін", "Залиш наступне виправлення контрольованим"] },
+        { id: "clipboard", title: "Поверни старий елемент буфера обміну", problem: "Потрібний скопійований текст зникає після наступного copy.", outcome: "Знайди елемент в історії буфера й поверни його.", media: { src: "/images/products/papuga-overview.png", type: "image", alt: "Огляд Папуги як тимчасовий постер історії буфера" }, steps: ["Відкрий історію буфера", "Знайди старий елемент", "Поверни його в поточну задачу"] },
+      ],
+      proof: ["Реліз v1.6.1", "Локальні конвертація розкладки, історія, буфер і правила", "macOS 14+"],
+      limitations: ["Реліз не включає prediction engine чи AI-assisted batch classification з unreleased гілки."],
       features: [
         { title: "Виділи текст", body: "Виділяєш нісенітницю в будь-якому застосунку: чаті, формі, браузері або документі." },
         { title: "Натисни скорочення", body: "Використовуй стандартне скорочення або власну гарячу клавішу." },
@@ -516,7 +657,7 @@ export function localizedProducts(locale: Locale) {
 }
 
 export const featuredProducts = products.filter((product) =>
-  ["diduny", "browsercat", "papuga", "sidebarny", "wayforpay-mcp", "ukraine-com-ua-mcp"].includes(product.slug),
+  ["diduny", "appcat", "papuga", "sidebarny", "wayforpay-mcp", "ukraine-com-ua-mcp"].includes(product.slug),
 );
 
 export function getProduct(slug: string) {

@@ -19,15 +19,15 @@ const t = ui[locale].about;
     <section class="about-hero">
       <div class="container">
         <div class="about-hero-inner">
-          <span class="avatar-dot" aria-hidden="true"></span>
+          <div class="about-photo-placeholder" role="img" aria-label={t.heading}></div>
           <span class="eyebrow">{t.eyebrow}</span>
           <h1>{t.heading}</h1>
           <p class="lead">{t.lead}</p>
-          <div class="link-pills">
-            <a class="pill" href={site.github}>GitHub</a>
-            <a class="pill" href={site.linkedin}>LinkedIn</a>
-            <a class="pill" href={site.npm}>npm</a>
-            <a class="pill" href={site.email}>Email</a>
+          <div class="about-links">
+            <a href={site.github}>GitHub</a>
+            <a href={site.linkedin}>LinkedIn</a>
+            <a href={site.npm}>npm</a>
+            <a href={site.email}>Email</a>
           </div>
         </div>
       </div>
@@ -35,44 +35,31 @@ const t = ui[locale].about;
 
     <section class="band">
       <div class="container">
-        <div class="grid two">
-          <article class="card">
-            <span class="kicker">{t.workKicker}</span>
-            <h2>{t.workTitle}</h2>
-            <p class="body-copy">{t.workBody}</p>
-          </article>
-          <article class="card">
-            <span class="kicker">{t.aiKicker}</span>
-            <h2>{t.aiTitle}</h2>
-            <p class="body-copy">{t.aiBody}</p>
-          </article>
+        <div class="proof-strip">
+          {t.proof.map((item) => <strong>{item}</strong>)}
         </div>
       </div>
     </section>
 
     <section class="band secondary">
       <div class="container">
-        <div class="section-header">
-          <span class="kicker">{t.communityKicker}</span>
-          <h2>{t.communityTitle}</h2>
-        </div>
-        <div class="grid four">
-          <article class="card">
-            <h3>Мануфактура автоматизації</h3>
-            <p class="body-copy">{t.manufaktura}</p>
-          </article>
-          <article class="card">
-            <h3>Party Hard</h3>
-            <p class="body-copy">{t.partyHard}</p>
-          </article>
-          <article class="card">
-            <h3>QA Club Lviv</h3>
-            <p class="body-copy">{t.qaClub}</p>
-          </article>
-          <article class="card">
-            <h3>Кулуари РМ</h3>
-            <p class="body-copy">{t.kuluary}</p>
-          </article>
+        <div class="section-header"><h2>{t.workTitle}</h2><p class="body-copy">{t.workBody}</p></div>
+        <ol class="career-timeline">
+          {t.timeline.map((item) => <li>{item}</li>)}
+        </ol>
+        <blockquote class="ai-quote">{t.quote}</blockquote>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header"><h2>{t.communityTitle}</h2></div>
+        <div class="community-list">
+          {t.community.map((item) => (
+            <a href={item.url} class="community-item">
+              <strong>{item.name}</strong><span>{item.role}</span><span aria-hidden="true">→</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -84,10 +71,10 @@ const t = ui[locale].about;
           <h2>{t.ossTitle}</h2>
         </div>
         <div class="grid three">
-          <article class="card tone-browsercat">
-            <span class="product-icon">B</span>
-            <h3>BrowserCat</h3>
-            <p class="body-copy">{t.ossBrowserCat}</p>
+          <article class="card tone-appcat">
+            <span class="product-icon">A</span>
+            <h3>AppCat</h3>
+            <p class="body-copy">{t.ossAppCat}</p>
           </article>
           <article class="card tone-diduny">
             <span class="product-icon">D</span>

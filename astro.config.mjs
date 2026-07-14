@@ -4,5 +4,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://rmarinsky.com.ua",
   output: "static",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.endsWith("/browsercat/"),
+    }),
+  ],
 });
