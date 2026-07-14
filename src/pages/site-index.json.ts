@@ -1,5 +1,5 @@
 import { absoluteLocalizedUrl } from "../content/i18n";
-import { localizedProducts } from "../content/products";
+import { localizedProducts, productCapabilities } from "../content/products";
 import { site } from "../content/site";
 import { sortedUpdates } from "../content/updates";
 
@@ -40,6 +40,34 @@ export function GET() {
         summary: {
           uk: product.summary,
           en: enProduct.summary,
+        },
+        seo: {
+          title: {
+            uk: product.seoTitle,
+            en: enProduct.seoTitle,
+          },
+          description: {
+            uk: product.seoDescription,
+            en: enProduct.seoDescription,
+          },
+        },
+        discovery: {
+          answer: {
+            uk: product.discoveryAnswer,
+            en: enProduct.discoveryAnswer,
+          },
+          queries: {
+            uk: product.discoveryQueries,
+            en: enProduct.discoveryQueries,
+          },
+        },
+        capabilities: {
+          uk: productCapabilities(product),
+          en: productCapabilities(enProduct),
+        },
+        pricing: {
+          uk: product.pricingNote,
+          en: enProduct.pricingNote,
         },
         source: product.secondaryUrl ?? product.primaryUrl,
       };

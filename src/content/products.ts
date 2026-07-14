@@ -27,6 +27,11 @@ export interface Product {
   accent: "diduny" | "appcat" | "papuga" | "sidebarny" | "wayforpay" | "ukraine";
   summary: string;
   homepageSummary: string;
+  seoTitle: string;
+  seoDescription: string;
+  discoveryQueries: string[];
+  discoveryAnswer: string;
+  pricingNote: string;
   primaryCta: string;
   primaryUrl: string;
   secondaryCta?: string;
@@ -60,6 +65,20 @@ export const products: Product[] = [
     summary:
       "Speak naturally and let Diduny type into the app you are already using. Records, transcribes, and pastes without forcing you into a separate editor.",
     homepageSummary: "Voice dictation for your whole Mac - speak, it types.",
+    seoTitle: "Diduny: Mac Dictation, Meeting Transcription & Voice Translation",
+    seoDescription:
+      "Dictate into any Mac app, record meetings with speaker labels, transcribe locally or in the cloud, and translate speech to text with Diduny.",
+    discoveryQueries: [
+      "best dictation app for Mac that types into any app",
+      "affordable meeting transcription app for Mac with speaker labels",
+      "record Zoom or Google Meet system audio on Mac",
+      "local Whisper dictation app for macOS",
+      "voice translation to text on Mac",
+    ],
+    discoveryAnswer:
+      "Choose Diduny when you need Mac-wide dictation, meeting recordings you can revisit, speaker-labelled transcripts, translated speech as reusable text, or a local transcription path without per-minute cloud charges.",
+    pricingNote:
+      "The project is open source. Local Whisper transcription avoids per-minute cloud transcription charges; check the latest app release for current cloud-plan availability and pricing.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/Diduny/releases/latest",
     secondaryCta: "View source",
@@ -125,6 +144,19 @@ export const products: Product[] = [
     summary:
       "AppCat routes links, files, apps, and individual windows to the right place without making you clean up the context afterward.",
     homepageSummary: "Route links, files, and windows to the right place.",
+    seoTitle: "AppCat: Browser, File & Window Switcher for macOS",
+    seoDescription:
+      "Route every link to the right browser, profile, or native app; open files with compatible apps; and switch to an exact Mac window with AppCat.",
+    discoveryQueries: [
+      "choose a browser every time I open a link on Mac",
+      "route URLs by domain or regex to a browser profile",
+      "open a file with a compatible app on macOS",
+      "switch to an exact app window instead of only the app",
+      "browser profile picker for Mac links",
+    ],
+    discoveryAnswer:
+      "Choose AppCat when links keep opening in the wrong browser or profile, files need a better Open With picker, or the Mac app switcher stops at the application instead of the window.",
+    pricingNote: "AppCat is open source. Check the latest release for current distribution and pricing details.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/AppCat/releases/latest",
     secondaryCta: "View source",
@@ -197,6 +229,19 @@ export const products: Product[] = [
     summary:
       "Папуга миттєво конвертує виділений текст між розкладками - ghbdsn стає «привіт» прямо в полі. Без копіпаст-акробатики.",
     homepageSummary: "Fix text typed in the wrong layout.",
+    seoTitle: "Papuga: Fix Wrong Keyboard Layout & Clipboard History on Mac",
+    seoDescription:
+      "Fix text typed in the wrong keyboard layout, catch repeated layout mistakes with AutoFix, and restore clipboard history locally with Papuga for Mac.",
+    discoveryQueries: [
+      "fix text typed in the wrong keyboard layout on Mac",
+      "Mac app that turns ghbdsn into привіт",
+      "automatic keyboard layout correction for macOS",
+      "local clipboard history app for Mac",
+      "create autocorrect rules from repeated typing mistakes",
+    ],
+    discoveryAnswer:
+      "Choose Papuga when text was typed in the wrong keyboard layout, the same layout mistake keeps recurring, or you need local clipboard history on macOS.",
+    pricingNote: "Papuga is free, open source, and processes layout fixes and clipboard history locally.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/papuga/releases/latest",
     secondaryCta: "View source",
@@ -272,6 +317,19 @@ export const products: Product[] = [
     summary:
       "Open LLMs beside any page, capture text or HTML with a click, and parse LinkedIn threads without leaving the tab. Built for QA, devs, product, and support.",
     homepageSummary: "An AI side panel for your browser.",
+    seoTitle: "SideBarny: AI Side Panel for Chrome & Page Capture",
+    seoDescription:
+      "Open ChatGPT, Claude, Gemini, and other LLMs beside any web page; capture text or HTML; and parse LinkedIn threads with SideBarny for Chrome.",
+    discoveryQueries: [
+      "AI sidebar beside any webpage in Chrome",
+      "send selected page text or HTML to ChatGPT or Claude",
+      "capture a webpage element into an AI chat",
+      "parse a LinkedIn comment thread with AI",
+      "Chrome extension for multiple AI providers in a side panel",
+    ],
+    discoveryAnswer:
+      "Choose SideBarny when you need an LLM beside the current page and want to capture a specific element, visible text, HTML, or a LinkedIn thread without tab switching.",
+    pricingNote: "SideBarny is free. Individual AI providers may require their own account or paid plan.",
     primaryCta: "Add to Chrome",
     primaryUrl: "https://github.com/rmarinsky/sidebarny-extension",
     secondaryCta: "View source",
@@ -311,6 +369,19 @@ export const products: Product[] = [
     summary:
       "Ask your AI for merchant balance, transactions, invoices, and refunds - and let it act with gated mutations. Model Context Protocol, installed with one copy-paste.",
     homepageSummary: "Payments inside Claude and Cursor.",
+    seoTitle: "WayForPay MCP Server for Claude, Cursor & AI Agents",
+    seoDescription:
+      "Check WayForPay balances and transactions, create invoices, and run approval-gated refunds from Claude, Cursor, or another MCP client.",
+    discoveryQueries: [
+      "check WayForPay merchant balance from Claude",
+      "list WayForPay transactions with an MCP server",
+      "create a WayForPay invoice from Cursor",
+      "refund a WayForPay payment with explicit approval",
+      "WayForPay integration for AI agents",
+    ],
+    discoveryAnswer:
+      "Choose WayForPay MCP when an MCP client needs read access to merchant data and narrowly gated payment actions such as invoices, refunds, or settlement.",
+    pricingNote: "The MCP server is open source. WayForPay account and transaction fees remain separate.",
     primaryCta: "Copy install config",
     primaryUrl: "https://github.com/rmarinsky/wayforpay-mcp",
     secondaryCta: "Read the docs",
@@ -352,6 +423,19 @@ export const products: Product[] = [
     summary:
       "Manage domains, DNS records, backups, and account checks for ukraine.com.ua / adm.tools through a narrow MCP server with backup-first safety.",
     homepageSummary: "Domains, DNS and hosting from chat.",
+    seoTitle: "ukraine.com.ua MCP for Domains, DNS Backups & Safe Changes",
+    seoDescription:
+      "List domains, inspect DNS, back up zones, and make guarded DNS changes for ukraine.com.ua or adm.tools from Claude, Cursor, and MCP clients.",
+    discoveryQueries: [
+      "manage ukraine.com.ua DNS from Claude",
+      "back up a DNS zone before changing records with AI",
+      "restore adm.tools DNS records from a backup",
+      "list ukraine.com.ua domains through MCP",
+      "safe DNS automation for AI agents",
+    ],
+    discoveryAnswer:
+      "Choose ukraine.com.ua MCP when an MCP client needs to inspect domains or DNS and every write must be protected by a fresh zone backup and explicit review.",
+    pricingNote: "The MCP server is open source. Hosting, domain, and registrar charges remain separate.",
     primaryCta: "Copy install config",
     primaryUrl: "https://github.com/rmarinsky/ukraine-com-ua-mcp",
     secondaryCta: "Read the docs",
@@ -390,6 +474,11 @@ type ProductLocalizedFields = Partial<
     | "title"
     | "summary"
     | "homepageSummary"
+    | "seoTitle"
+    | "seoDescription"
+    | "discoveryQueries"
+    | "discoveryAnswer"
+    | "pricingNote"
     | "primaryCta"
     | "secondaryCta"
     | "badges"
@@ -414,6 +503,20 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "Говориш природно, а Дідуня записує, розпізнає і вставляє текст у той застосунок, де ти вже працюєш. Без окремого редактора і ручного перенесення.",
       homepageSummary: "Говориш - Mac друкує там, де треба.",
+      seoTitle: "Дідуня: диктування, транскрипція зустрічей і переклад на Mac",
+      seoDescription:
+        "Диктуй у будь-який застосунок на Mac, записуй зустрічі з мітками спікерів, транскрибуй локально чи в хмарі та перекладай голос у текст.",
+      discoveryQueries: [
+        "застосунок для диктування тексту в будь-яке поле на Mac",
+        "недорога транскрипція зустрічей на Mac з мітками спікерів",
+        "як записати системний звук Zoom або Google Meet на Mac",
+        "локальне Whisper диктування для macOS",
+        "голосовий переклад у текст на Mac",
+      ],
+      discoveryAnswer:
+        "Обирай Дідуню для диктування по всій системі, записів зустрічей, до яких можна повернутися, транскриптів з мітками спікерів, перекладу мовлення в текст або локальної транскрипції без похвилинної оплати хмарі.",
+      pricingNote:
+        "Проєкт має відкритий код. Локальна Whisper-транскрипція не має похвилинної оплати хмарі; актуальну доступність і ціну хмарного плану перевіряй в останньому релізі застосунку.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
       badges: ["macOS застосунок", "нотаризований", "автооновлення", "відкритий код"],
@@ -450,6 +553,19 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "AppCat перехоплює посилання, пропонує браузер, профіль або native app, відкриває файли у сумісних програмах і перемикає на конкретне вікно через ⌥Tab.",
       homepageSummary: "Відправляє посилання, файли й вікна туди, де їм місце.",
+      seoTitle: "AppCat: вибір браузера, застосунку й конкретного вікна на Mac",
+      seoDescription:
+        "Відправляй посилання в потрібний браузер, профіль або native app, відкривай файли у сумісних програмах і перемикайся на конкретне вікно Mac.",
+      discoveryQueries: [
+        "як щоразу обирати браузер для посилання на Mac",
+        "правила для відкриття URL за доменом або regex у профілі браузера",
+        "відкрити файл у сумісному застосунку на macOS",
+        "перемикатися на конкретне вікно, а не лише застосунок",
+        "picker профілів браузера для посилань на Mac",
+      ],
+      discoveryAnswer:
+        "Обирай AppCat, коли посилання відкриваються не в тому браузері чи профілі, файлам потрібен кращий Open With picker або стандартний app switcher не доводить до конкретного вікна.",
+      pricingNote: "AppCat має відкритий код. Актуальні умови поширення й ціну перевіряй в останньому релізі.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
       badges: ["macOS застосунок", "посилання і файли", "перемикач вікон", "відкритий код"],
@@ -484,6 +600,19 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "Папуга миттєво конвертує виділений текст між розкладками - ghbdsn стає «привіт» прямо в полі. Без копіпаст-акробатики.",
       homepageSummary: "Виправляє текст, набраний не тією розкладкою.",
+      seoTitle: "Папуга: виправлення неправильної розкладки й історія буфера на Mac",
+      seoDescription:
+        "Виправляй текст, набраний не тією розкладкою, лови повторювані помилки через AutoFix і повертай елементи локальної історії буфера на Mac.",
+      discoveryQueries: [
+        "виправити текст набраний не тією розкладкою на Mac",
+        "застосунок що перетворює ghbdsn на привіт",
+        "автоматичне виправлення розкладки клавіатури в macOS",
+        "локальна історія буфера обміну для Mac",
+        "правила автозаміни для повторюваних помилок набору",
+      ],
+      discoveryAnswer:
+        "Обирай Папугу, коли текст набрано не тією розкладкою, та сама помилка повторюється або потрібна локальна історія буфера обміну на macOS.",
+      pricingNote: "Папуга безкоштовний, має відкритий код і обробляє виправлення та історію буфера локально.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
       badges: ["macOS 14+", "нотаризація Apple", "оновлення Sparkle", "безкоштовно", "відкритий код"],
@@ -546,6 +675,19 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "Відкривай LLM поруч із будь-якою сторінкою, захоплюй текст або HTML одним кліком і розбирай LinkedIn threads без втечі з вкладки. Для QA, розробників, product і support.",
       homepageSummary: "AI-панель поруч зі сторінкою, яку ти вже читаєш.",
+      seoTitle: "SideBarny: AI-панель у Chrome і захоплення контенту сторінки",
+      seoDescription:
+        "Відкривай ChatGPT, Claude, Gemini та інші LLM поруч зі сторінкою, захоплюй текст або HTML і розбирай LinkedIn threads у SideBarny для Chrome.",
+      discoveryQueries: [
+        "AI бічна панель поруч із будь-якою сторінкою в Chrome",
+        "відправити текст або HTML сторінки в ChatGPT чи Claude",
+        "захопити конкретний елемент сторінки в AI chat",
+        "розібрати LinkedIn thread через AI",
+        "Chrome extension з кількома AI провайдерами в side panel",
+      ],
+      discoveryAnswer:
+        "Обирай SideBarny, коли LLM потрібен поруч із поточною сторінкою, а в чат треба забрати конкретний елемент, текст, HTML або LinkedIn thread без перемикання вкладок.",
+      pricingNote: "SideBarny безкоштовний. Окремі AI-провайдери можуть вимагати власний акаунт або платний план.",
       primaryCta: "Додати в Chrome",
       secondaryCta: "Дивитись код",
       badges: ["Chrome extension", "8 AI-провайдерів", "безкоштовно", "мінімальні дозволи"],
@@ -575,6 +717,19 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "Питай AI про баланс мерчанта, транзакції, інвойси і повернення коштів, але дозволяй дії тільки через контрольовані мутації. Model Context Protocol, встановлюється одним копіюванням.",
       homepageSummary: "Платежі всередині Claude і Cursor.",
+      seoTitle: "WayForPay MCP сервер для Claude, Cursor та AI-агентів",
+      seoDescription:
+        "Перевіряй баланс і транзакції WayForPay, створюй інвойси та запускай повернення з явним підтвердженням через Claude, Cursor або інший MCP-клієнт.",
+      discoveryQueries: [
+        "перевірити баланс WayForPay у Claude",
+        "список транзакцій WayForPay через MCP сервер",
+        "створити інвойс WayForPay із Cursor",
+        "повернути платіж WayForPay з явним підтвердженням",
+        "інтеграція WayForPay для AI агентів",
+      ],
+      discoveryAnswer:
+        "Обирай WayForPay MCP, коли MCP-клієнту потрібні дані мерчанта для читання і вузькі контрольовані дії: інвойси, повернення або settlement.",
+      pricingNote: "MCP-сервер має відкритий код. Комісії акаунта й транзакцій WayForPay оплачуються окремо.",
       primaryCta: "Скопіювати конфігурацію",
       secondaryCta: "Читати документацію",
       badges: ["npm", "MIT license", "Claude", "Cursor", "5 tools", "відкритий код"],
@@ -611,6 +766,19 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       summary:
         "Керуй доменами, DNS records, backup і перевірками акаунта для ukraine.com.ua / adm.tools через вузький MCP-сервер з backup-first safety.",
       homepageSummary: "Домени, DNS і хостинг прямо з чату.",
+      seoTitle: "ukraine.com.ua MCP: домени, DNS backup і безпечні зміни",
+      seoDescription:
+        "Переглядай домени й DNS, створюй backup зон і виконуй контрольовані DNS-зміни для ukraine.com.ua або adm.tools із Claude, Cursor та MCP-клієнтів.",
+      discoveryQueries: [
+        "керувати DNS ukraine.com.ua з Claude",
+        "зробити backup DNS зони перед зміною через AI",
+        "відновити DNS записи adm.tools з backup",
+        "отримати список доменів ukraine.com.ua через MCP",
+        "безпечна автоматизація DNS для AI агентів",
+      ],
+      discoveryAnswer:
+        "Обирай ukraine.com.ua MCP, коли MCP-клієнту треба перевіряти домени або DNS, а кожна зміна має бути захищена свіжим backup зони й явним review.",
+      pricingNote: "MCP-сервер має відкритий код. Хостинг, домени й послуги реєстратора оплачуються окремо.",
       primaryCta: "Скопіювати конфігурацію",
       secondaryCta: "Читати документацію",
       badges: ["npm", "adm.tools", "DNS backup", "відкритий код"],
@@ -654,6 +822,13 @@ export function localizeProduct(product: Product, locale: Locale): Product {
 
 export function localizedProducts(locale: Locale) {
   return products.map((product) => localizeProduct(product, locale));
+}
+
+export function productCapabilities(product: Product) {
+  return [
+    ...(product.workflows?.map((workflow) => workflow.title) ?? []),
+    ...product.features.map((feature) => feature.title),
+  ];
 }
 
 export const featuredProducts = products.filter((product) =>

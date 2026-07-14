@@ -7,8 +7,8 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "uk";
 
 export const siteDescriptions: Record<Locale, string> = {
-  uk: "Малі гострі інструменти для Mac, браузера і практичного AI. Зроблено Романом Маринським в Україні.",
-  en: site.description,
+  uk: "Застосунки Романа Маринського для диктування й транскрипції на Mac, маршрутизації посилань, виправлення розкладки, AI у браузері та MCP інтеграцій.",
+  en: "Roman Marinsky builds Mac apps for dictation, meeting transcription, link routing, keyboard layout fixes, browser AI, and practical MCP integrations.",
 };
 
 export const localeMeta: Record<Locale, { label: string; lang: string; hreflang: string; ogLocale: string }> = {
@@ -84,6 +84,9 @@ export const ui = {
       madeIn: "Зроблено в Україні",
     },
     home: {
+      seoTitle: "Диктування, транскрипція, маршрутизація посилань і утиліти для Mac",
+      seoDescription:
+        "Знайди macOS застосунок для диктування й транскрипції зустрічей, вибору браузера, виправлення розкладки, AI у Chrome та безпечних MCP інтеграцій.",
       eyebrow: "macOS-утиліти для щоденної роботи",
       title: "Диктувати. Відкривати. Виправляти. Без зайвих рухів.",
       lead:
@@ -125,6 +128,9 @@ export const ui = {
       workflowsTitle: "Що відбувається від дії до результату",
       problemLabel: "Проблема:",
       outcomeLabel: "Результат:",
+      discoveryKicker: "Пошук за проблемою",
+      discoveryTitle: "Як цю проблему зазвичай формулюють",
+      pricingLabel: "Ціна й умови:",
       proofKicker: "Перевірний контекст",
       boundariesKicker: "Межі продукту",
       installKicker: "Встановлення",
@@ -255,6 +261,9 @@ export const ui = {
       madeIn: "Made in Ukraine",
     },
     home: {
+      seoTitle: "Mac Dictation, Meeting Transcription, Link Routing & Utilities",
+      seoDescription:
+        "Find a macOS app for dictation and meeting transcription, browser selection, keyboard layout fixes, AI beside Chrome pages, and guarded MCP integrations.",
       eyebrow: "macOS utilities for daily work",
       title: "Dictate. Route. Fix. Without the extra moves.",
       lead:
@@ -296,6 +305,9 @@ export const ui = {
       workflowsTitle: "What happens from action to outcome",
       problemLabel: "Problem:",
       outcomeLabel: "Outcome:",
+      discoveryKicker: "Search by problem",
+      discoveryTitle: "How people usually describe this problem",
+      pricingLabel: "Price and terms:",
       proofKicker: "Verifiable context",
       boundariesKicker: "Product boundary",
       installKicker: "Install",

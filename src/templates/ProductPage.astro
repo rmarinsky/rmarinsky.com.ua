@@ -7,7 +7,7 @@ import ProductMockup from "../components/ProductMockup.astro";
 import WorkflowMedia from "../components/WorkflowMedia.astro";
 import UpdateCard from "../components/UpdateCard.astro";
 import { absoluteLocalizedUrl, localizedPath, ui, type Locale } from "../content/i18n";
-import { localizedProducts, localizeProduct, type Product } from "../content/products";
+import { localizedProducts, localizeProduct, productCapabilities, type Product } from "../content/products";
 import { site } from "../content/site";
 import { getProductUpdates, isUpdateProductSlug } from "../content/updates";
 
@@ -41,23 +41,55 @@ const productJsonLd = {
   "@id": `${site.url}/${product.slug}/#software`,
   name: product.latinName,
   alternateName: product.name,
-  description: product.summary,
+  description: product.seoDescription,
   url: absoluteLocalizedUrl(`/${product.slug}/`, locale),
   image: new URL(product.image.src, site.url).toString(),
   applicationCategory:
     product.kind === "mac" ? "UtilitiesApplication" : product.kind === "extension" ? "BrowserApplication" : "DeveloperApplication",
   operatingSystem: product.kind === "mac" ? "macOS" : product.kind === "extension" ? "Chrome" : "Cross-platform",
+  featureList: productCapabilities(product),
+  keywords: product.discoveryQueries,
   author: { "@id": `${site.url}/#person` },
   sameAs: product.secondaryUrl ? [product.primaryUrl, product.secondaryUrl] : [product.primaryUrl],
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: t.breadcrumbs,
+      item: absoluteLocalizedUrl("/", locale),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: product.name,
+      item: absoluteLocalizedUrl(`/${product.slug}/`, locale),
+    },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: product.faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
 };
 ---
 
 <Layout
   locale={locale}
-  title={product.name}
-  description={product.summary}
+  title={product.seoTitle}
+  description={product.seoDescription}
   image={product.image.src}
-  jsonLd={[productJsonLd]}
+  applicationName={product.latinName}
+  jsonLd={[productJsonLd, breadcrumbJsonLd, faqJsonLd]}
 >
   <Header locale={locale} />
   <main>
@@ -133,6 +165,24 @@ const productJsonLd = {
       </div>
       </section>
     )}
+
+    <section class="band">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">{t.discoveryKicker}</span>
+          <h2>{t.discoveryTitle}</h2>
+          <p class="body-copy">{product.discoveryAnswer}</p>
+        </div>
+        <div class="feature-grid">
+          {product.discoveryQueries.map((query) => (
+            <article class={`card feature-card tone-${product.accent}`}>
+              <h3>“{query}”</h3>
+            </article>
+          ))}
+        </div>
+        <p class="body-copy"><strong>{t.pricingLabel}</strong> {product.pricingNote}</p>
+      </div>
+    </section>
 
     {(product.proof || product.limitations) && (
       <section class="band">
