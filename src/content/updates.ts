@@ -1,12 +1,12 @@
 import type { Locale } from "./i18n";
 
-export type UpdateProductSlug = "diduny" | "browsercat" | "papuga" | "sidebarny" | "wayforpay-mcp" | "ukraine-com-ua-mcp";
+export type UpdateProductSlug = "diduny" | "appcat" | "papuga" | "sidebarny" | "wayforpay-mcp" | "ukraine-com-ua-mcp";
 
 export type UpdateAccent = UpdateProductSlug | "site";
 
 export const updateProductSlugs = [
   "diduny",
-  "browsercat",
+  "appcat",
   "papuga",
   "sidebarny",
   "wayforpay-mcp",
@@ -42,7 +42,7 @@ export const updates: ProductUpdate[] = [
     slug: "rmarinsky-com-ua-github-pages-cutover",
     date: "2026-07-06",
     accent: "site",
-    products: ["diduny", "browsercat", "papuga"],
+    products: ["diduny", "appcat", "papuga"],
     tags: ["site", "dns", "github pages", "release channel"],
     links: [
       { label: { uk: "Живий сайт", en: "Live site" }, href: "https://rmarinsky.com.ua" },
@@ -56,7 +56,7 @@ export const updates: ProductUpdate[] = [
         eyebrow: "Інфраструктура сайту",
         title: "rmarinsky.com.ua нарешті перестав прикидатися старим хостингом",
         summary:
-          "Сайт для Дідуні, Браузер Киці, Папуги та інших інструментів тепер живе на GitHub Pages з валідним HTTPS і нормальним каналом релізів.",
+          "Сайт для Дідуні, AppCat, Папуги та інших інструментів тепер живе на GitHub Pages з валідним HTTPS і нормальним каналом релізів.",
         problem:
           "Бісило просте: лінк на сайт ніби є, але HTTPS свариться, GitHub Pages віддає чужий сертифікат, а випадкові піддомени тягнуться на старий хостинг. Для продуктового сайту це виглядає як недороблена табличка на дверях.",
         fix:
@@ -76,7 +76,7 @@ export const updates: ProductUpdate[] = [
         eyebrow: "Site infrastructure",
         title: "rmarinsky.com.ua stopped pretending to be an abandoned hosting stub",
         summary:
-          "The product hub for Diduny, BrowserCat, Papuga, and the rest of the tool shelf now runs on GitHub Pages with valid HTTPS and a real release-update channel.",
+          "The product hub for Diduny, AppCat, Papuga, and the rest of the tool shelf now runs on GitHub Pages with valid HTTPS and a real release-update channel.",
         problem:
           "The annoying part was basic: the site existed, but HTTPS complained, GitHub Pages served the wrong certificate, and random subdomains still fell back to the old hosting account. Not exactly the first impression a product page should make.",
         fix:

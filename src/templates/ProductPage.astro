@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Layout from "../components/Layout.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ProductMockup from "../components/ProductMockup.astro";
+import WorkflowMedia from "../components/WorkflowMedia.astro";
 import UpdateCard from "../components/UpdateCard.astro";
 import { absoluteLocalizedUrl, localizedPath, ui, type Locale } from "../content/i18n";
 import { localizedProducts, localizeProduct, type Product } from "../content/products";
@@ -27,7 +28,7 @@ const relatedProducts = allProducts
 
 const softBackground: Record<Product["accent"], string> = {
   diduny: "color-mix(in srgb, var(--diduny), var(--bg-primary) 88%)",
-  browsercat: "color-mix(in srgb, var(--browsercat), var(--bg-primary) 88%)",
+  appcat: "color-mix(in srgb, var(--appcat), var(--bg-primary) 88%)",
   papuga: "color-mix(in srgb, var(--papuga), var(--bg-primary) 88%)",
   sidebarny: "color-mix(in srgb, var(--sidebarny), var(--bg-primary) 88%)",
   wayforpay: "color-mix(in srgb, var(--wayforpay), var(--bg-primary) 88%)",
@@ -89,7 +90,32 @@ const productJsonLd = {
       </div>
     </section>
 
-    <section class="band secondary">
+    {product.workflows ? (
+      <section class="band secondary">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">{t.workflowsKicker}</span>
+            <h2>{t.workflowsTitle}</h2>
+          </div>
+          <div class="workflow-list">
+            {product.workflows.map((workflow, index) => (
+              <article class={`workflow-row tone-${product.accent}`}>
+                <div class="workflow-copy">
+                  <h3>{workflow.title}</h3>
+                  <p class="body-copy"><strong>{t.problemLabel}</strong> {workflow.problem}</p>
+                  <p class="body-copy"><strong>{t.outcomeLabel}</strong> {workflow.outcome}</p>
+                  <ol class="workflow-steps">
+                    {workflow.steps.map((step) => <li>{step}</li>)}
+                  </ol>
+                </div>
+                <WorkflowMedia workflow={workflow} eager={index === 0} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ) : (
+      <section class="band secondary">
       <div class="container">
         <div class="section-header">
           <span class="kicker">{t.featuresKicker}</span>
@@ -105,7 +131,27 @@ const productJsonLd = {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    )}
+
+    {(product.proof || product.limitations) && (
+      <section class="band">
+        <div class="container product-facts">
+          {product.proof && (
+            <div>
+              <span class="kicker">{t.proofKicker}</span>
+              <ul class="proof-list">{product.proof.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          )}
+          {product.limitations && (
+            <div class="limitations">
+              <span class="kicker">{t.boundariesKicker}</span>
+              {product.limitations.map((item) => <p class="body-copy">{item}</p>)}
+            </div>
+          )}
+        </div>
+      </section>
+    )}
 
     {product.installCommand && (
       <section class="band" id="install">

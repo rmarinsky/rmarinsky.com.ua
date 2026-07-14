@@ -17,7 +17,7 @@ const products = localizedProducts(locale);
     <div class="footer-grid">
       <div class="footer-col">
         <strong>{t.products}</strong>
-        {products.map((product) => <a href={localizedPath(`/${product.slug}/`, locale)}>{product.name}</a>)}
+        {products.filter((product) => product.kind === "mac").map((product) => <a href={localizedPath(`/${product.slug}/`, locale)}>{product.name}</a>)}
       </div>
       <div class="footer-col">
         <strong>{t.studio}</strong>
@@ -25,17 +25,6 @@ const products = localizedProducts(locale);
         <a href={localizedPath("/about/", locale)}>{t.about}</a>
         <a href="https://github.com/rmarinsky">GitHub</a>
         <a href={site.email}>{t.contact}</a>
-        <a href={localizedPath("/legal/", locale)}>{t.legal}</a>
-      </div>
-      <div class="footer-col">
-        <strong>{t.support}</strong>
-        <a href={localizedPath("/papuga/#install", locale)}>{t.howToInstall}</a>
-        <a href={site.github}>GitHub</a>
-        <a href={site.npm}>npm</a>
-        <a href={site.email}>{t.help}</a>
-      </div>
-      <div class="footer-col">
-        <strong>{t.legal}</strong>
         <a href={localizedPath("/legal/#privacy", locale)}>{t.privacy}</a>
         <a href={localizedPath("/legal/#terms", locale)}>{t.terms}</a>
         <a href={localizedPath("/legal/#imprint", locale)}>{t.imprint}</a>

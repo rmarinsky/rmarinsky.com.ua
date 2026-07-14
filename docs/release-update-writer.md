@@ -90,7 +90,7 @@ Create one object in `src/content/updates.ts`:
 Use these product slugs:
 
 - `diduny`
-- `browsercat`
+- `appcat`
 - `papuga`
 - `sidebarny`
 - `wayforpay-mcp`

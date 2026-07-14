@@ -18,7 +18,7 @@ const products = localizedProducts(locale);
 const macProducts = products.filter((product) => product.kind === "mac");
 const extensionProduct = products.find((product) => product.slug === "sidebarny");
 const mcpProducts = products.filter((product) => product.kind === "mcp");
-const heroProducts = ["papuga", "diduny", "browsercat"]
+const heroProducts = ["papuga", "diduny", "appcat"]
   .map((slug) => products.find((product) => product.slug === slug))
   .filter(Boolean);
 ---
@@ -36,7 +36,6 @@ const heroProducts = ["papuga", "diduny", "browsercat"]
             <a class="button primary" href={localizedPath("/#mac-apps", locale)}>{t.browseProducts}</a>
             <a class="button" href={localizedPath("/about/", locale)}>{t.aboutRoman}</a>
           </div>
-          <p class="hero-meta">{t.heroMeta}</p>
         </div>
         <div class="hero-board" aria-label={t.heroBoardTitle}>
           {heroProducts.map((product, index) => (
@@ -65,8 +64,27 @@ const heroProducts = ["papuga", "diduny", "browsercat"]
           <h2>{t.macTitle}</h2>
           <p class="body-copy">{t.macBody}</p>
         </div>
-        <div class="grid three">
-          {macProducts.map((product) => <ProductCard product={product} locale={locale} />)}
+        <div class="homepage-workflows">
+          {macProducts.map((product) => {
+            const workflow = product.workflows?.[0];
+            return workflow && (
+              <article class={`homepage-workflow tone-${product.accent}`}>
+                <a class="homepage-workflow-media" href={localizedPath(`/${product.slug}/`, locale)}>
+                  <img src={workflow.media.src} alt={workflow.media.alt} loading="lazy" decoding="async" />
+                </a>
+                <div class="homepage-workflow-copy">
+                  <span class="product-icon">{product.letter}</span>
+                  <h3>{workflow.title}</h3>
+                  <p class="body-copy">{workflow.problem}</p>
+                  <p class="workflow-outcome"><strong>{t.workflowOutcome}</strong> {workflow.outcome}</p>
+                  <div class="workflow-footer">
+                    {product.proof?.[0] && <span class="caption">{product.proof[0]}</span>}
+                    <a class="button compact" href={localizedPath(`/${product.slug}/`, locale)}>{product.primaryCta}</a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

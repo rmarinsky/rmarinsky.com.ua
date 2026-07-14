@@ -1,0 +1,19 @@
+---
+const canonical = "https://rmarinsky.com.ua/appcat/";
+const target = "/appcat/";
+---
+
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>AppCat</title>
+  </head>
+  <body>
+    <p>Ця сторінка переїхала до <a href={target}>AppCat</a>.</p>
+  </body>
+</html>

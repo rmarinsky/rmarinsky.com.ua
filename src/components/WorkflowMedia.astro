@@ -1,0 +1,27 @@
+---
+import type { ProductWorkflow } from "../content/products";
+
+interface Props {
+  workflow: ProductWorkflow;
+  eager?: boolean;
+}
+
+const { workflow, eager = false } = Astro.props;
+const { media } = workflow;
+const loading = eager ? "eager" : "lazy";
+---
+
+<figure class="workflow-media">
+  {media.type === "video" ? (
+    <>
+      <video autoplay={eager} muted={eager} loop={eager} playsinline poster={media.poster} preload={eager ? "metadata" : "none"} aria-label={media.alt}>
+        <source src={media.src} type="video/webm" />
+        {media.mp4Src && <source src={media.mp4Src} type="video/mp4" />}
+        <img src={media.poster ?? media.src} alt={media.alt} loading={loading} decoding="async" />
+      </video>
+      <img class="workflow-poster" src={media.poster ?? media.src} alt="" aria-hidden="true" loading={loading} decoding="async" />
+    </>
+  ) : (
+    <img src={media.src} alt={media.alt} loading={loading} decoding="async" />
+  )}
+</figure>

@@ -22,6 +22,7 @@ export function GET() {
       name: "Roman Marinskyi",
       alternateNames: ["Roman Marinsky", "Роман Маринський"],
       location: "Lviv, Ukraine",
+      experience: "12 years in test automation",
       roles: ["QA/Test Automation Expert", "macOS Developer", "Community Builder"],
       links: [site.github, site.linkedin, site.npm, site.x],
     },

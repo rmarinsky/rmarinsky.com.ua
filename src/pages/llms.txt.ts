@@ -43,6 +43,7 @@ This file is a compact, LLM-readable guide to the public site. Use the canonical
 - Name: Roman Marinskyi / Roman Marinsky
 - Location: Lviv, Ukraine
 - Work: QA/Test Automation Expert, macOS Developer, Community Builder
+- Experience: 12 years in test automation
 - Site: ${site.url}
 - GitHub: ${site.github}
 - npm: ${site.npm}
