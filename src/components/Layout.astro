@@ -10,6 +10,8 @@ interface Props {
   image?: string;
   type?: "website" | "article";
   jsonLd?: unknown[];
+  robots?: string;
+  applicationName?: string;
 }
 
 const locale = Astro.props.locale ?? "uk";
@@ -18,8 +20,10 @@ const description = Astro.props.description ?? siteDescriptions[locale];
 const canonical = absoluteLocalizedUrl(Astro.url.pathname, locale);
 const image = Astro.props.image ? new URL(Astro.props.image, site.url).toString() : `${site.url}/images/products/diduny-overview.png`;
 const pageType = Astro.props.type ?? "website";
+const robots = Astro.props.robots ?? "index, follow, max-image-preview:large";
 const pageAlternates = alternateLinks(Astro.url.pathname);
-const jsonLd = [getSiteJsonLd(locale), ...(Astro.props.jsonLd ?? [])];
+const isHome = Astro.url.pathname === "/";
+const jsonLd = [getSiteJsonLd(locale, isHome), ...(Astro.props.jsonLd ?? [])];
 ---
 
 <!doctype html>
@@ -29,11 +33,16 @@ const jsonLd = [getSiteJsonLd(locale), ...(Astro.props.jsonLd ?? [])];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Roman Marinskyi" />
+    <meta name="robots" content={robots} />
+    {Astro.props.applicationName && <meta name="application-name" content={Astro.props.applicationName} />}
     <link rel="canonical" href={canonical} />
     {pageAlternates.map((alternate) => <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />)}
     <link rel="alternate" hreflang="x-default" href={absoluteLocalizedUrl(Astro.url.pathname, "uk")} />
     <link rel="alternate" type="application/rss+xml" title={`${site.name} updates`} href={absoluteLocalizedUrl("/updates/feed.xml", locale)} />
+    <link rel="alternate" type="text/plain" title="LLM site index" href={`${site.url}/llms.txt`} />
+    <link rel="alternate" type="text/plain" title="Expanded LLM context" href={`${site.url}/llms-full.txt`} />
+    <link rel="alternate" type="application/json" title="Structured site index" href={`${site.url}/site-index.json`} />
     <meta property="og:type" content={pageType} />
     <meta property="og:locale" content={localeMeta[locale].ogLocale} />
     {pageAlternates.filter((alternate) => alternate.locale !== locale).map((alternate) => <meta property="og:locale:alternate" content={localeMeta[alternate.locale].ogLocale} />)}

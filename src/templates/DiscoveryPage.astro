@@ -1,0 +1,110 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import DiscoveryContextGrid from "../components/DiscoveryContextGrid.astro";
+import { absoluteLocalizedUrl, localizedPath, ui, type Locale } from "../content/i18n";
+import { localizedProducts, productCapabilities } from "../content/products";
+import { site } from "../content/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale].discovery;
+const products = localizedProducts(locale);
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${absoluteLocalizedUrl("/discover/", locale)}#collection`,
+  name: t.title,
+  description: t.description,
+  url: absoluteLocalizedUrl("/discover/", locale),
+  inLanguage: locale === "uk" ? "uk-UA" : "en",
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: products.map((product) => ({
+    "@type": "SoftwareApplication",
+    "@id": `${site.url}/${product.slug}/#software`,
+    name: product.latinName,
+    description: product.discoveryAnswer,
+    url: absoluteLocalizedUrl(`/${product.slug}/`, locale),
+  })),
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: products.map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `${absoluteLocalizedUrl("/discover/", locale)}#${product.slug}`,
+      name: product.latinName,
+    })),
+  },
+};
+---
+
+<Layout locale={locale} title={t.title} description={t.description} jsonLd={[collectionJsonLd]}>
+  <Header locale={locale} />
+  <main>
+    <section class="hero discovery-hero">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">{t.eyebrow}</span>
+          <h1>{t.heading}</h1>
+          <p class="lead">{t.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band secondary">
+      <div class="container discovery-list">
+        {products.map((product) => (
+          <article id={product.slug} class={`discovery-product tone-${product.accent}`}>
+            <div class="discovery-product-header">
+              <span class="product-icon">{product.letter}</span>
+              <div>
+                <span class="kicker">{product.kind}</span>
+                <h2>{product.name}</h2>
+                <p class="lead compact-lead">{product.discoveryAnswer}</p>
+              </div>
+            </div>
+
+            <DiscoveryContextGrid
+              context={product.discoveryContext}
+              labels={{
+                audience: t.audience,
+                useCases: t.useCases,
+                inputs: t.inputs,
+                outputs: t.outputs,
+                constraints: t.constraints,
+                notFor: t.notFor,
+              }}
+            />
+
+            <div class="discovery-capabilities">
+              <h3>{t.capabilities}</h3>
+              <ul class="proof-list">{productCapabilities(product).map((item) => <li>{item}</li>)}</ul>
+            </div>
+
+            <div>
+              <h3>{t.queries}</h3>
+              <ul class="discovery-query-list">
+                {product.discoveryQueries.map((query) => <li>“{query}”</li>)}
+              </ul>
+            </div>
+
+            <p class="body-copy"><strong>{product.pricingNote}</strong></p>
+            <div class="button-row">
+              <a class="button primary" href={localizedPath(`/${product.slug}/`, locale)}>
+                {t.openProduct}: {product.name}
+              </a>
+              {product.secondaryUrl && <a class="button" href={product.secondaryUrl}>{t.sourceDocs}</a>}
+            </div>
+          </article>
+        ))}
+        <p class="body-copy discovery-source-note">{t.sourceNote}</p>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

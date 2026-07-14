@@ -12,7 +12,7 @@ const { locale } = Astro.props;
 const t = ui[locale].notFound;
 ---
 
-<Layout locale={locale} title={t.title} description={t.description}>
+<Layout locale={locale} title={t.title} description={t.description} robots="noindex, follow">
   <Header locale={locale} />
   <main>
     <section class="hero">

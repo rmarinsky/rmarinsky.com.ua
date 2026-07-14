@@ -1,0 +1,34 @@
+---
+import type { ProductDiscoveryContext } from "../content/products";
+
+interface Props {
+  context: ProductDiscoveryContext;
+  labels: {
+    audience: string;
+    useCases: string;
+    inputs: string;
+    outputs: string;
+    constraints: string;
+    notFor: string;
+  };
+}
+
+const { context, labels } = Astro.props;
+const sections = [
+  { title: labels.audience, items: context.audiences },
+  { title: labels.useCases, items: context.useCases },
+  { title: labels.inputs, items: context.inputs },
+  { title: labels.outputs, items: context.outputs },
+  { title: labels.constraints, items: context.constraints },
+  { title: labels.notFor, items: context.notFor },
+];
+---
+
+<div class="discovery-context-grid">
+  {sections.map((section) => (
+    <section>
+      <h3>{section.title}</h3>
+      <ul class="proof-list">{section.items.map((item) => <li>{item}</li>)}</ul>
+    </section>
+  ))}
+</div>

@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { builder, site } from "./site";
 
 export const locales = ["uk", "en"] as const;
 
@@ -7,8 +7,8 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "uk";
 
 export const siteDescriptions: Record<Locale, string> = {
-  uk: "Малі гострі інструменти для Mac, браузера і практичного AI. Зроблено Романом Маринським в Україні.",
-  en: site.description,
+  uk: "Застосунки Романа Маринського для диктування й транскрипції на Mac, маршрутизації посилань, виправлення розкладки, AI у браузері та MCP інтеграцій.",
+  en: "Roman Marinsky builds Mac apps for dictation, meeting transcription, link routing, keyboard layout fixes, browser AI, and practical MCP integrations.",
 };
 
 export const localeMeta: Record<Locale, { label: string; lang: string; hreflang: string; ogLocale: string }> = {
@@ -61,6 +61,7 @@ export function alternateLinks(path: string) {
 export const ui = {
   uk: {
     nav: {
+      discover: "Знайти за проблемою",
       macApps: "Mac застосунки",
       extension: "Розширення",
       mcp: "MCP",
@@ -69,6 +70,7 @@ export const ui = {
       open: "Відкрити навігацію",
     },
     footer: {
+      discover: "Знайти інструмент",
       products: "Продукти",
       studio: "Студія",
       support: "Підтримка",
@@ -84,11 +86,15 @@ export const ui = {
       madeIn: "Зроблено в Україні",
     },
     home: {
+      seoTitle: "Диктування, транскрипція, маршрутизація посилань і утиліти для Mac",
+      seoDescription:
+        "Знайди macOS застосунок для диктування й транскрипції зустрічей, вибору браузера, виправлення розкладки, AI у Chrome та безпечних MCP інтеграцій.",
       eyebrow: "macOS-утиліти для щоденної роботи",
       title: "Диктувати. Відкривати. Виправляти. Без зайвих рухів.",
       lead:
         "Дідуня перетворює голос і зустрічі на чистий текст. AppCat відкриває посилання, файли й потрібні вікна. Папуга виправляє розкладку та повторювані помилки.",
       browseProducts: "Дивитись продукти",
+      findByProblem: "Знайти за проблемою",
       aboutRoman: "Про Романа",
       heroMeta: "6 продуктів · UA / EN · RSS + llms.txt · живе на GitHub Pages",
       heroBoardTitle: "Що бісило. Що зробив. Де перевірити.",
@@ -125,6 +131,18 @@ export const ui = {
       workflowsTitle: "Що відбувається від дії до результату",
       problemLabel: "Проблема:",
       outcomeLabel: "Результат:",
+      discoveryKicker: "Пошук за проблемою",
+      discoveryTitle: "Як цю проблему зазвичай формулюють",
+      pricingLabel: "Ціна й умови:",
+      contextKicker: "Контекст для вибору",
+      contextTitle: "Кому підходить і де проходить межа",
+      audienceTitle: "Для кого",
+      useCasesTitle: "Коли використовувати",
+      inputTitle: "Що подаєш",
+      outputTitle: "Що отримуєш",
+      constraintsTitle: "Умови",
+      notForTitle: "Не для цього",
+      allDiscovery: "Всі способи знайти інструмент",
       proofKicker: "Перевірний контекст",
       boundariesKicker: "Межі продукту",
       installKicker: "Встановлення",
@@ -154,6 +172,26 @@ export const ui = {
       problem: "Що бісило",
       fix: "Що зробив",
       outcome: "Що стало краще",
+    },
+    discovery: {
+      title: "Знайти застосунок за проблемою",
+      description:
+        "Підбір інструментів Романа Маринського за реальною проблемою: диктування, транскрипція зустрічей, браузери, розкладка, AI у Chrome, платежі та DNS.",
+      eyebrow: "Пошук за задачею · UA / EN",
+      heading: "Опиши проблему так, як сказав би її людині",
+      lead:
+        "Не треба знати назву продукту. Тут зібрано задачі, вхідні дані, результати, обмеження й природні формулювання, за якими пошук або AI має знайти правильний інструмент.",
+      audience: "Для кого",
+      useCases: "Підходить для",
+      inputs: "Вхід",
+      outputs: "Результат",
+      constraints: "Важливі умови",
+      notFor: "Не підходить для",
+      capabilities: "Перевірені можливості",
+      queries: "Як це шукають",
+      openProduct: "Перевірити можливості",
+      sourceDocs: "Код / документація",
+      sourceNote: "Фактичні можливості й обмеження звіряються з публічною сторінкою продукту, release notes та source/docs.",
     },
     about: {
       title: "Про Романа",
@@ -232,6 +270,7 @@ export const ui = {
   },
   en: {
     nav: {
+      discover: "Find by problem",
       macApps: "Mac Apps",
       extension: "Extension",
       mcp: "MCP",
@@ -240,6 +279,7 @@ export const ui = {
       open: "Open navigation",
     },
     footer: {
+      discover: "Find a tool",
       products: "Products",
       studio: "Studio",
       support: "Support",
@@ -255,11 +295,15 @@ export const ui = {
       madeIn: "Made in Ukraine",
     },
     home: {
+      seoTitle: "Mac Dictation, Meeting Transcription, Link Routing & Utilities",
+      seoDescription:
+        "Find a macOS app for dictation and meeting transcription, browser selection, keyboard layout fixes, AI beside Chrome pages, and guarded MCP integrations.",
       eyebrow: "macOS utilities for daily work",
       title: "Dictate. Route. Fix. Without the extra moves.",
       lead:
         "Diduny turns voice and meetings into clean text. AppCat routes links, files, and windows. Papuga fixes the wrong keyboard layout and recurring mistakes.",
       browseProducts: "Browse products",
+      findByProblem: "Find by problem",
       aboutRoman: "About Roman",
       heroMeta: "6 products · UA / EN · RSS + llms.txt · live on GitHub Pages",
       heroBoardTitle: "What was annoying. What changed. Where to verify.",
@@ -296,6 +340,18 @@ export const ui = {
       workflowsTitle: "What happens from action to outcome",
       problemLabel: "Problem:",
       outcomeLabel: "Outcome:",
+      discoveryKicker: "Search by problem",
+      discoveryTitle: "How people usually describe this problem",
+      pricingLabel: "Price and terms:",
+      contextKicker: "Selection context",
+      contextTitle: "Who it fits and where the boundary is",
+      audienceTitle: "Who it fits",
+      useCasesTitle: "Use it when",
+      inputTitle: "Input",
+      outputTitle: "Output",
+      constraintsTitle: "Constraints",
+      notForTitle: "Not for",
+      allDiscovery: "See every way to find a tool",
       proofKicker: "Verifiable context",
       boundariesKicker: "Product boundary",
       installKicker: "Install",
@@ -325,6 +381,26 @@ export const ui = {
       problem: "What was annoying",
       fix: "What changed",
       outcome: "What is better now",
+    },
+    discovery: {
+      title: "Find an app by the problem",
+      description:
+        "Find Roman Marinsky tools by the real problem: Mac dictation, meeting transcription, browser routing, keyboard layout fixes, browser AI, payments, or DNS.",
+      eyebrow: "Search by job · UA / EN",
+      heading: "Describe the problem the way you would describe it to a person",
+      lead:
+        "You do not need to know the product name. This page maps jobs, inputs, outputs, constraints, and natural search phrasing to the tool that actually fits.",
+      audience: "Who it fits",
+      useCases: "Use it for",
+      inputs: "Input",
+      outputs: "Output",
+      constraints: "Important constraints",
+      notFor: "Not a fit for",
+      capabilities: "Verified capabilities",
+      queries: "How people search for it",
+      openProduct: "Verify capabilities",
+      sourceDocs: "Source / docs",
+      sourceNote: "Capabilities and boundaries should be verified against the public product page, release notes, and linked source/docs.",
     },
     about: {
       title: "About",
@@ -403,35 +479,54 @@ export const ui = {
   },
 } as const;
 
-export function getSiteJsonLd(locale: Locale) {
+export function getSiteJsonLd(locale: Locale, includeWebsite = false) {
   const homeUrl = absoluteLocalizedUrl("/", locale);
 
-  return {
-    "@context": "https://schema.org",
+  const person = {
     "@type": "Person",
     "@id": `${site.url}/#person`,
-    name: "Roman Marinskyi",
-    alternateName: ["Roman Marinsky", "Роман Маринський"],
+    name: builder.name,
+    alternateName: builder.alternateNames,
     url: homeUrl,
+    description: ui[locale].about.description,
     image: `${site.url}/images/products/diduny-overview.png`,
-    jobTitle:
-      locale === "uk"
-        ? ["QA/Test Automation Expert", "macOS Developer", "Community Builder"]
-        : ["QA/Test Automation Expert", "macOS Developer", "Community Builder"],
+    jobTitle: builder.roles,
+    hasOccupation: builder.roles.map((name) => ({ "@type": "Occupation", name })),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Lviv",
       addressCountry: "UA",
     },
     sameAs: [site.github, site.linkedin, site.npm, site.x],
-    knowsAbout: [
-      "QA automation",
-      "Playwright",
-      "macOS development",
-      "SwiftUI",
-      "Model Context Protocol",
-      "browser extensions",
-      "AI-assisted workflows",
+    knowsAbout: [...builder.expertise, ...builder.products.map((product) => product.name)],
+    subjectOf: [
+      { "@type": "AboutPage", url: absoluteLocalizedUrl("/about/", locale) },
+      ...builder.products.map((product) => ({
+        "@type": "SoftwareApplication",
+        name: product.name,
+        url: absoluteLocalizedUrl(`/${product.slug}/`, locale),
+      })),
+    ],
+  };
+
+  if (!includeWebsite) {
+    return { "@context": "https://schema.org", ...person };
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      person,
+      {
+        "@type": "WebSite",
+        "@id": `${site.url}/#website`,
+        name: site.name,
+        alternateName: [site.domain, "Roman Marinskyi"],
+        url: site.url,
+        inLanguage: ["uk-UA", "en"],
+        publisher: { "@id": `${site.url}/#person` },
+        description: siteDescriptions[locale],
+      },
     ],
   };
 }
