@@ -562,6 +562,86 @@ export const products: Product[] = [
     ],
     finalCta: "Manage DNS without opening a control panel",
   },
+  {
+    slug: "studio-recorder",
+    letter: "S",
+    name: "Studio Recorder",
+    latinName: "Studio Recorder",
+    title: "Record, compose, and stream from one native Mac studio",
+    kind: "mac",
+    accent: "diduny",
+    summary:
+      "Capture displays, camera, system audio, and microphone as a local editable project, or send the composed scene directly to a private YouTube Live event.",
+    homepageSummary: "Local-first screen recording, scene composition, and managed YouTube Live.",
+    seoTitle: "Studio Recorder: Local Screen Recording and YouTube Live for Mac",
+    seoDescription:
+      "Record editable screen, camera, system audio, and microphone tracks on macOS, compose native scenes, and connect directly to YouTube Live with Studio Recorder.",
+    discoveryQueries: [
+      "native Mac screen recorder with editable camera layout",
+      "record screen camera system audio and microphone separately on Mac",
+      "stream a composed Mac scene directly to YouTube Live",
+      "local-first screen recorder for product demos",
+      "macOS screen recorder with scene presets",
+      "create a private YouTube live event from a Mac app",
+    ],
+    discoveryAnswer:
+      "Choose Studio Recorder when a product demo or tutorial needs local editable capture and a reusable scene, with an optional direct connection to a private YouTube Live broadcast.",
+    discoveryContext: {
+      aliases: ["Studio Recorder", "local-first Mac screen recorder", "macOS YouTube Live recorder"],
+      audiences: ["product builders", "developers and QA engineers", "educators and demo creators", "Mac users who stream to YouTube"],
+      useCases: ["record a product walkthrough", "keep editable screen and camera tracks", "compose reusable scenes", "create or select a private YouTube Live event"],
+      inputs: ["selected Mac displays", "camera", "system audio", "microphone", "optional YouTube account authorization"],
+      outputs: ["local recording project", "composed MOV, PNG, or GIF", "optional direct YouTube Live stream"],
+      constraints: ["Apple Silicon Mac running macOS 26", "YouTube Live requires Google authorization", "first public release is arm64 only"],
+      notFor: ["automatic cloud upload of local recordings", "Windows capture", "unattended public broadcast creation"],
+    },
+    pricingNote: "The source is public and all rights are reserved until a license is explicitly chosen.",
+    primaryCta: "Download for Mac",
+    primaryUrl: "https://github.com/rmarinsky/StudioRecorder/releases/latest",
+    secondaryCta: "View source",
+    secondaryUrl: "https://github.com/rmarinsky/StudioRecorder",
+    image: {
+      src: "/images/products/studio-recorder-overview.png",
+      alt: "Studio Recorder streaming settings with managed YouTube authorization and local stream quality controls",
+      variant: "app",
+    },
+    badges: ["macOS 26", "Apple Silicon", "local-first recording", "YouTube Live"],
+    privacyTitle: "Recordings stay local unless you choose to stream",
+    privacyBody:
+      "Studio Recorder stores recording projects on your Mac. When you connect YouTube, OAuth and YouTube API traffic goes directly between the app and Google; live media is sent to YouTube only after you start streaming.",
+    workflows: [
+      {
+        id: "record",
+        title: "Keep a product walkthrough editable",
+        problem: "A flattened screen recording makes camera, crop, audio, and privacy changes expensive after capture.",
+        outcome: "Studio Recorder keeps selected sources in a local project and renders the composed result when you need it.",
+        media: { src: "/images/products/studio-recorder-overview.png", type: "image", alt: "Studio Recorder native macOS recording and streaming controls" },
+        steps: ["Choose displays, camera, and audio", "Compose and save a scene", "Record locally and edit or export the result"],
+      },
+      {
+        id: "youtube",
+        title: "Connect a scene to YouTube Live",
+        problem: "Creating an encoder stream and keeping its broadcast state aligned should not require copying a stream key through several tools.",
+        outcome: "Authorize in Google, choose a scheduled broadcast or create a private one, then let Studio Recorder bind and manage the app-created event.",
+        media: { src: "/images/products/studio-recorder-overview.png", type: "image", alt: "Studio Recorder managed YouTube account settings" },
+        steps: ["Review the access disclosure", "Continue through Google authorization", "Select or create a private event and start streaming"],
+      },
+    ],
+    proof: ["Native macOS capture and editing pipeline", "OAuth tokens stored in macOS Keychain", "Direct app-to-Google API communication"],
+    limitations: ["Google OAuth verification and the first signed public release are still pending. No public live event is created during automated validation."],
+    features: [
+      { title: "Local editable capture", body: "Keep the selected display, camera, system audio, and microphone available for later composition." },
+      { title: "Reusable scenes", body: "Save native screen and camera layouts and switch compatible scenes while recording or streaming." },
+      { title: "Managed YouTube Live", body: "Read scheduled events or create a private broadcast and encoder stream after explicit Google authorization." },
+      { title: "No Studio Recorder cloud", body: "Recording projects stay on the Mac and YouTube communication goes directly to Google." },
+    ],
+    faq: [
+      { question: "Are recordings uploaded automatically?", answer: "No. Recording projects remain local unless you explicitly start a YouTube stream." },
+      { question: "What Google access does the app request?", answer: "The shared YouTube scope required to read scheduled broadcasts and manage broadcasts and encoder streams. Studio Recorder explains those actions before opening Google." },
+      { question: "Where are tokens and stream keys stored?", answer: "OAuth tokens are stored in macOS Keychain. Managed stream keys stay in memory only." },
+    ],
+    finalCta: "Keep the recording local, or take the exact scene live",
+  },
 ];
 
 type ProductLocalizedFields = Partial<
@@ -592,6 +672,76 @@ type ProductLocalizedFields = Partial<
 >;
 
 const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>>> = {
+  "studio-recorder": {
+    uk: {
+      title: "Записуй, компонюй і стрім з однієї нативної студії на Mac",
+      summary:
+        "Записуй екрани, камеру, системний звук і мікрофон у локальний редагований проєкт або передавай готову сцену прямо в приватну YouTube Live подію.",
+      homepageSummary: "Локальний запис екрана, композиція сцен і керований YouTube Live.",
+      seoTitle: "Studio Recorder: локальний запис екрана і YouTube Live на Mac",
+      seoDescription:
+        "Записуй окремі доріжки екрана, камери, системного звуку й мікрофона на macOS, компонюй сцени та підключай YouTube Live у Studio Recorder.",
+      discoveryQueries: [
+        "нативний запис екрана Mac із редагованою камерою",
+        "записати екран камеру системний звук і мікрофон окремо на Mac",
+        "стрімити готову сцену з Mac прямо в YouTube Live",
+        "локальний screen recorder для product demo",
+        "macOS запис екрана з presets сцен",
+        "створити приватну YouTube live подію з Mac застосунку",
+      ],
+      discoveryAnswer:
+        "Обирай Studio Recorder, коли демо чи навчальне відео потребує локального редагованого запису й повторно використовуваної сцени, а за потреби — прямого стріму в приватну YouTube Live подію.",
+      discoveryContext: {
+        aliases: ["Studio Recorder", "локальний screen recorder для Mac", "macOS recorder для YouTube Live"],
+        audiences: ["product builders", "розробники й QA інженери", "викладачі й автори демо", "користувачі Mac, які стрімлять у YouTube"],
+        useCases: ["записати product walkthrough", "зберегти редаговані доріжки екрана й камери", "компонувати повторно використовувані сцени", "створити або вибрати приватну YouTube Live подію"],
+        inputs: ["вибрані екрани Mac", "камера", "системний звук", "мікрофон", "необов’язкова авторизація YouTube акаунта"],
+        outputs: ["локальний проєкт запису", "скомпонований MOV, PNG або GIF", "необов’язковий прямий YouTube Live stream"],
+        constraints: ["Apple Silicon Mac з macOS 26", "YouTube Live потребує авторизації Google", "перший публічний реліз лише arm64"],
+        notFor: ["автоматичне хмарне завантаження локальних записів", "запис на Windows", "автономне створення публічних broadcasts"],
+      },
+      pricingNote: "Код публічний, але всі права збережено, доки ліцензію не буде обрано окремо.",
+      primaryCta: "Завантажити для Mac",
+      secondaryCta: "Дивитись код",
+      badges: ["macOS 26", "Apple Silicon", "локальний запис", "YouTube Live"],
+      imageAlt: "Налаштування стрімінгу Studio Recorder з авторизацією YouTube і параметрами якості",
+      privacyTitle: "Записи лишаються локальними, доки ти не почнеш стрім",
+      privacyBody:
+        "Studio Recorder зберігає проєкти записів на твоєму Mac. Після підключення YouTube OAuth і API-трафік іде прямо між застосунком та Google, а live media надсилається в YouTube лише після запуску стріму.",
+      workflows: [
+        {
+          id: "record",
+          title: "Залиш product walkthrough редагованим",
+          problem: "Сплющений запис робить зміни камери, crop, аудіо й privacy дорогими після capture.",
+          outcome: "Studio Recorder тримає вибрані sources у локальному проєкті й рендерить готову композицію, коли вона потрібна.",
+          media: { src: "/images/products/studio-recorder-overview.png", type: "image", alt: "Нативні macOS controls запису і стрімінгу Studio Recorder" },
+          steps: ["Обери екрани, камеру й аудіо", "Скомпонуй і збережи сцену", "Запиши локально, відредагуй або експортуй результат"],
+        },
+        {
+          id: "youtube",
+          title: "Підключи сцену до YouTube Live",
+          problem: "Створення encoder stream і узгодження його broadcast state не має вимагати копіювання stream key через кілька інструментів.",
+          outcome: "Авторизуй Google, обери запланований broadcast або створи приватний, а Studio Recorder зв’яже й керуватиме app-created подією.",
+          media: { src: "/images/products/studio-recorder-overview.png", type: "image", alt: "Налаштування керованого YouTube акаунта у Studio Recorder" },
+          steps: ["Переглянь пояснення доступу", "Продовж авторизацію в Google", "Обери або створи приватну подію і запусти stream"],
+        },
+      ],
+      proof: ["Нативний macOS capture і editing pipeline", "OAuth tokens у macOS Keychain", "Прямий API-зв’язок застосунку з Google"],
+      limitations: ["Перевірка Google OAuth і перший підписаний публічний реліз ще очікуються. Автоматична перевірка не створює публічних live подій."],
+      features: [
+        { title: "Локальний редагований запис", body: "Зберігай вибраний екран, камеру, системний звук і мікрофон для подальшої композиції." },
+        { title: "Повторно використовувані сцени", body: "Зберігай розкладки екрана й камери та перемикай сумісні сцени під час запису або стріму." },
+        { title: "Керований YouTube Live", body: "Читай заплановані події або створюй приватний broadcast і encoder stream після явної авторизації Google." },
+        { title: "Без хмари Studio Recorder", body: "Проєкти лишаються на Mac, а зв’язок із YouTube іде прямо до Google." },
+      ],
+      faq: [
+        { question: "Записи завантажуються автоматично?", answer: "Ні. Проєкти лишаються локальними, доки ти явно не запустиш YouTube стрім." },
+        { question: "Який доступ Google запитує застосунок?", answer: "Спільний YouTube scope, потрібний для читання запланованих broadcasts і керування broadcasts та encoder streams. Studio Recorder пояснює ці дії перед відкриттям Google." },
+        { question: "Де зберігаються токени й stream keys?", answer: "OAuth tokens зберігаються в macOS Keychain. Керовані stream keys лишаються тільки в пам’яті." },
+      ],
+      finalCta: "Залиш запис локальним або відправ точну сцену в live",
+    },
+  },
   diduny: {
     en: {
       name: "Diduny",
@@ -1016,7 +1166,7 @@ export function productCapabilities(product: Product) {
 }
 
 export const featuredProducts = products.filter((product) =>
-  ["diduny", "appcat", "papuga", "sidebarny", "wayforpay-mcp", "ukraine-com-ua-mcp"].includes(product.slug),
+  ["studio-recorder", "diduny", "appcat", "papuga", "sidebarny", "wayforpay-mcp", "ukraine-com-ua-mcp"].includes(product.slug),
 );
 
 export function getProduct(slug: string) {
