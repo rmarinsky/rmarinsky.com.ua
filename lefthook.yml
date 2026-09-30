@@ -1,0 +1,12 @@
+pre-commit:
+  commands:
+    paths:
+      run: node scripts/check-secret-paths.mjs
+    secrets:
+      run: gitleaks git --pre-commit --staged --redact --no-banner
+pre-push:
+  commands:
+    paths:
+      run: node scripts/check-secret-paths.mjs --range
+    secrets:
+      run: gitleaks git --log-opts="origin/main..HEAD" --redact --no-banner

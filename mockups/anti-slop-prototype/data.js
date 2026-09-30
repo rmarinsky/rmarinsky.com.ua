@@ -1,6 +1,6 @@
 export const variants={
  A:{uk:['Авторська майстерня','Особистий вступ, великі демонстрації, спокійний ритм.','Рекомендований напрям'],en:['The workshop','A personal introduction, large demos, a quiet reading rhythm.','Recommended direction']},
- B:{uk:['Каталог інструментів','Щільніший список задач, вибір продукту й швидке порівняння.','Коли важливіший швидкий вибір'],en:['The tool index','A compact task list, product selection and quick comparisons.','For faster decisions']},
+ B:{uk:['Каталог інструментів','Компактний вступ, демонстрація та короткий каталог.','Коли важливіший швидкий вибір'],en:['The tool index','A compact introduction, demonstration and short catalogue.','For faster decisions']},
  C:{uk:['Спочатку демонстрація','Мінімум вступу. Спершу дія на екрані, потім деталі.','Коли відео має вести сторінку'],en:['Show it first','Less introduction. An action on screen, then the details.','When the demo leads the page']}
 };
 export const products=[
@@ -64,7 +64,7 @@ export const products=[
 ];
 export const pageNames={uk:{home:'Головна',discover:'Знайти інструмент',updates:'Оновлення',update:'Окреме оновлення',about:'Про Романа',legal:'Дані та умови','404':'Сторінка 404'},en:{home:'Home',discover:'Find a tool',updates:'Updates',update:'Update detail',about:'About Roman',legal:'Data & terms','404':'404 page'}};
 export const improvements={
- home:['Великий слоган і колаж схожих dashboard screenshots.','Короткий авторський вступ, три реальні задачі та демо одного результату. Інтеграції винесені нижче.'],
+ home:['Великий слоган і колаж схожих dashboard screenshots.','Короткий авторський вступ, одне головне демо й каталог без версій. Без повторного блоку автора. Інтеграції винесені нижче.'],
  papuga:['Оглядова статистика замість виправлення тексту.','Показати хибну розкладку → дію → правильний текст. Clipboard винести окремим сценарієм.'],
  appcat:['Один screenshot для профілів, файлів і вікон.','Демо вибору робочого профілю. Нижче - окремі входи до правил, файлів і перемикання вікон.'],
  diduny:['Диктування, meetings і переклад сховані за одним overview.','Демо повідомлення, потім чіткі групи: зустрічі, готові записи, бібліотека. Пояснити локальний/хмарний шлях.'],
