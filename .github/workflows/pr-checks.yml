@@ -1,0 +1,28 @@
+name: PR checks
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: jdx/mise-action@v2
+      - name: Check outbound paths and history for secrets
+        run: |
+          node scripts/check-secret-paths.mjs --range
+          gitleaks git --log-opts="origin/main..HEAD" --redact --no-banner
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Check prototype in browser
+        run: |
+          PROTOTYPE_PORT=8769 node mockups/anti-slop-prototype/server.mjs &
+          node mockups/anti-slop-prototype/check.mjs
