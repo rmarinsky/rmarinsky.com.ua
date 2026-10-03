@@ -124,6 +124,12 @@ const faqJsonLd = {
           <span class="kicker">{t.stanceKicker}</span>
           <h2>{product.privacyTitle}</h2>
           <p class="body-copy">{product.privacyBody}</p>
+          {product.slug === "studio-recorder" && (
+            <div class="button-row">
+              <a class="button compact" href={localizedPath("/studio-recorder/legal/#privacy", locale)}>{locale === "uk" ? "Приватність" : "Privacy"}</a>
+              <a class="button compact" href={localizedPath("/studio-recorder/legal/#terms", locale)}>{locale === "uk" ? "Умови" : "Terms"}</a>
+            </div>
+          )}
         </div>
       </div>
     </section>
