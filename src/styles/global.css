@@ -1270,6 +1270,7 @@ h3 {
 }
 
 .legal-section {
+  scroll-margin-top: 112px;
   display: grid;
   gap: 12px;
 }

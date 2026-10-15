@@ -104,7 +104,7 @@ export const products: Product[] = [
       notFor: ["spoken playback of translated output", "a full multitrack transcription studio", "Windows or mobile dictation"],
     },
     pricingNote:
-      "The project is open source. Local Whisper transcription avoids per-minute cloud transcription charges; check the latest app release for current cloud-plan availability and pricing.",
+      "Local models are free without an hourly limit. Cloud includes two free hours per calendar month. Pro: ₴150 monthly or ₴1500 paid once for twelve months (two months free), with automatic renewal.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/Diduny/releases/latest",
     secondaryCta: "View source",
@@ -154,7 +154,7 @@ export const products: Product[] = [
     ],
     faq: [
       { question: "Does it replace a full transcription studio?", answer: "No. It is a fast dictation utility for getting text into the Mac apps you already use." },
-      { question: "Is it free?", answer: "The project is open source. Distribution details can change by release, so use the latest release notes as source of truth." },
+      { question: "Is it free?", answer: "Local models are free without an hourly limit. Cloud includes two free hours per calendar month; Pro has monthly and annual subscriptions." },
       { question: "Where do I report issues?", answer: "Use the GitHub repository issues or contact Roman directly from the About page." },
     ],
     finalCta: "Stop retyping short thoughts",
@@ -629,7 +629,7 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         notFor: ["озвучення перекладеного тексту", "повноцінна multitrack transcription studio", "диктування на Windows чи мобільних платформах"],
       },
       pricingNote:
-        "Проєкт має відкритий код. Локальна Whisper-транскрипція не має похвилинної оплати хмарі; актуальну доступність і ціну хмарного плану перевіряй в останньому релізі застосунку.",
+        "Локальні моделі безкоштовні без погодинного ліміту. Хмара: 2 години безкоштовно за календарний місяць. Pro: ₴150 щомісяця або ₴1500 одним платежем за 12 місяців (два місяці безкоштовно), з автоматичним поновленням.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
       badges: ["macOS застосунок", "нотаризований", "автооновлення", "відкритий код"],
@@ -652,7 +652,7 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
       ],
       faq: [
         { question: "Це заміна повноцінній студії транскрипції?", answer: "Ні. Це швидка утиліта для диктування, щоб занести текст у Mac-застосунки, якими ти вже користуєшся." },
-        { question: "Він безкоштовний?", answer: "Проєкт має відкритий код. Умови поширення можуть змінюватися між релізами, тому останні release notes є джерелом правди." },
+        { question: "Він безкоштовний?", answer: "Локальні моделі безкоштовні без погодинного ліміту. Хмара включає дві безкоштовні години за календарний місяць; для Pro є місячна й річна підписки." },
         { question: "Де повідомляти про проблеми?", answer: "У GitHub issues або напряму Роману через сторінку про автора." },
       ],
       finalCta: "Досить передруковувати короткі думки",
