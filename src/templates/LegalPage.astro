@@ -47,6 +47,7 @@ const t = ui[locale].legal;
             </ul>
             <h3 id="diduny-privacy">{t.privacyProductTitle}</h3>
             <p class="body-copy">{t.privacyProductBody}</p>
+            {t.privacyProductDetails.map((paragraph) => <p class="body-copy">{paragraph}</p>)}
           </section>
 
           <section class="legal-section" id="terms">

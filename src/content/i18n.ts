@@ -229,7 +229,7 @@ export const ui = {
     legal: {
       title: "Правова інформація",
       description: "Privacy, terms і контактні деталі продуктів Романа Маринського.",
-      updated: "Оновлено: 15 жовтня 2026",
+      updated: "Оновлено: 16 жовтня 2026",
       heading: "Правова інформація",
       lead:
         "Коротко: сайт статичний, поведінка продуктів описується в репозиторіях або нотатках релізів, а ключі мають залишатися у твоїх локальних інструментах.",
@@ -252,6 +252,12 @@ export const ui = {
         "Дані Diduny, хмарна обробка й оплата",
       privacyProductBody:
         "Для входу та підтримки підписки Diduny використовує email акаунта, ідентифікатор користувача, облік хмарного використання та записи платежів. Під час оплати до WayForPay передаються email платника, ідентифікатор акаунта, номер замовлення, сума й валюта. Дані картки вводяться на платіжній сторінці WayForPay. Локальні моделі обробляють аудіо на Mac; при виборі хмарного режиму аудіо та результати передаються через бекенд сервісам хмарної обробки. Для запитів щодо персональних даних звертайтеся на roman@rmarinsky.com.ua.",
+      privacyProductDetails: [
+        "Вхід за email потрібен для локальних і хмарних режимів. Локальні моделі залишаються безкоштовними без погодинного ліміту. Облік хмарного часу, платежів і необхідні записи безпеки потрібні для роботи сервісу та застосування тарифних лімітів.",
+        "Додаткову статистику вимкнено за замовчуванням для Free і Pro. Її можна окремо дозволити та вимкнути в Обліковий запис → Приватність → Надсилати статистику використання. Відмова не обмежує можливості тарифу. Оплата або поновлення підписки не вмикає статистику.",
+        "Додаткова статистика містить тривалість завершеної обробки, local/cloud та категорію функції: диктування, зустріч, файл або переклад. Вона прив’язана до ідентифікатора акаунта й не є анонімною. Статистичні події не містять аудіо, текстів або назв файлів. Категорія визначається вибраною функцією, а не змістом розмови. Дані використовуються для оцінки використання функцій, витрат на інфраструктуру та покращення продукту.",
+        "Події передаються на бекенд Diduny лише онлайн, без черги офлайн-історії. Зберігаються до 30 днів; видаляються під час найближчого очищення при запуску сервера або щогодини, коли він працює. Відкликання згоди одразу зупиняє нові надсилання з цього пристрою; для збереження зміни в акаунті потрібен інтернет. Якщо синхронізація не вдалася, застосунок повідомляє про це. Для видалення вже переданих даних зверніться на roman@rmarinsky.com.ua."
+],
       termsTitle: "Використання софту",
       termsBody:
         "Продукти надаються відповідно до ліцензії й документації в кожному репозиторії або distribution channel. Open-source repositories регулюються своїми repository licenses.",
@@ -263,11 +269,12 @@ export const ui = {
       didunyOfferTitle:
         "Умови підписки Diduny Pro",
       didunyOfferBody:
-        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Річна підписка оплачується одним платежем за 12 місяців; вона не є щомісячною розстрочкою.",
+        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Натискаючи кнопку переходу до оплати, ви приймаєте умови обраного плану й підтверджуєте ознайомлення з політикою конфіденційності; це не є згодою на додаткову статистику. Оберіть місячну або річну підписку з автопоновленням чи разовий річний доступ без автопоновлення.",
       didunyPlans: [
         "Безкоштовно: 2 години хмарної транскрипції за календарний місяць. Локальні моделі безкоштовні без погодинного ліміту.",
         "Місячний Pro: ₴150 за один місяць, автоматичне поновлення щомісяця.",
         "Річний Pro: ₴1500 за 12 місяців одним платежем, автоматичне поновлення щороку. Ціна десяти місяців; економія ₴300 проти дванадцяти місячних оплат.",
+        "Разовий річний доступ: ₴1500 за 12 місяців, не поновлюється автоматично. Доступні способи оплати показано у WayForPay; оплата частинами без відсотків для покупця - до 3 платежів за умови схвалення банком. Банківські платежі за покупку не є поновленням Diduny Pro.",
       ],
       paymentDeliveryTitle: "Оплата й надання послуги",
       paymentDeliveryBody:
@@ -464,7 +471,7 @@ export const ui = {
     legal: {
       title: "Legal",
       description: "Privacy, terms, and contact details for Roman Marinsky products.",
-      updated: "Last updated: 15 October 2026",
+      updated: "Last updated: 16 October 2026",
       heading: "Legal",
       lead:
         "Short version: this site is static, product behavior is documented per repository or release, and credentials should stay in your local tools.",
@@ -487,6 +494,12 @@ export const ui = {
         "Diduny data, cloud processing and payments",
       privacyProductBody:
         "Diduny uses the account email, user identifier, cloud usage records and payment records for sign-in and subscription support. Checkout sends the payer email, account identifier, order reference, amount and currency to WayForPay. Card details are entered on the WayForPay payment page. Local models process audio on the Mac; when you select cloud mode, audio and results pass through the backend to cloud processing services. For personal data requests, contact roman@rmarinsky.com.ua.",
+      privacyProductDetails: [
+        "Email sign-in is required for local and cloud modes. Local models remain free without an hourly limit. Cloud usage metering, payment records and necessary security records support service operation and plan limits.",
+        "Additional statistics are off by default on Free and Pro. You can separately enable or disable them in Account → Privacy → Share usage statistics. Declining does not restrict plan features. Payment or subscription renewal does not enable statistics.",
+        "Additional statistics contain the duration of completed processing, local/cloud mode, and feature category: dictation, meeting, file or translation. They are linked to your account identifier and are not anonymous. Statistical events contain no audio, text or file names. Categories identify the selected feature, not the content of your conversation. We use these records to understand feature usage, plan infrastructure costs and improve the product.",
+        "Events are sent to the Diduny backend only while online, without an offline history queue. They are retained for up to 30 days and deleted in the next cleanup at server startup or hourly while the server is running. Withdrawal immediately stops new sends from this device; updating the account preference requires internet access. The app tells you if synchronization fails. Contact roman@rmarinsky.com.ua to request deletion of data already sent."
+],
       termsTitle: "Software usage",
       termsBody:
         "Products are provided according to the license and documentation in each repository or distribution channel. Open-source repositories remain governed by their repository license.",
@@ -498,11 +511,12 @@ export const ui = {
       didunyOfferTitle:
         "Diduny Pro subscription terms",
       didunyOfferBody:
-        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. The annual subscription is one payment for twelve months, not monthly instalments.",
+        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. Continuing to payment accepts the selected plan terms and acknowledges the Privacy Policy; it does not consent to additional statistics. Choose a monthly or annual auto-renewing subscription, or one-time annual access without automatic renewal.",
       didunyPlans: [
         "Free: 2 free cloud hours per calendar month. Local models are free without an hourly limit.",
         "Monthly Pro: ₴150 for one month, renewing automatically every month.",
         "Annual Pro: ₴1500 paid once for twelve months, renewing automatically every year. Pay for ten months and save ₴300 compared with twelve monthly payments.",
+        "One-time annual access: ₴1500 for twelve months; it does not renew automatically. Available methods appear in WayForPay. Interest-free bank installments offer up to 3 payments, subject to bank approval. Bank payments for this purchase do not renew Diduny Pro.",
       ],
       paymentDeliveryTitle: "Payment and service delivery",
       paymentDeliveryBody:
