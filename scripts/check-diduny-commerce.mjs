@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 for (const prefix of ['', 'en/']) {
   const legal = await readFile(new URL(`../dist/${prefix}legal/index.html`, import.meta.url), 'utf8');
   const product = await readFile(new URL(`../dist/${prefix}diduny/index.html`, import.meta.url), 'utf8');
+  assert.match(legal, prefix ? /One-time annual access: ₴1500/ : /Разовий річний доступ: ₴1500/, `${prefix}one-time access must be explicit`);
+  assert.match(legal, prefix ? /does not renew automatically/ : /не поновлюється автоматично/, `${prefix}one-time access must not renew`);
+  assert.match(legal, prefix ? /up to 3 payments/ : /до 3 платежів/, `${prefix}installment limit must be explicit`);
   assert.match(legal, /₴1500/, `${prefix}annual price must be explicit`);
   assert.match(legal, prefix ? /Monthly Pro: ₴150 for one month/ : /Місячний Pro: ₴150 за один місяць/, `${prefix}monthly price must be explicit`);
   assert.match(legal, /id="refunds"/, `${prefix}refund procedure must have an anchor`);

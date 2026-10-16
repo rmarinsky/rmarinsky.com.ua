@@ -229,7 +229,7 @@ export const ui = {
     legal: {
       title: "Правова інформація",
       description: "Privacy, terms і контактні деталі продуктів Романа Маринського.",
-      updated: "Оновлено: 15 жовтня 2026",
+      updated: "Оновлено: 16 жовтня 2026",
       heading: "Правова інформація",
       lead:
         "Коротко: сайт статичний, поведінка продуктів описується в репозиторіях або нотатках релізів, а ключі мають залишатися у твоїх локальних інструментах.",
@@ -263,11 +263,12 @@ export const ui = {
       didunyOfferTitle:
         "Умови підписки Diduny Pro",
       didunyOfferBody:
-        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Річна підписка оплачується одним платежем за 12 місяців; вона не є щомісячною розстрочкою.",
+        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Оберіть місячну або річну підписку з автопоновленням чи разовий річний доступ без автопоновлення.",
       didunyPlans: [
         "Безкоштовно: 2 години хмарної транскрипції за календарний місяць. Локальні моделі безкоштовні без погодинного ліміту.",
         "Місячний Pro: ₴150 за один місяць, автоматичне поновлення щомісяця.",
         "Річний Pro: ₴1500 за 12 місяців одним платежем, автоматичне поновлення щороку. Ціна десяти місяців; економія ₴300 проти дванадцяти місячних оплат.",
+        "Разовий річний доступ: ₴1500 за 12 місяців, не поновлюється автоматично. Доступні способи оплати показано у WayForPay; оплата частинами без відсотків для покупця - до 3 платежів за умови схвалення банком. Банківські платежі за покупку не є поновленням Diduny Pro.",
       ],
       paymentDeliveryTitle: "Оплата й надання послуги",
       paymentDeliveryBody:
@@ -464,7 +465,7 @@ export const ui = {
     legal: {
       title: "Legal",
       description: "Privacy, terms, and contact details for Roman Marinsky products.",
-      updated: "Last updated: 15 October 2026",
+      updated: "Last updated: 16 October 2026",
       heading: "Legal",
       lead:
         "Short version: this site is static, product behavior is documented per repository or release, and credentials should stay in your local tools.",
@@ -498,11 +499,12 @@ export const ui = {
       didunyOfferTitle:
         "Diduny Pro subscription terms",
       didunyOfferBody:
-        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. The annual subscription is one payment for twelve months, not monthly instalments.",
+        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. Choose a monthly or annual auto-renewing subscription, or one-time annual access without automatic renewal.",
       didunyPlans: [
         "Free: 2 free cloud hours per calendar month. Local models are free without an hourly limit.",
         "Monthly Pro: ₴150 for one month, renewing automatically every month.",
         "Annual Pro: ₴1500 paid once for twelve months, renewing automatically every year. Pay for ten months and save ₴300 compared with twelve monthly payments.",
+        "One-time annual access: ₴1500 for twelve months; it does not renew automatically. Available methods appear in WayForPay. Interest-free bank installments offer up to 3 payments, subject to bank approval. Bank payments for this purchase do not renew Diduny Pro.",
       ],
       paymentDeliveryTitle: "Payment and service delivery",
       paymentDeliveryBody:
