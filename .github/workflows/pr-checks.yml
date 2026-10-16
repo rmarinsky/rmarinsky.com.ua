@@ -21,6 +21,8 @@ jobs:
           gitleaks git --log-opts="origin/main..HEAD" --redact --no-banner
       - run: npm ci
       - run: npm run build
+      - name: Check built Diduny subscription and refund pages
+        run: node scripts/check-diduny-commerce.mjs
       - run: npx playwright install --with-deps chromium
       - name: Check prototype in browser
         run: |

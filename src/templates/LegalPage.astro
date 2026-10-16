@@ -31,6 +31,8 @@ const t = ui[locale].legal;
         <nav class="legal-nav" aria-label={t.navLabel}>
           <a href={localizedPath("/legal/#privacy", locale)}>{t.privacy}</a>
           <a href={localizedPath("/legal/#terms", locale)}>{t.terms}</a>
+          <a href={localizedPath("/legal/#diduny-offer", locale)}>{t.didunyOffer}</a>
+          <a href={localizedPath("/legal/#refunds", locale)}>{t.refunds}</a>
           <a href={localizedPath("/legal/#imprint", locale)}>{t.imprint}</a>
           <a href={localizedPath("/legal/#contact", locale)}>{t.contact}</a>
         </nav>
@@ -43,6 +45,8 @@ const t = ui[locale].legal;
             <ul>
               {t.privacyBullets.map((item) => <li>{item}</li>)}
             </ul>
+            <h3 id="diduny-privacy">{t.privacyProductTitle}</h3>
+            <p class="body-copy">{t.privacyProductBody}</p>
           </section>
 
           <section class="legal-section" id="terms">
@@ -51,6 +55,26 @@ const t = ui[locale].legal;
             <p class="body-copy">{t.termsBody}</p>
             <ul>
               {t.termsBullets.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+
+          <section class="legal-section" id="diduny-offer">
+            <span class="kicker">{t.didunyOffer}</span>
+            <h2>{t.didunyOfferTitle}</h2>
+            <p class="body-copy">{t.didunyOfferBody}</p>
+            <ul>
+              {t.didunyPlans.map((item) => <li>{item}</li>)}
+            </ul>
+            <h3>{t.paymentDeliveryTitle}</h3>
+            <p class="body-copy">{t.paymentDeliveryBody}</p>
+          </section>
+
+          <section class="legal-section" id="refunds">
+            <span class="kicker">{t.refunds}</span>
+            <h2>{t.refundsTitle}</h2>
+            <p class="body-copy">{t.refundsBody}</p>
+            <ul>
+              {t.refundsSteps.map((item) => <li>{item}</li>)}
             </ul>
           </section>
 

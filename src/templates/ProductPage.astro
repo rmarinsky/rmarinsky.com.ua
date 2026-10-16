@@ -183,6 +183,13 @@ const faqJsonLd = {
           {product.discoveryQueries.slice(0, 6).map((query) => <li>“{query}”</li>)}
         </ul>
         <p class="body-copy"><strong>{t.pricingLabel}</strong> {product.pricingNote}</p>
+        {product.slug === "diduny" && (
+          <p class="body-copy">
+            <a href={localizedPath("/legal/#diduny-offer", locale)}>{ui[locale].legal.didunyOffer}</a>
+            {" · "}
+            <a href={localizedPath("/legal/#refunds", locale)}>{ui[locale].legal.refunds}</a>
+          </p>
+        )}
         <a class="button compact" href={localizedPath(`/discover/#${product.slug}`, locale)}>{t.allDiscovery}</a>
       </div>
     </section>

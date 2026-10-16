@@ -229,13 +229,15 @@ export const ui = {
     legal: {
       title: "Правова інформація",
       description: "Privacy, terms і контактні деталі продуктів Романа Маринського.",
-      updated: "Оновлено: 17 червня 2026",
+      updated: "Оновлено: 15 жовтня 2026",
       heading: "Правова інформація",
       lead:
         "Коротко: сайт статичний, поведінка продуктів описується в репозиторіях або нотатках релізів, а ключі мають залишатися у твоїх локальних інструментах.",
       navLabel: "Правові розділи",
       privacy: "Privacy",
       terms: "Terms",
+      didunyOffer: "Умови Diduny Pro",
+      refunds: "Повернення й скасування",
       imprint: "Imprint",
       contact: "Contact",
       privacyTitle: "Privacy статичного сайту",
@@ -246,6 +248,10 @@ export const ui = {
         "Mac-застосунки, browser extensions і MCP-сервери можуть обробляти дані по-різному; перевіряй відповідний репозиторій і нотатки релізів.",
         "Не публікуй API keys, payment credentials, hosting tokens або customer data в issues, chats чи screenshots.",
       ],
+      privacyProductTitle:
+        "Дані Diduny, хмарна обробка й оплата",
+      privacyProductBody:
+        "Для входу та підтримки підписки Diduny використовує email акаунта, ідентифікатор користувача, облік хмарного використання та записи платежів. Під час оплати до WayForPay передаються email платника, ідентифікатор акаунта, номер замовлення, сума й валюта. Дані картки вводяться на платіжній сторінці WayForPay. Локальні моделі обробляють аудіо на Mac; при виборі хмарного режиму аудіо та результати передаються через бекенд сервісам хмарної обробки. Для запитів щодо персональних даних звертайтеся на roman@rmarinsky.com.ua.",
       termsTitle: "Використання софту",
       termsBody:
         "Продукти надаються відповідно до ліцензії й документації в кожному репозиторії або distribution channel. Open-source repositories регулюються своїми repository licenses.",
@@ -253,6 +259,26 @@ export const ui = {
         "Операційні інструменти використовуй з review і backups, особливо для DNS, payments і account changes.",
         "Жоден продукт на цьому сайті не є обіцянкою повністю автономної AI-поведінки.",
         "Availability, pricing і supported platforms можуть змінюватися від релізу до релізу.",
+      ],
+      didunyOfferTitle:
+        "Умови підписки Diduny Pro",
+      didunyOfferBody:
+        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Річна підписка оплачується одним платежем за 12 місяців; вона не є щомісячною розстрочкою.",
+      didunyPlans: [
+        "Безкоштовно: 2 години хмарної транскрипції за календарний місяць. Локальні моделі безкоштовні без погодинного ліміту.",
+        "Місячний Pro: ₴150 за один місяць, автоматичне поновлення щомісяця.",
+        "Річний Pro: ₴1500 за 12 місяців одним платежем, автоматичне поновлення щороку. Ціна десяти місяців; економія ₴300 проти дванадцяти місячних оплат.",
+      ],
+      paymentDeliveryTitle: "Оплата й надання послуги",
+      paymentDeliveryBody:
+        "Оплата онлайн банківською карткою через WayForPay у гривнях; інші доступні способи показані на платіжній сторінці. Це цифрова послуга без фізичної доставки. Після підтвердження успішного платежу оплачений доступ прив’язується до акаунта Diduny на один або дванадцять місяців. Якщо доступ не з’явився, оновіть статус підписки в Account або зверніться на roman@rmarinsky.com.ua.",
+      refundsTitle: "Порядок повернення коштів і скасування платежу",
+      refundsBody:
+        "Повернення надається за ненаданого оплаченого доступу та у випадках, передбачених застосовним законодавством. Ці умови не обмежують обов’язкові права споживача. Скасування автопоновлення саме по собі не є запитом на повернення вже здійсненого платежу.",
+      refundsSteps: [
+        "Щоб зупинити майбутні списання, в Account оберіть Cancel automatic renewal. Оплачений доступ зберігається до кінця періоду.",
+        "Для повернення напишіть на roman@rmarinsky.com.ua: email акаунта, номер платежу або замовлення, дату та опис проблеми. Не надсилайте повний номер картки, CVV або пароль.",
+        "Строки й умови повернення визначаються застосовним законодавством. Після погодження повернення ініціюється через WayForPay на платіжний засіб початкової оплати; час зарахування залежить від банку та платіжної системи.",
       ],
       publisherTitle: "Видавець",
       publisherBody:
@@ -438,13 +464,15 @@ export const ui = {
     legal: {
       title: "Legal",
       description: "Privacy, terms, and contact details for Roman Marinsky products.",
-      updated: "Last updated: 17 June 2026",
+      updated: "Last updated: 15 October 2026",
       heading: "Legal",
       lead:
         "Short version: this site is static, product behavior is documented per repository or release, and credentials should stay in your local tools.",
       navLabel: "Legal sections",
       privacy: "Privacy",
       terms: "Terms",
+      didunyOffer: "Diduny Pro terms",
+      refunds: "Refunds and cancellation",
       imprint: "Imprint",
       contact: "Contact",
       privacyTitle: "Static site privacy",
@@ -455,6 +483,10 @@ export const ui = {
         "Mac apps, browser extensions, and MCP servers may process data differently; check the relevant repository and release notes.",
         "Do not publish API keys, payment credentials, hosting tokens, or customer data in issues, chats, or screenshots.",
       ],
+      privacyProductTitle:
+        "Diduny data, cloud processing and payments",
+      privacyProductBody:
+        "Diduny uses the account email, user identifier, cloud usage records and payment records for sign-in and subscription support. Checkout sends the payer email, account identifier, order reference, amount and currency to WayForPay. Card details are entered on the WayForPay payment page. Local models process audio on the Mac; when you select cloud mode, audio and results pass through the backend to cloud processing services. For personal data requests, contact roman@rmarinsky.com.ua.",
       termsTitle: "Software usage",
       termsBody:
         "Products are provided according to the license and documentation in each repository or distribution channel. Open-source repositories remain governed by their repository license.",
@@ -462,6 +494,26 @@ export const ui = {
         "Use operational tools with review and backups, especially for DNS, payments, and account changes.",
         "No product on this site is a promise of fully autonomous AI behavior.",
         "Availability, pricing, and supported platforms can change by release.",
+      ],
+      didunyOfferTitle:
+        "Diduny Pro subscription terms",
+      didunyOfferBody:
+        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. The annual subscription is one payment for twelve months, not monthly instalments.",
+      didunyPlans: [
+        "Free: 2 free cloud hours per calendar month. Local models are free without an hourly limit.",
+        "Monthly Pro: ₴150 for one month, renewing automatically every month.",
+        "Annual Pro: ₴1500 paid once for twelve months, renewing automatically every year. Pay for ten months and save ₴300 compared with twelve monthly payments.",
+      ],
+      paymentDeliveryTitle: "Payment and service delivery",
+      paymentDeliveryBody:
+        "Pay online by bank card through WayForPay in UAH; any other available methods are shown on the payment page. This is a digital service with no physical delivery. Once payment is confirmed, paid access is linked to the Diduny account for one or twelve months. If access is missing, refresh the subscription in Account or contact roman@rmarinsky.com.ua.",
+      refundsTitle: "Refunds and payment cancellation",
+      refundsBody:
+        "Refunds are available when paid access was not provided and where required by applicable law. These terms do not limit mandatory consumer rights. Cancelling automatic renewal is not itself a request to refund an existing payment.",
+      refundsSteps: [
+        "To stop future charges, choose Cancel automatic renewal in Account. Paid access remains available until the end of the paid period.",
+        "For a refund, email roman@rmarinsky.com.ua with the account email, payment or order number, payment date and problem description. Do not send a full card number, CVV or password.",
+        "Refund timing and conditions follow applicable law. Once approved, the refund is initiated through WayForPay to the original payment method; posting time depends on the bank and payment network.",
       ],
       publisherTitle: "Publisher",
       publisherBody:
