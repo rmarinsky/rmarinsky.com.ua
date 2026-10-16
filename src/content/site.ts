@@ -19,6 +19,7 @@ export const builder = {
   roles: ["QA/Test Automation Expert", "macOS Developer", "Community Builder"],
   facts: ["12 years in test automation", "1400+ technical interviews"],
   products: [
+    { name: "Studio Recorder", slug: "studio-recorder" },
     { name: "Diduny", slug: "diduny" },
     { name: "AppCat", slug: "appcat" },
     { name: "Papuga", slug: "papuga" },

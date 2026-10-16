@@ -1,0 +1,142 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../components/Layout.astro";
+import { localizedPath, type Locale } from "../content/i18n";
+import { site } from "../content/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const isUK = locale === "uk";
+const copy = isUK ? {
+  title: "Studio Recorder — приватність і умови",
+  description: "Політика конфіденційності й умови Studio Recorder, включно з використанням Google і YouTube API.",
+  updated: "Оновлено 23 липня 2026",
+  heading: "Studio Recorder: приватність і умови",
+  lead: "Як нативний macOS застосунок обробляє локальні записи та дані Google/YouTube.",
+  privacy: "Приватність",
+  terms: "Умови",
+  dataTitle: "Дані Google, які читає застосунок",
+  dataBody: "Після твоєї згоди Studio Recorder використовує YouTube Data API, щоб читати лише дані, потрібні для live workflow:",
+  data: [
+    "список запланованих broadcasts і їхні назви, час, privacy status, lifecycle status та identifiers;",
+    "пов’язані encoder streams, ingestion endpoints, stream status і доступні health details;",
+    "результати операцій, потрібні для звірки стану створеної або вибраної події.",
+  ],
+  actionsTitle: "Дії, які застосунок може виконувати",
+  actionsBody: "Studio Recorder може створити приватний broadcast і encoder stream, зв’язати їх, перевести app-created broadcast у testing, live або complete, а також видалити незапущену app-created подію під час cleanup. Застосунок не створює публічний broadcast автоматично.",
+  storageTitle: "Зберігання, передача і строки",
+  storage: [
+    "OAuth access і refresh tokens зберігаються в macOS Keychain. Stream keys для керованих подій зберігаються лише в пам’яті процесу.",
+    "OAuth і YouTube API-запити йдуть прямо між Studio Recorder та Google. Відео й аудіо live stream передаються прямо в YouTube. Сервер Studio Recorder не отримує ці дані.",
+    "Проєкти записів, медіа, сцени та налаштування лишаються локально на твоєму Mac, доки ти сам їх не видалиш. Записи не завантажуються, якщо ти явно не запускаєш YouTube stream.",
+    "Studio Recorder не продає дані Google, не передає їх рекламним системам і не використовує для analytics, profiling чи навчання моделей.",
+  ],
+  deletionTitle: "Відключення, видалення і відкликання доступу",
+  deletionBody: "Disconnect YouTube відкликає токен у Google та видаляє локальну OAuth-авторизацію з Keychain. Ти також можеш відкликати доступ у налаштуваннях Google Account. Локальні записи видаляються через Finder або Studio Recorder; YouTube broadcasts і відео керуються у YouTube Studio.",
+  limitedUseTitle: "Google Limited Use",
+  limitedUseBody: "Використання й передача інформації, отриманої від Google APIs, відповідає Google API Services User Data Policy, включно з Limited Use requirements. Дані використовуються лише для видимого користувачу YouTube Live workflow.",
+  termsTitle: "Умови використання",
+  termsBody: "Використовуючи Studio Recorder, ти погоджуєшся з такими умовами:",
+  termsList: [
+    "Ти відповідаєш за право записувати екран, звук, камеру, людей і контент, а також за необхідні згоди.",
+    "YouTube і Google Account окремо регулюються умовами Google та YouTube. Ти відповідаєш за назви, privacy status, зміст і запуск broadcasts.",
+    "Застосунок і публічний source надаються «як є», без гарантій безперервної роботи або придатності для конкретної мети в межах, дозволених законом.",
+    "Публічний source не має open-source ліцензії; всі права збережено, доки ліцензію не буде обрано явно.",
+  ],
+  contact: "Питання щодо приватності або доступу:",
+} : {
+  title: "Studio Recorder — Privacy and Terms",
+  description: "Studio Recorder privacy policy and terms, including Google and YouTube API data use.",
+  updated: "Updated July 23, 2026",
+  heading: "Studio Recorder privacy and terms",
+  lead: "How the native macOS app handles local recordings and Google/YouTube data.",
+  privacy: "Privacy",
+  terms: "Terms",
+  dataTitle: "Google data the app reads",
+  dataBody: "After you consent, Studio Recorder uses the YouTube Data API only for data needed by the live workflow:",
+  data: [
+    "scheduled broadcasts and their titles, times, privacy status, lifecycle status, and identifiers;",
+    "bound encoder streams, ingestion endpoints, stream status, and available health details;",
+    "operation results needed to reconcile an app-created or selected event.",
+  ],
+  actionsTitle: "Actions the app can perform",
+  actionsBody: "Studio Recorder can create a private broadcast and encoder stream, bind them, transition an app-created broadcast through testing, live, or complete, and delete an unstarted app-created event during cleanup. The app does not automatically create a public broadcast.",
+  storageTitle: "Storage, transfer, and retention",
+  storage: [
+    "OAuth access and refresh tokens are stored in macOS Keychain. Stream keys for managed events remain in process memory only.",
+    "OAuth and YouTube API requests go directly between Studio Recorder and Google. Live video and audio go directly to YouTube. No Studio Recorder server receives this data.",
+    "Recording projects, media, scenes, and preferences remain on your Mac until you delete them. Recordings are not uploaded unless you explicitly start a YouTube stream.",
+    "Studio Recorder does not sell Google data, share it with advertising systems, or use it for analytics, profiling, or model training.",
+  ],
+  deletionTitle: "Disconnecting, deletion, and revocation",
+  deletionBody: "Disconnect YouTube revokes the token with Google and removes local OAuth authorization from Keychain. You can also revoke access in Google Account settings. Delete local recordings through Finder or Studio Recorder; manage YouTube broadcasts and videos in YouTube Studio.",
+  limitedUseTitle: "Google Limited Use",
+  limitedUseBody: "Studio Recorder’s use and transfer of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements. Data is used only for the user-visible YouTube Live workflow.",
+  termsTitle: "Terms of use",
+  termsBody: "By using Studio Recorder, you agree that:",
+  termsList: [
+    "You are responsible for having the right to record screens, audio, cameras, people, and content, and for obtaining required consent.",
+    "YouTube and Google Account are separately governed by Google and YouTube terms. You are responsible for broadcast titles, privacy status, content, and starting a broadcast.",
+    "The app and public source are provided as is, without warranties of uninterrupted operation or fitness for a particular purpose, to the extent allowed by law.",
+    "The public source currently has no open-source license; all rights are reserved until a license is explicitly chosen.",
+  ],
+  contact: "Questions about privacy or access:",
+};
+---
+
+<Layout locale={locale} title={copy.title} description={copy.description}>
+  <Header locale={locale} />
+  <main>
+    <section class="band secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">{copy.updated}</span>
+          <h1>{copy.heading}</h1>
+          <p class="lead">{copy.lead}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container legal-layout">
+        <nav class="legal-nav" aria-label={isUK ? "Правові розділи" : "Legal sections"}>
+          <a href={localizedPath("/studio-recorder/legal/#privacy", locale)}>{copy.privacy}</a>
+          <a href={localizedPath("/studio-recorder/legal/#terms", locale)}>{copy.terms}</a>
+          <a href={localizedPath("/studio-recorder/", locale)}>Studio Recorder</a>
+        </nav>
+
+        <div class="legal-content">
+          <section class="legal-section" id="privacy">
+            <span class="kicker">{copy.privacy}</span>
+            <h2>{copy.dataTitle}</h2>
+            <p class="body-copy">{copy.dataBody}</p>
+            <ul>{copy.data.map((item) => <li>{item}</li>)}</ul>
+            <h2>{copy.actionsTitle}</h2>
+            <p class="body-copy">{copy.actionsBody}</p>
+            <h2>{copy.storageTitle}</h2>
+            <ul>{copy.storage.map((item) => <li>{item}</li>)}</ul>
+            <h2>{copy.deletionTitle}</h2>
+            <p class="body-copy">{copy.deletionBody}</p>
+            <h2>{copy.limitedUseTitle}</h2>
+            <p class="body-copy">
+              {copy.limitedUseBody} <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>.
+            </p>
+          </section>
+
+          <section class="legal-section" id="terms">
+            <span class="kicker">{copy.terms}</span>
+            <h2>{copy.termsTitle}</h2>
+            <p class="body-copy">{copy.termsBody}</p>
+            <ul>{copy.termsList.map((item) => <li>{item}</li>)}</ul>
+            <p class="body-copy">{copy.contact} <a href={site.email}>{site.email.replace("mailto:", "")}</a>.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>
