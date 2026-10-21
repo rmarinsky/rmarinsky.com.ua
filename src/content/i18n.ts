@@ -271,7 +271,7 @@ export const ui = {
       didunyOfferBody:
         "Дідуня пропонує план Підтримки незалежної розробки та Pro - підписку на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Натискаючи кнопку переходу до оплати, ви приймаєте умови обраного плану й підтверджуєте ознайомлення з політикою конфіденційності; це не є згодою на додаткову статистику. Оберіть місячну або річну підписку з автопоновленням чи разовий річний доступ без автопоновлення.",
       didunyPlans: [
-        "Підтримка: ₴69 на місяць з автоматичним поновленням. Підтримує розробку та доступ до спільноти й обговорення функцій; запрошення до спільноти готується. Хмарна квота залишається 2 години на календарний місяць.",
+        "Підтримка: ₴69 на місяць з автоматичним поновленням. Підтримує розробку та доступ до спільноти й обговорення функцій; запрошення до спільноти готується. Хмарна квота залишається 2 години на календарний місяць. Cloud: ₴119 на місяць з автоматичним поновленням; 10 спільних годин хмарної обробки за календарний місяць. Перехід на вищий тариф — окрема оплата без зарахування попереднього платежу; поточне автопоновлення зупиняється перед новою оплатою.",
         "Безкоштовно: 2 години хмарної транскрипції за календарний місяць. Локальні моделі безкоштовні без погодинного ліміту.",
         "Місячний Pro: ₴150 за один місяць, автоматичне поновлення щомісяця.",
         "Річний Pro: ₴1500 за 12 місяців одним платежем, автоматичне поновлення щороку. Ціна десяти місяців; економія ₴300 проти дванадцяти місячних оплат.",
@@ -514,7 +514,7 @@ export const ui = {
       didunyOfferBody:
         "Diduny offers Support for independent development and Pro, a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. Continuing to payment accepts the selected plan terms and acknowledges the Privacy Policy; it does not consent to additional statistics. Choose a monthly or annual auto-renewing subscription, or one-time annual access without automatic renewal.",
       didunyPlans: [
-        "Support: ₴69 per month with automatic renewal. Funds development and includes community participation and feature discussions; the community invitation is being prepared. Cloud allowance remains two hours per calendar month.",
+        "Support: ₴69 per month with automatic renewal. Funds development and includes community participation and feature discussions; the community invitation is being prepared. Cloud allowance remains two hours per calendar month. Cloud: ₴119 per month with automatic renewal; ten shared cloud hours per calendar month. A higher plan is a separate purchase without credit for the previous payment; the current renewal stops before the new checkout.",
         "Free: 2 free cloud hours per calendar month. Local models are free without an hourly limit.",
         "Monthly Pro: ₴150 for one month, renewing automatically every month.",
         "Annual Pro: ₴1500 paid once for twelve months, renewing automatically every year. Pay for ten months and save ₴300 compared with twelve monthly payments.",

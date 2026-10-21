@@ -4,6 +4,9 @@ import { readFile } from 'node:fs/promises';
 for (const prefix of ['', 'en/']) {
   const legal = await readFile(new URL(`../dist/${prefix}legal/index.html`, import.meta.url), 'utf8');
   const product = await readFile(new URL(`../dist/${prefix}diduny/index.html`, import.meta.url), 'utf8');
+  assert.match(product, /₴119/, 'Cloud price must be visible');
+  assert.match(legal, prefix ? /Cloud: ₴119 per month/ : /Cloud: ₴119 на місяць/, 'Cloud quota and recurring price must be public');
+  assert.match(product, /data-product="cloud"/, 'Cloud must be selectable');
   assert.match(legal, prefix ? /Support: ₴69 per month/ : /Підтримка: ₴69 на місяць/, 'Support terms and price must be explicit');
   assert.match(product, /data-local-cloud-comparison/, 'local and cloud comparison must be available');
   assert.match(product, /data-plan-comparison/, 'all plan allowances must be comparable');

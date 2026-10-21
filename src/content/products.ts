@@ -104,7 +104,7 @@ export const products: Product[] = [
       notFor: ["spoken playback of translated output", "a full multitrack transcription studio", "Windows or mobile dictation"],
     },
     pricingNote:
-      "Local models are free without an hourly limit. Cloud includes two free hours per calendar month. Support: ₴69 monthly, with the Free cloud allowance. Pro: ₴150 monthly or ₴1500 paid once for twelve months (two months free), with automatic renewal.",
+      "Local models are free without an hourly limit. Cloud includes two free hours per calendar month. Support: ₴69 monthly, with the Free cloud allowance. Cloud: ₴119 monthly for 10 shared cloud hours per calendar month. Pro: ₴150 monthly or ₴1500 paid once for twelve months (two months free), with automatic renewal.",
     primaryCta: "Download for Mac",
     primaryUrl: "https://github.com/rmarinsky/Diduny/releases/latest",
     secondaryCta: "View source",
@@ -629,7 +629,7 @@ const productCopy: Record<string, Partial<Record<Locale, ProductLocalizedFields>
         notFor: ["озвучення перекладеного тексту", "повноцінна multitrack transcription studio", "диктування на Windows чи мобільних платформах"],
       },
       pricingNote:
-        "Локальні моделі безкоштовні без погодинного ліміту. Хмара: 2 години безкоштовно за календарний місяць. Підтримка: ₴69 щомісяця з хмарним лімітом Free. Pro: ₴150 щомісяця або ₴1500 одним платежем за 12 місяців (два місяці безкоштовно), з автоматичним поновленням.",
+        "Локальні моделі безкоштовні без погодинного ліміту. Хмара: 2 години безкоштовно за календарний місяць. Підтримка: ₴69 щомісяця з хмарним лімітом Free. Cloud: ₴119 щомісяця за 10 спільних годин хмари на календарний місяць. Pro: ₴150 щомісяця або ₴1500 одним платежем за 12 місяців (два місяці безкоштовно), з автоматичним поновленням.",
       primaryCta: "Завантажити для Mac",
       secondaryCta: "Дивитись код",
       badges: ["macOS застосунок", "нотаризований", "автооновлення", "відкритий код"],
