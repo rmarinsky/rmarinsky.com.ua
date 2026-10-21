@@ -4,6 +4,12 @@ import { readFile } from 'node:fs/promises';
 for (const prefix of ['', 'en/']) {
   const legal = await readFile(new URL(`../dist/${prefix}legal/index.html`, import.meta.url), 'utf8');
   const product = await readFile(new URL(`../dist/${prefix}diduny/index.html`, import.meta.url), 'utf8');
+  assert.match(legal, prefix ? /Support: ₴69 per month/ : /Підтримка: ₴69 на місяць/, 'Support terms and price must be explicit');
+  assert.match(product, /data-local-cloud-comparison/, 'local and cloud comparison must be available');
+  assert.match(product, /data-plan-comparison/, 'all plan allowances must be comparable');
+  assert.match(product, /data-open-diduny/, 'review must preserve the plan when opening the app');
+  assert.match(product, /data-diduny-paywall/, 'product must include the staged subscription flow');
+  assert.match(product, prefix ? /Suggest and discuss new features/ : /Пропозиції й обговорення нових функцій/, 'paid community benefits must be stated');
   assert.match(legal, prefix ? /One-time annual access: ₴1500/ : /Разовий річний доступ: ₴1500/, `${prefix}one-time access must be explicit`);
   assert.match(legal, prefix ? /does not renew automatically/ : /не поновлюється автоматично/, `${prefix}one-time access must not renew`);
   assert.match(legal, prefix ? /up to 3 payments/ : /до 3 платежів/, `${prefix}installment limit must be explicit`);

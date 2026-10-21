@@ -236,7 +236,7 @@ export const ui = {
       navLabel: "Правові розділи",
       privacy: "Privacy",
       terms: "Terms",
-      didunyOffer: "Умови Diduny Pro",
+      didunyOffer: "Умови планів Дідуні",
       refunds: "Повернення й скасування",
       imprint: "Imprint",
       contact: "Contact",
@@ -267,10 +267,11 @@ export const ui = {
         "Availability, pricing і supported platforms можуть змінюватися від релізу до релізу.",
       ],
       didunyOfferTitle:
-        "Умови підписки Diduny Pro",
+        "Умови платних планів Дідуні",
       didunyOfferBody:
-        "Diduny Pro - підписка на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Натискаючи кнопку переходу до оплати, ви приймаєте умови обраного плану й підтверджуєте ознайомлення з політикою конфіденційності; це не є згодою на додаткову статистику. Оберіть місячну або річну підписку з автопоновленням чи разовий річний доступ без автопоновлення.",
+        "Дідуня пропонує план Підтримки незалежної розробки та Pro - підписку на хмарну транскрипцію в Diduny для macOS. Перед оплатою Account показує повну суму та період. Натискаючи кнопку переходу до оплати, ви приймаєте умови обраного плану й підтверджуєте ознайомлення з політикою конфіденційності; це не є згодою на додаткову статистику. Оберіть місячну або річну підписку з автопоновленням чи разовий річний доступ без автопоновлення.",
       didunyPlans: [
+        "Підтримка: ₴69 на місяць з автоматичним поновленням. Підтримує розробку та доступ до спільноти й обговорення функцій; запрошення до спільноти готується. Хмарна квота залишається 2 години на календарний місяць.",
         "Безкоштовно: 2 години хмарної транскрипції за календарний місяць. Локальні моделі безкоштовні без погодинного ліміту.",
         "Місячний Pro: ₴150 за один місяць, автоматичне поновлення щомісяця.",
         "Річний Pro: ₴1500 за 12 місяців одним платежем, автоматичне поновлення щороку. Ціна десяти місяців; економія ₴300 проти дванадцяти місячних оплат.",
@@ -478,7 +479,7 @@ export const ui = {
       navLabel: "Legal sections",
       privacy: "Privacy",
       terms: "Terms",
-      didunyOffer: "Diduny Pro terms",
+      didunyOffer: "Diduny plan terms",
       refunds: "Refunds and cancellation",
       imprint: "Imprint",
       contact: "Contact",
@@ -509,10 +510,11 @@ export const ui = {
         "Availability, pricing, and supported platforms can change by release.",
       ],
       didunyOfferTitle:
-        "Diduny Pro subscription terms",
+        "Diduny paid plan terms",
       didunyOfferBody:
-        "Diduny Pro is a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. Continuing to payment accepts the selected plan terms and acknowledges the Privacy Policy; it does not consent to additional statistics. Choose a monthly or annual auto-renewing subscription, or one-time annual access without automatic renewal.",
+        "Diduny offers Support for independent development and Pro, a cloud transcription subscription for the Diduny macOS app. Account shows the full charge and period before payment. Continuing to payment accepts the selected plan terms and acknowledges the Privacy Policy; it does not consent to additional statistics. Choose a monthly or annual auto-renewing subscription, or one-time annual access without automatic renewal.",
       didunyPlans: [
+        "Support: ₴69 per month with automatic renewal. Funds development and includes community participation and feature discussions; the community invitation is being prepared. Cloud allowance remains two hours per calendar month.",
         "Free: 2 free cloud hours per calendar month. Local models are free without an hourly limit.",
         "Monthly Pro: ₴150 for one month, renewing automatically every month.",
         "Annual Pro: ₴1500 paid once for twelve months, renewing automatically every year. Pay for ten months and save ₴300 compared with twelve monthly payments.",
