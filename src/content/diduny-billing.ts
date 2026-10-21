@@ -1,6 +1,10 @@
 // Product copy shared by the UK/EN staged offer. Prices are the published default catalog.
 export const didunyBillingCopy = {
   "uk": {
+    "cloudAllowance": "Хмарний час",
+    "withinCloud": "У межах спільної хмарної квоти",
+    "invitationPending": "Запрошення готується",
+
     "table": "Порівняння планів",
     "models": "Локально чи у хмарі",
     "localColumn": "Локальні моделі",
@@ -87,6 +91,10 @@ export const didunyBillingCopy = {
     "ideasNote": "Учасники Підтримки та Pro можуть ділитися ідеями, обговорювати нові функції з розробником і допомагати визначати напрям розвитку Дідуни."
   },
   "en": {
+    "cloudAllowance": "Cloud allowance",
+    "withinCloud": "Within the shared cloud allowance",
+    "invitationPending": "Invitation pending",
+
     "table": "Plan comparison",
     "models": "Local vs cloud",
     "localColumn": "Local models",

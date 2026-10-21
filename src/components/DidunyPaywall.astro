@@ -6,10 +6,8 @@ const { locale } = Astro.props;
 const t = didunyBillingCopy[locale];
 const uk = locale === "uk";
 const free = [t.localNoLimit, t.localDictateItem, t.localMeetingItem, t.localImportItem, t.localTranslationItem, t.formatItem, t.freeCloudItem];
-const support = [t.supportDevelopment, t.communityAccess, t.ideasAccess];
 const rows = [[t.dictation,t.localDictation,t.cloudDictation],[t.meetings,t.localMeeting,t.cloudMeeting],[t.voice,t.localTranslate,t.cloudTranslate],[t.meetingTranslate,t.localMeetingTranslate,t.cloudMeetingTranslate],[t.imports,t.localImports,t.cloudImports]];
-const planRows = [[t.allLocal,t.unlimited,t.unlimited,t.unlimited],[t.cloudUnlimited,t.twoHours,t.twoHours,t.noQuota],[t.style,t.included,t.included,t.included],[t.communityAccess,"—",t.included,t.included],[t.ideasAccess,"—",t.included,t.included]];
-const pro = [t.cloudDictationTitle, t.cloudMeetingsTitle, t.cloudVoiceTitle, t.cloudMeetingTitle, t.communityAccess, t.ideasAccess];
+const planRows = [[t.allLocal,t.unlimited,t.unlimited,t.unlimited],[t.cloudAllowance,t.twoHours,t.twoHours,t.noQuota],[t.style,t.included,t.included,t.included],[t.communityAccess,"—",t.invitationPending,t.invitationPending],[t.ideasAccess,"—",t.included,t.included]];
 ---
 <section class="band secondary" id="plans" data-diduny-paywall data-locale={locale}>
   <div class="container">
@@ -28,15 +26,24 @@ const pro = [t.cloudDictationTitle, t.cloudMeetingsTitle, t.cloudVoiceTitle, t.c
         <button data-lifetime>{t.lifetime}</button>
       </div>
       <p>{t.periodNote}</p>
-      <div class="offers">
-        <article><h3>{t.free}</h3><strong class="price">₴0</strong><p>{t.forever}</p><ul>{free.map(item => <li>{item}</li>)}</ul><a class="button" href="https://github.com/rmarinsky/Diduny/releases/latest">{uk ? "Завантажити безкоштовно" : "Download free"}</a></article>
-        <article><h3>{t.support}</h3><strong class="price">₴69</strong><p>{t.perMonth}</p><h4>{t.everythingFree}</h4><ul>{support.map(item => <li>{item}</li>)}</ul><p>{t.supportNote}</p><button class="button" data-product="support">{uk ? "Перевірити план Підтримки" : "Review Support plan"}</button></article>
-        <article class="pro"><h3>{t.pro}</h3><strong class="price" data-pro-price>₴150</strong><p data-pro-period>{t.perMonth}</p><h4>{t.everythingFree}</h4><p>{t.cloudUnlimited}</p><ul>{pro.map(item => <li>{item}</li>)}</ul><button class="button primary" data-product="pro">{uk ? "Перевірити Pro" : "Review Pro"}</button></article>
+      <div class="table-scroll plan-table" data-plan-comparison tabindex="0" role="region" aria-label={t.table}>
+        <table><thead><tr><th scope="col">{t.feature}</th><th scope="col">{t.free}<strong class="price">₴0</strong><small>{t.forever}</small></th><th scope="col">{t.support}<strong class="price">₴69</strong><small>{t.perMonth}</small></th><th scope="col">{t.pro}<strong class="price" data-pro-price>₴150</strong><small data-pro-period>{t.perMonth}</small></th></tr></thead>
+          <tbody>
+            {free.slice(0,-2).map(item => <tr><th scope="row">{item}</th><td>{t.included}</td><td>{t.included}</td><td>{t.included}</td></tr>)}
+            {[t.cloudDictationTitle,t.cloudMeetingsTitle,t.cloudVoiceTitle,t.cloudMeetingTitle].map(item => <tr><th scope="row">{item}</th><td>{t.withinCloud}</td><td>{t.withinCloud}</td><td>{t.included}</td></tr>)}
+            {planRows.slice(1).map(row => <tr><th scope="row">{row[0]}</th>{row.slice(1).map(value => <td>{value}</td>)}</tr>)}
+            <tr><th scope="row">{uk ? "Обрати план" : "Choose a plan"}</th>
+              <td><a class="button" href="https://github.com/rmarinsky/Diduny/releases/latest">{uk ? "Безкоштовно" : "Use Free"}</a></td>
+              <td><button class="button" data-product="support">{uk ? "Обрати Підтримку" : "Choose Support"}</button></td>
+              <td><button class="button primary" data-product="pro">{uk ? "Обрати Pro" : "Choose Pro"}</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <p class="note">{t.freeNote}</p>
       <p class="note">{uk ? "Запрошення до спільноти готується. Нові функції можна пропонувати й обговорювати; строків реалізації не гарантуємо." : "The community invitation is being prepared. Members can suggest and discuss new features; delivery dates are not guaranteed."}</p>
       <details data-local-cloud-comparison><summary>{t.models}</summary><div class="table-scroll" tabindex="0" role="region" aria-label={t.models}><table><thead><tr><th scope="col">{t.feature}</th><th scope="col">{t.localColumn}</th><th scope="col">{t.cloudColumn}</th></tr></thead><tbody>{rows.map(row => <tr><th scope="row">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td></tr>)}</tbody></table></div><p>{t.modelNote}</p><p>{t.cleanNote}</p></details>
-      <details data-plan-comparison><summary>{t.table}</summary><div class="table-scroll" tabindex="0" role="region" aria-label={t.table}><table><thead><tr><th scope="col">{t.feature}</th><th scope="col">{t.free}</th><th scope="col">{t.support}</th><th scope="col">{t.pro}</th></tr></thead><tbody>{planRows.map(row => <tr><th scope="row">{row[0]}</th>{row.slice(1).map(value => <td>{value}</td>)}</tr>)}</tbody></table></div></details>
+
       <details><summary>{t.oneTime}</summary><p>{t.oneTimeBody}</p><button class="button" data-product="one_time">{uk ? "Перевірити разовий рік" : "Review one-time annual"}</button></details>
     </div>
     <div data-stage="review" hidden>
@@ -99,7 +106,7 @@ const pro = [t.cloudDictationTitle, t.cloudMeetingsTitle, t.cloudVoiceTitle, t.c
   .period button,.back { font: inherit; color: var(--text-primary); cursor: pointer; background: transparent; border: 0; padding: 10px 15px; border-radius: 7px; }
   .period [aria-pressed="true"] { background: var(--bg-primary); box-shadow: 0 1px 5px #0002; }
   .back { padding-left: 0; margin-bottom: 20px; } .note { font-size: .9rem; max-width: 950px; }
-  .table-scroll { overflow-x: auto; } table { border-collapse: collapse; width: 100%; min-width: 620px; margin: 20px 0; } th,td { text-align: left; padding: 14px; border-bottom: 1px solid var(--border); line-height: 1.5; } thead { background: var(--bg-elevated); }
+  .table-scroll { overflow-x: auto; } .plan-table table { min-width: 640px; table-layout: fixed; } .plan-table th:first-child { width: 30%; } .plan-table th:not(:first-child) { width: 23.33%; } .plan-table small { display: block; font-weight: 400; margin-top: 8px; } .plan-table .button { padding: 12px; font-size: .9rem; } .plan-table thead th:last-child { background: linear-gradient(150deg,#101535,#335ca6); color: white; } .plan-table td:last-child { background: #5078cc16; border-left: 1px solid #5078cc66; } table { border-collapse: collapse; width: 100%; min-width: 620px; margin: 20px 0; } th,td { text-align: left; padding: 14px; border-bottom: 1px solid var(--border); line-height: 1.5; } thead { background: var(--bg-elevated); }
   details { margin: 24px 0; } summary { cursor: pointer; } dl { max-width: 680px; margin: 30px 0; } dl div { display: flex; justify-content: space-between; gap: 20px; padding: 15px 0; border-bottom: 1px solid var(--border); } dd { font-weight: 650; }
   dialog { color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border); border-radius: 12px; max-width: 550px; padding: 30px; } dialog::backdrop { background: #0006; }
   button:focus-visible,a:focus-visible { outline: 3px solid var(--diduny); outline-offset: 4px; }
